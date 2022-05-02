@@ -1,9 +1,8 @@
 @extends('layout.main')
 
-@section('title', 'Page Title')
+@section('title', 'Dashboard')
 
 @section('content')
-
 
     <div class="pagetitle">
       <h1>Dashboard Pelanggaran</h1>

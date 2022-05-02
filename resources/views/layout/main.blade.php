@@ -53,7 +53,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NAMA_APP</span>
+        <span class="d-none d-lg-block">{{ config('app.name') }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -282,21 +282,21 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard Pelanggaran</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="report">
           <i class="bi bi-pie-chart-fill"></i>
           <span>Report Chart</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="pengaduan">
           <i class="bi bi-megaphone-fill"></i>
           <span>Laporan/Pengaduan</span>
         </a>
@@ -306,21 +306,21 @@
       <li class="nav-heading">Administration</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
+        <a class="nav-link collapsed" href="profil">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
+        <a class="nav-link collapsed" href="user_management">
           <i class="bi bi-card-list"></i>
           <span>User Management</span>
         </a>
       </li><!-- End Register Page Nav -->
     
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
+        <a class="nav-link collapsed" href="logout">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
         </a>
