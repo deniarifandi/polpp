@@ -291,7 +291,7 @@
       <li class="nav-item">
         <a class="nav-link " href="report">
           <i class="bi bi-pie-chart-fill"></i>
-          <span>Report Chart</span>
+          <span>Report</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
