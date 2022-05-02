@@ -262,10 +262,18 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </a>
+
+              
+                <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  <i class="bi bi-box-arrow-right"></i>
+                    <span>Sign Out</span>
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+              
+
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
@@ -323,6 +331,8 @@
         <a class="nav-link collapsed" href="logout">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
+
+
         </a>
       </li><!-- End Login Page Nav -->
 
