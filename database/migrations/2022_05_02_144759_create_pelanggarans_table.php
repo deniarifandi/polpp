@@ -23,10 +23,10 @@ return new class extends Migration
             $table->tinyInteger('id_kegiatan')->nullable();
 
             //reklame
-            $table->tinyInteger('tema_reklame')->nullable();
+            $table->string('tema_reklame')->nullable();
             $table->tinyInteger('id_pemilik')->nullable();
             $table->tinyInteger('id_jenis_reklame')->nullable();
-            $table->tinyInteger('id_jumlah_reklame')->nullable();
+            $table->tinyInteger('jumlah_reklame')->nullable();
             $table->tinyInteger('id_jenis_pelanggaran')->nullable();
             $table->tinyInteger('id_tindak_lanjut')->nullable();
             $table->tinyInteger('id_propinsi')->nullable();

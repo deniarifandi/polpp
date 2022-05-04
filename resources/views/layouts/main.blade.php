@@ -43,6 +43,10 @@
     color: black;
   }
 
+  .hover-light:hover{
+    background-color: rgb(246,249,255);
+  }
+
 </style>
 
 <body>
@@ -51,7 +55,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{URL::to('/')}}" class="logo d-flex align-items-center">
         <img src="{{URL::to('/')}}/assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">{{ config('app.name') }}</span>
       </a>
@@ -286,49 +290,49 @@
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-
+    <br>
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="dashboard">
+        <a class="nav-link " href="{{ URL::to('/dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard Pelanggaran</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="report">
+        <a class="nav-link " href="#" onclick="underConstruction()">
           <i class="bi bi-pie-chart-fill"></i>
           <span>Report</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="pengaduan">
+        <a class="nav-link "  href="#" onclick="underConstruction()">
           <i class="bi bi-megaphone-fill"></i>
           <span>Laporan/Pengaduan</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
-     
+     <br>
       <li class="nav-heading">Administration</li>
-
+      <br>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="profil">
+        <a class="nav-link collapsed" href="#" onclick="underConstruction()">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="user_management">
+        <a class="nav-link collapsed" href="#" onclick="underConstruction()">
           <i class="bi bi-card-list"></i>
           <span>User Management</span>
         </a>
       </li><!-- End Register Page Nav -->
     
       <li class="nav-item">
-        <a class="nav-link collapsed" href="logout">
+        <a class="nav-link collapsed" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Logout</span>
 
@@ -374,6 +378,17 @@
 
   <!-- Template Main JS File -->
   <script src="{{URL::to('/')}}/assets/js/main.js"></script>
+
+   <script type="text/javascript">
+      
+      function underConstruction(){
+
+        alert('under construction');
+      }
+
+
+
+    </script>
 
 </body>
 

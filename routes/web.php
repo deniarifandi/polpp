@@ -19,7 +19,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $reklameTotal = PelanggaranController::getJumlahPelanggaran();
+
+    return view('dashboard',[ 'reklameTotal' => $reklameTotal ]);
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('pelanggaran',PelanggaranController::class);

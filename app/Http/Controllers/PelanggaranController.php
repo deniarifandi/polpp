@@ -19,7 +19,43 @@ class PelanggaranController extends Controller
      */
     public function index()
     {
-        echo "test index";
+
+        $id_kegiatan = "1";
+
+        if (isset($_GET['id_kegiatan'])) {
+            $id_kegiatan = $_GET['id_kegiatan'];
+            $pelanggarans = Pelanggaran::select('*')
+                        ->where('id_kegiatan',$id_kegiatan)
+                        ->get();
+        }else{
+            $pelanggarans = Pelanggaran::select('*')
+                        ->get();
+        }
+        
+        $data = [];
+
+        
+
+        foreach ($pelanggarans as $pelanggaran) {
+
+
+            $data[] = array(
+                "id" => $pelanggaran->id,
+                "id_regu" => $pelanggaran->id_regu,
+                "id_kegiatan" => $pelanggaran->id_kegiatan,
+                "id_pemilik" => $pelanggaran->id_pemilik,
+                "id_jenis_pelanggaran"  => $pelanggaran->id_jenis_pelanggaran,
+                "id_tindak_lanjut"  => $pelanggaran->id_tindak_lanjut,
+                "tgl_peristiwa" => $pelanggaran->tgl_peristiwa
+                
+            );
+
+        }
+        // print_r($data);
+        $json_data = json_encode($data);
+
+        // echo $pelanggaran;
+         return view('list_pelanggaran', ['pelanggarans' => $json_data]);
     }
 
     /**
@@ -43,6 +79,8 @@ class PelanggaranController extends Controller
         
         // print_r($request->all());
 
+        print_r($request->all());
+
         try{
             $pelanggaran = new Pelanggaran;
             $pelanggaran->kategori_pelanggaran = $request->kategori_pelanggaran;
@@ -54,7 +92,7 @@ class PelanggaranController extends Controller
             $pelanggaran->tema_reklame = $request->tema_reklame;
             $pelanggaran->id_pemilik = $request->id_pemilik;
             $pelanggaran->id_jenis_reklame = $request->id_jenis_reklame;
-            $pelanggaran->id_jumlah_reklame = $request->id_jumlah_reklame;
+            $pelanggaran->jumlah_reklame = $request->jumlah_reklame;
             $pelanggaran->id_jenis_pelanggaran = $request->id_jenis_pelanggaran;
             //endreklame
 
@@ -71,10 +109,10 @@ class PelanggaranController extends Controller
             $pelanggaran->tgl_peristiwa = date_format(date_create($request->tgl_peristiwa),"Y-m-d");
             $pelanggaran->save();
             
-            return Redirect::back();
+            return redirect('/pelanggaran');
         }catch(Exception $e){
-            echo $e->getMessage();
-            // return Redirect::back();
+            //echo $e->getMessage();
+            Redirect::back()->withErrors(['msg' => $e->getMessage()]);
         }
 
     }
@@ -122,5 +160,15 @@ class PelanggaranController extends Controller
     public function destroy(Pelanggaran $pelanggaran)
     {
         //
+    }
+
+    public static function getJumlahPelanggaran(){
+
+        $reklameTotal = Pelanggaran::where('id_kegiatan',1)
+                            ->orderBy('tgl_peristiwa')
+                            ->take(100)
+                            ->count();
+
+        return $reklameTotal;
     }
 }
