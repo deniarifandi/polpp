@@ -7,7 +7,7 @@
   
 
     <div class="pagetitle">
-      <h1>Blank Page</h1>
+      <h1>Tambah Data Pelanggaran</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -22,18 +22,14 @@
         <div class="col-lg-6">
 
           <div class="card">
-            <div class="card-header">
-              <h5 class="card-title" style="font-size: 20px;">Tambah Pelanggaran</h5>
-            </div>
+            
             <div class="card-body">
 
               <form action="{{ route('pelanggaran.store') }}" method="POST">
                 @csrf
                 
-              
-                
 
-              <h5 class="card-title" >Detail Tim</h5>
+              <h5 class="card-title" >Detail Laporan</h5>
               <div class="row mb-3">
                   <label for="inputText" class="col-sm-4 col-form-label">Jenis Laporan</label>
                   <div class="col-sm-8">

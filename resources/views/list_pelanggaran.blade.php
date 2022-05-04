@@ -50,13 +50,13 @@
                     
                     <tr>
                       {{-- <th>{{ $pelanggaran->id}}</th> --}}
-                      <th>{{ $pelanggaran->id_regu}}</th>
-                      <th>{{ $pelanggaran->id_kegiatan}}</th>
-                      <th>{{ $pelanggaran->id_pemilik}}</th>
-                      <th>{{ $pelanggaran->id_jenis_pelanggaran}}</th>
-                      <th>{{ $pelanggaran->id_tindak_lanjut}}</th>
-                      <th>{{ $pelanggaran->tgl_peristiwa}}</th>
-                      <th><button class="btn btn-warning">Edit</button> <button class="btn btn-danger">Delete</button></th>
+                      <td>{{ $pelanggaran->id_regu}}</td>
+                      <td>{{ $pelanggaran->id_kegiatan}}</td>
+                      <td>{{ $pelanggaran->id_pemilik}}</td>
+                      <td>{{ $pelanggaran->id_jenis_pelanggaran}}</td>
+                      <td>{{ $pelanggaran->id_tindak_lanjut}}</td>
+                      <td>{{ $pelanggaran->tgl_peristiwa}}</td>
+                      <td><button class="btn btn-warning">Edit</button> <button class="btn btn-danger">Delete</button></td>
                     </tr>
 
                   @endforeach

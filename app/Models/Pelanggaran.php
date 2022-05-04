@@ -38,6 +38,36 @@ class Pelanggaran extends Model
             return "Penertiban Parkir Liar";
         }else if($id_kegiatan == 8){
             return "Penertiban Prokes";
+        }else{
+            return $id_kegiatan;
+        }
+    }
+
+    public function getidjenispelanggaranAttribute($id_jenis_pelanggaran){
+        if ($id_jenis_pelanggaran == 1) {
+            return "Ijin Habis";
+        }else if($id_jenis_pelanggaran == 2){
+            return "Tidak Ada Ijin";
+        }
+    }
+
+    public function getidtindaklanjutAttribute($id_tindak_lanjut){
+        if($id_tindak_lanjut == 1){
+            return "Diamankan di Kantor SatpolPP";
+        }elseif($id_tindak_lanjut == 2){
+            return "test";
+        }else{
+            return $id_tindak_lanjut;
         }
     }
 }
+
+
+
+
+
+
+
+
+
+

@@ -26,16 +26,23 @@ return new class extends Migration
             $table->string('tema_reklame')->nullable();
             $table->tinyInteger('id_pemilik')->nullable();
             $table->tinyInteger('id_jenis_reklame')->nullable();
+            $table->string('ukuran_reklame')->nullable();
             $table->tinyInteger('jumlah_reklame')->nullable();
+            $table->date('masa_berlaku')->nullable();
+
+            //pelanggaran & tindakan
             $table->tinyInteger('id_jenis_pelanggaran')->nullable();
             $table->tinyInteger('id_tindak_lanjut')->nullable();
+            
+            //detail
             $table->tinyInteger('id_propinsi')->nullable();
             $table->tinyInteger('id_kab_kota')->nullable();
             $table->tinyInteger('id_kecamatan')->nullable();
             $table->tinyInteger('id_kelurahan')->nullable();
-            $table->string('alamat')->nullable();
-
-            $table->string('image')->nullable();
+            $table->string('lokasi')->nullable();
+            $table->string('image_sebelum')->nullable();
+            $table->string('image_proses')->nullable();
+            $table->string('image_setelah')->nullable();
             $table->double('lat')->nullable();
             $table->double('lon')->nullable();
             $table->date('tgl_peristiwa')->nullable();

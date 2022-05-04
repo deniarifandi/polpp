@@ -21,15 +21,16 @@ class PelanggaranController extends Controller
     {
 
         $id_kegiatan = "1";
+        $pelanggarans = Pelanggaran::select('*');
+        $pelanggarans = $pelanggarans->join('vendors','vendors.id', '=','pelanggarans.id_pemilik');
 
         if (isset($_GET['id_kegiatan'])) {
-            $id_kegiatan = $_GET['id_kegiatan'];
-            $pelanggarans = Pelanggaran::select('*')
-                        ->where('id_kegiatan',$id_kegiatan)
+
+            $pelanggarans = $pelanggarans->where('id_kegiatan',$_GET['id_kegiatan'])
                         ->get();
+
         }else{
-            $pelanggarans = Pelanggaran::select('*')
-                        ->get();
+            $pelanggarans = $pelanggarans->get();
         }
         
         $data = [];
@@ -43,7 +44,7 @@ class PelanggaranController extends Controller
                 "id" => $pelanggaran->id,
                 "id_regu" => $pelanggaran->id_regu,
                 "id_kegiatan" => $pelanggaran->id_kegiatan,
-                "id_pemilik" => $pelanggaran->id_pemilik,
+                "id_pemilik" => $pelanggaran->nama_vendor,
                 "id_jenis_pelanggaran"  => $pelanggaran->id_jenis_pelanggaran,
                 "id_tindak_lanjut"  => $pelanggaran->id_tindak_lanjut,
                 "tgl_peristiwa" => $pelanggaran->tgl_peristiwa
