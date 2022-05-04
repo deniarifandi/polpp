@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggaran;
+use App\Models\Regu;
 use App\Http\Requests\StorePelanggaranRequest;
 use App\Http\Requests\UpdatePelanggaranRequest;
 use Illuminate\Http\Request;
@@ -66,7 +67,10 @@ class PelanggaranController extends Controller
      */
     public function create()
     {
-        return view('insert_pelanggaran');
+
+        $regus = Regu::select('*')->get();
+
+        return view('insert_pelanggaran',['regus' => $regus]);
     }
 
     /**

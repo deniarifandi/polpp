@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('jenis_pelanggarans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->strung('keterangan');
+            $table->tinyInteger('kategori')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

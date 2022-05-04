@@ -46,10 +46,9 @@
                   <div class="col-sm-8">
                      <select class="form-select" aria-label="Default select example" name="id_regu" required>
                       <option selected value="">- Pilih Regu -</option>
+                      @foreach($regus as $regu)
                       <option value="1">Tim Beruang</option>
-                      <option value="2">Regu 1</option>
-                      <option value="3">Regu 2</option>
-                      <option value="3">Regu 3</option>
+                      @endforeach
                     </select>
                   </div>
               </div>

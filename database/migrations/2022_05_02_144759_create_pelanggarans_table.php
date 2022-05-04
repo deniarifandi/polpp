@@ -46,6 +46,8 @@ return new class extends Migration
             $table->double('lat')->nullable();
             $table->double('lon')->nullable();
             $table->date('tgl_peristiwa')->nullable();
+
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }
