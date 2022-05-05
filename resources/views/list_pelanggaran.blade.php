@@ -50,13 +50,14 @@
                     
                     <tr>
                       {{-- <th>{{ $pelanggaran->id}}</th> --}}
-                      <td>{{ $pelanggaran->id_regu}}</td>
-                      <td>{{ $pelanggaran->id_kegiatan}}</td>
-                      <td>{{ $pelanggaran->id_pemilik}}</td>
-                      <td>{{ $pelanggaran->id_jenis_pelanggaran}}</td>
-                      <td>{{ $pelanggaran->id_tindak_lanjut}}</td>
-                      <td>{{ $pelanggaran->tgl_peristiwa}}</td>
-                      <td><button class="btn btn-warning">Edit</button> <button class="btn btn-danger">Delete</button></td>
+                      <td>{{ $pelanggaran->nama_regu}}</td>
+                      <td>{{ $pelanggaran->nama_kegiatan}}</td>
+                      <td>{{ $pelanggaran->nama_pemilik}}</td>
+                      <td>{{ $pelanggaran->nama_pelanggaran}}</td>
+                      <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
+                      <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
+                      <td><button class="btn btn-warning" onclick="underConstruction()">Edit</button> 
+                        <button class="btn btn-danger" onclick="underConstruction()">Delete</button></td>
                     </tr>
 
                   @endforeach

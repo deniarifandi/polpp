@@ -31,8 +31,20 @@ class PelanggaranController extends Controller
     {
 
         $id_kegiatan = "1";
-        $pelanggarans = Pelanggaran::select('*');
+        $pelanggarans = Pelanggaran::select(
+                                'regus.nama as nama_regu',
+                                'kegiatans.nama as nama_kegiatan',
+                                'vendors.nama as nama_vendor',
+                                'jenis_pelanggarans.nama as nama_pelanggaran',
+                                'tindak_lanjuts.nama as nama_tindak_lanjut',
+                                'tgl_peristiwa'
+                        );
         $pelanggarans = $pelanggarans->join('vendors','vendors.id', '=','pelanggarans.id_pemilik');
+        $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu');
+        $pelanggarans = $pelanggarans->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan');
+        $pelanggarans = $pelanggarans->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran');
+        $pelanggarans = $pelanggarans->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut');
+
 
         if (isset($_GET['id_kegiatan'])) {
 
@@ -52,11 +64,11 @@ class PelanggaranController extends Controller
 
             $data[] = array(
                 "id" => $pelanggaran->id,
-                "id_regu" => $pelanggaran->id_regu,
-                "id_kegiatan" => $pelanggaran->id_kegiatan,
-                "id_pemilik" => $pelanggaran->nama_vendor,
-                "id_jenis_pelanggaran"  => $pelanggaran->id_jenis_pelanggaran,
-                "id_tindak_lanjut"  => $pelanggaran->id_tindak_lanjut,
+                "nama_regu" => $pelanggaran->nama_regu,
+                "nama_kegiatan" => $pelanggaran->nama_kegiatan,
+                "nama_pemilik" => $pelanggaran->nama_vendor,
+                "nama_pelanggaran"  => $pelanggaran->nama_pelanggaran,
+                "nama_tindak_lanjut"  => $pelanggaran->nama_tindak_lanjut,
                 "tgl_peristiwa" => $pelanggaran->tgl_peristiwa
                 
             );
