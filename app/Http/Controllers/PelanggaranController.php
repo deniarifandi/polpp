@@ -4,6 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggaran;
 use App\Models\Regu;
+use App\Models\Kegiatan;
+use App\Models\Vendor;
+use App\Models\Jenis_reklame;
+use App\Models\Jenis_pelanggaran;
+use App\Models\Tindak_lanjut;
+use App\Models\Ukuran_reklame;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+
 use App\Http\Requests\StorePelanggaranRequest;
 use App\Http\Requests\UpdatePelanggaranRequest;
 use Illuminate\Http\Request;
@@ -68,9 +77,28 @@ class PelanggaranController extends Controller
     public function create()
     {
 
-        $regus = Regu::select('*')->get();
+        $regus              = Regu::select('*')->get();
+        $kegiatans          = Kegiatan::select('*')->get();
+        $vendors            = Vendor::select('*')->orderBy('nama')->get();
+        $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
+        $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
+        $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
+        $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
+        $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
+        $kelurahans         = Kelurahan::select('*')->orderBy('nama')->get();
 
-        return view('insert_pelanggaran',['regus' => $regus]);
+
+        return view('insert_pelanggaran',[
+            'regus'             => $regus, 
+            'kegiatans'         => $kegiatans, 
+            'vendors'           => $vendors,
+            'jenis_reklames'    => $jenis_reklames,
+            'jenis_pelanggarans'=> $Jenis_pelanggarans,
+            'tindak_lanjuts'    => $tindak_lanjuts,
+            'ukuran_reklames'   => $ukuran_reklames,
+            'kecamatans'        => $kecamatans,
+            'kelurahans'        => $kelurahans,
+        ]);
     }
 
     /**
@@ -84,40 +112,46 @@ class PelanggaranController extends Controller
         
         // print_r($request->all());
 
-        print_r($request->all());
+        // print_r($request->all());
 
         try{
-            $pelanggaran = new Pelanggaran;
-            $pelanggaran->kategori_pelanggaran = $request->kategori_pelanggaran;
-            $pelanggaran->id_jenis_laporan = $request->id_jenis_laporan;
-            $pelanggaran->id_regu = $request->id_regu;
-            $pelanggaran->id_kegiatan = $request->id_kegiatan;
+            $pelanggaran                    = new Pelanggaran;
 
-            //reklame
-            $pelanggaran->tema_reklame = $request->tema_reklame;
-            $pelanggaran->id_pemilik = $request->id_pemilik;
-            $pelanggaran->id_jenis_reklame = $request->id_jenis_reklame;
-            $pelanggaran->jumlah_reklame = $request->jumlah_reklame;
-            $pelanggaran->id_jenis_pelanggaran = $request->id_jenis_pelanggaran;
-            //endreklame
+            //detail laporan
+            $pelanggaran->id_jenis_laporan  = $request->id_jenis_laporan;
+            $pelanggaran->id_regu           = $request->id_regu;
+            $pelanggaran->tgl_peristiwa     = date_format(date_create($request->tgl_peristiwa),"Y-m-d");
+            $pelanggaran->id_kegiatan       = $request->id_kegiatan;
 
+            //detail pelanggaran reklame
+            $pelanggaran->tema_reklame      = $request->tema_reklame;
+            $pelanggaran->id_pemilik        = $request->id_pemilik;
+            $pelanggaran->id_jenis_reklame  = $request->id_jenis_reklame;
+            $pelanggaran->id_ukuran_reklame = $request->id_ukuran_reklame;
+            $pelanggaran->jumlah_reklame    = $request->jumlah_reklame;
 
-            $pelanggaran->id_tindak_lanjut = $request->id_tindak_lanjut;
-            $pelanggaran->id_propinsi = $request->id_propinsi;
-            $pelanggaran->id_kab_kota = $request->id_kab_kota;
-            $pelanggaran->id_kecamatan = $request->id_kecamatan;
-            $pelanggaran->id_kelurahan = $request->id_kelurahan;
-            $pelanggaran->alamat = $request->alamat;
-            $pelanggaran->image = $request->image;
-            $pelanggaran->lat = $request->lat;
-            $pelanggaran->lon = $request->lon;
-            $pelanggaran->tgl_peristiwa = date_format(date_create($request->tgl_peristiwa),"Y-m-d");
+            //pelanggaran & tindak lanjut
+            $pelanggaran->id_jenis_pelanggaran  = $request->id_jenis_pelanggaran;
+            $pelanggaran->id_tindak_lanjut      = $request->id_tindak_lanjut;
+
+            //lokasi keterangan
+            $pelanggaran->id_kecamatan  = $request->id_kecamatan;
+            $pelanggaran->id_kelurahan  = $request->id_kelurahan;
+            $pelanggaran->alamat        = $request->alamat;
+            $pelanggaran->lat           = $request->lat;
+            $pelanggaran->lon           = $request->lon;
+
+            //image / bukti
+            $pelanggaran->image_sebelum = $request->image_sebelum;
+            $pelanggaran->image_proses  = $request->image_proses;
+            $pelanggaran->image_setelah = $request->image_setelah;
+            
             $pelanggaran->save();
             
             return redirect('/pelanggaran');
         }catch(Exception $e){
-            //echo $e->getMessage();
-            Redirect::back()->withErrors(['msg' => $e->getMessage()]);
+            echo $e->getMessage();
+            // Redirect::back()->withErrors(['msg' => $e->getMessage()]);
         }
 
     }

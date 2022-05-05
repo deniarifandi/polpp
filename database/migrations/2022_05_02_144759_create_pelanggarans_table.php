@@ -17,16 +17,16 @@ return new class extends Migration
             $table->id();
 
             //all
-            $table->tinyInteger('kategori_pelanggaran')->nullable();
             $table->tinyInteger('id_jenis_laporan')->nullable();
             $table->tinyInteger('id_regu')->nullable();
+            $table->date('tgl_peristiwa')->nullable();
             $table->tinyInteger('id_kegiatan')->nullable();
 
             //reklame
             $table->string('tema_reklame')->nullable();
             $table->tinyInteger('id_pemilik')->nullable();
             $table->tinyInteger('id_jenis_reklame')->nullable();
-            $table->string('ukuran_reklame')->nullable();
+            $table->tinyInteger('id_ukuran_reklame')->nullable();
             $table->tinyInteger('jumlah_reklame')->nullable();
             $table->date('masa_berlaku')->nullable();
 
@@ -37,17 +37,20 @@ return new class extends Migration
             //detail
             $table->tinyInteger('id_propinsi')->nullable();
             $table->tinyInteger('id_kab_kota')->nullable();
+
             $table->tinyInteger('id_kecamatan')->nullable();
             $table->tinyInteger('id_kelurahan')->nullable();
-            $table->string('lokasi')->nullable();
+            $table->string('alamat')->nullable();
+
             $table->string('image_sebelum')->nullable();
             $table->string('image_proses')->nullable();
             $table->string('image_setelah')->nullable();
+
             $table->double('lat')->nullable();
             $table->double('lon')->nullable();
-            $table->date('tgl_peristiwa')->nullable();
 
             $table->string('keterangan')->nullable();
+            
             $table->timestamps();
         });
     }
