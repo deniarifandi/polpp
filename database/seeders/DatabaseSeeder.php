@@ -26,6 +26,9 @@ class DatabaseSeeder extends Seeder
             VendorSeeder::class,
             KecamatanSeeder::class,
             KelurahanSeeder::class,
+            JenisPklSeeder::class,
+            JenisAnjalGepengSeeder::class,
+            JenisPenertibanProkesSeeder::class,
         ]);
     }
 }

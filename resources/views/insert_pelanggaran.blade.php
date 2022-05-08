@@ -17,6 +17,13 @@
   </nav>
 </div><!-- End Page Title -->
 
+    @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Tambah Data Error {{ $message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
 <section class="section">
   <div class="row">
 
@@ -25,7 +32,7 @@
 
         <div class="card-body">
 
-          <form action="{{ route('pelanggaran.store') }}" method="POST">
+          <form action="{{ route('pelanggaran.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
 
@@ -33,9 +40,9 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Laporan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" required>
+                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" >
                   <option selected value="">- Pilih Jenis Laporan -</option>
-                  <option value="1">Laporan Hasil Kegiatan (LKH)</option>
+                  <option value="1">Laporan Hasil Kegiatan (LHK)</option>
                   <option value="2">Laporan Kegiatan Harian(LKH)</option>
                   <option value="3">Cek Hasil Laporan</option>
                 </select>
@@ -44,7 +51,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Regu</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_regu" required>
+                <select class="form-select" aria-label="Default select example" name="id_regu" >
                   <option selected value="">- Pilih Regu -</option>
                   @foreach($regus as $regu)
                   <option value="{{$regu->id}}">{{$regu->nama}}</option>
@@ -55,17 +62,20 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tanggal</label>
               <div class="col-sm-8">
-                <input type="date" name="tgl_peristiwa" class="form-control" required>
+                <input type="date" name="tgl_peristiwa" class="form-control" >
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Kegiatan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_kegiatan" required>
-                  <option selected value="">- Pilih Kegiatan -</option>
-                  @foreach($kegiatans as $kegiatan)
-                  <option value="{{$kegiatan->id}}">{{$kegiatan->nama}}</option>
-                  @endforeach
+                <select class="form-select" aria-label="Default select example" name="id_kegiatan" onchange="openForm()">
+                  @if(isset($_GET['id_kegiatan']))
+                    <option value="{{$kegiatans[$_GET['id_kegiatan']-1]->id}}" selected="selected">{{$kegiatans[$_GET['id_kegiatan']-1]->nama}}</option>
+                  @else
+                    @foreach($kegiatans as $kegiatan)
+                      <option value="{{$kegiatan->id}}">{{$kegiatan->nama}}</option>
+                    @endforeach
+                  @endif
                 </select>
               </div>
             </div>
@@ -74,8 +84,8 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
-
+      {{-- start reklame --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 1) style="display: none" @endif @endif>
 
         <div class="card">
           <div class="card-body">
@@ -91,7 +101,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Pemilik / Vendor</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_pemilik" required>
+                <select class="form-select" aria-label="Default select example" name="id_pemilik" >
                   <option selected value="">- Pilih Pemilik -</option>
                   @foreach($vendors as $vendor)
                   <option value="{{$vendor->id}}">{{$vendor->nama}}</option>
@@ -102,7 +112,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Reklame</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_reklame" required>
+                <select class="form-select" aria-label="Default select example" name="id_jenis_reklame" >
                   <option selected value="">- Pilih Jenis Reklame -</option>
                   @foreach($jenis_reklames as $jenis_reklame)
                   <option value="{{$jenis_reklame->id}}">{{$jenis_reklame->nama}}</option>
@@ -113,7 +123,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Ukuran Reklame</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_ukuran_reklame" required>
+                <select class="form-select" aria-label="Default select example" name="id_ukuran_reklame" >
                   <option selected value="">- Pilih Ukuran Reklame -</option>
                   @foreach($ukuran_reklames as $ukuran_reklame)
                   <option value="{{$ukuran_reklame->id}}">{{$ukuran_reklame->nama}}</option>
@@ -131,11 +141,259 @@
 
           </div>
         </div>
-
-
       </div>
+      {{-- end reklame --}}
 
-      <div class="col-lg-6">
+      {{-- start pkl --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 2) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran PKL</h5>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis PKL</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_pkl" >
+                  <option selected value="">- Pilih Jenis PKL -</option>
+                  @foreach($jenis_pkls as $jenis_pkl)
+                  <option value="{{$jenis_pkl->id}}">{{$jenis_pkl->nama}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku Usaha</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pkl_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="pkl_no_identitas">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Alamat Pelaku Usaha</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="pkl_alamat">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end pkl --}}
+
+      {{-- start anjal --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 3) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran AnJal & GePeng</h5>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis AnJal / GePeng</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_anjal_gepeng" >
+                  <option selected value="">- Pilih Jenis AnJal / GePeng -</option>
+                  @foreach($jenis_anjal_gepengs as $jenis_anjal_gepeng)
+                  <option value="{{$jenis_anjal_gepeng->id}}">{{$jenis_anjal_gepeng->nama}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama AnJal / GePeng</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="anjal_gepeng_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="anjal_gepeng_no_identitas">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end anjal --}}
+
+      {{-- start PSK --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 4) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran PSK</h5>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama PSK</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="psk_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="psk_no_identitas">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis Kelamin</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="psk_kelamin" >
+                  <option selected value="">- Pilih Jenis kelamin -</option>
+                  <option value="1">Perempuan</option>
+                  <option value="2">Laki-laki</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end PSK --}}
+
+      {{-- start Minol --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 5) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran Minol</h5>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pemilik Minol</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="minol_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="minol_no_identitas">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end Minol --}}
+
+        {{-- start Pemondokan --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 6) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran Pemondokan</h5>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pemilik Pemondokan</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pemondokan_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="pemondokan_no_identitas">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end pemondokan --}}
+
+      {{-- start Parkir liar --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 7) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Pelanggaran Parkir Liar</h5>
+           
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku Parkir Liar</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="parkir_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="parkir_no_identitas">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end parkir liar --}}
+
+       {{-- start prokes --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 8) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail Prokes</h5>
+            
+             <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis Penertiban Prokes</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_penertiban_prokes" >
+                  <option selected value="">- Pilih Jenis Penertiban Prokes -</option>
+                  @foreach($jenis_penertiban_prokess as $jenis_penertiban_prokes)
+                  <option value="{{$jenis_penertiban_prokes->id}}">{{$jenis_penertiban_prokes->nama}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelaku Usaha</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_pelaku_usaha" >
+                  <option selected value="">- Pilih Jenis Pelaku Usaha -</option>
+                  <option value="1">Perseorangan</option>
+                  <option value="2">Pelaku Usaha</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Usaha</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="prokes_nama">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="prokes_no_identitas">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {{-- end prokes --}}
+
+
+
+      {{-- middle row right --}}
+      <div class="col-lg-6" id="form-tindakan">
 
         <div class="card">
           <div class="card-body">
@@ -145,7 +403,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelanggaran</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_pelanggaran" required>
+                <select class="form-select" aria-label="Default select example" name="id_jenis_pelanggaran" >
                   <option selected value="">- Pilih Jenis Pelanggaran -</option>
 
                   @foreach($jenis_pelanggarans as $jenis_pelanggaran)
@@ -159,7 +417,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tindak Lanjut</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_tindak_lanjut" required>
+                <select class="form-select" aria-label="Default select example" name="id_tindak_lanjut" >
                   <option selected value="">- Pilih Jenis Tindakan -</option>
 
                   @foreach($tindak_lanjuts as $tindak_lanjut)
@@ -173,7 +431,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Kecamatan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_kecamatan" required>
+                <select class="form-select" aria-label="Default select example" id="select_kecamatan" name="id_kecamatan" onchange="showKelurahan()" >
                   <option selected value="">- Pilih Kecamatan -</option>
 
 
@@ -188,12 +446,12 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Kelurahan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_kelurahan" required>
+                <select class="form-select" aria-label="Default select example" id="select_kelurahan" name="id_kelurahan" disabled="disabled">
                   <option selected value="">- Pilih Kelurahan -</option>
 
 
                   @foreach($kelurahans as $kelurahan)
-                  <option value="{{$kelurahan->id}}">{{$kelurahan->nama}}</option>
+                  <option value="{{$kelurahan->id}}" class="kecamatan_{{$kelurahan->id_kec}} kelurahan_all" style="display: none">{{$kelurahan->nama}}</option>
                   @endforeach
 
                 </select>
@@ -209,143 +467,145 @@
 
           </div>
         </div>
-
       </div>
 
-      <div class="col-lg-4">
+      {{-- third row --}}
+      <div class="row">
+        <div class="col-lg-4">
 
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="foto_sebelum_1" name="foto_sebelum_1">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_sebelum_[1]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_sebelum_[2]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_sebelum_[3]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_sebelum_[4]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_sebelum_[5]">
+                </div>
               </div>
-            </div>
 
+            </div>
           </div>
         </div>
 
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Dokumentasi Foto Proses Penertiban</h5>
 
-      </div>
-
-      <div class="col-lg-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Dokumentasi Foto Setelah Penertiban</h5>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_proses_[1]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_proses_[2]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_proses_[3]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_proses_[4]">
+                </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_proses_[5]">
+                </div>
               </div>
-            </div>
-         
-        </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="foto_sebelum_1" name="foto_sebelum_1">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              
-              <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile">
-              </div>
-            </div>
-
+           
+          </div>
           </div>
         </div>
+
+        <div class="col-lg-4">
+           <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Dokumentasi Foto Setelah Penertiban</h5>
+
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_setelah_[1]">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_setelah_[2]">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_setelah_[3]">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_setelah_[4]">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" name="foto_setelah_[5]">
+                </div>
+              </div>
+
+            </div>
+            </div>
+        </div>  
+
       </div>
+      
 
       <button type="submit" class="btn btn-success">Simpan</button>
 
@@ -353,6 +613,39 @@
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+    
+    function showReklame(){
+
+      document.getElementById('form-reklame').style.display = "block";
+      document.getElementById('form-tindakan').style.display = "block";
+
+    }
+
+    function showKelurahan(){
+      document.getElementById('select_kelurahan').value = "";
+      var id_kec = document.getElementById("select_kecamatan").value;
+
+      const kelurahan_all = document.getElementsByClassName("kelurahan_all");
+      for (let i = 0; i < kelurahan_all.length; i++) {
+        kelurahan_all[i].style.display = "none";
+      }
+
+      const kelurahan_selected = document.getElementsByClassName("kecamatan_"+id_kec);
+      for (let i = 0; i < kelurahan_selected.length; i++) {
+        kelurahan_selected[i].style.display = "block";
+      }
+
+      if (id_kec == "") {
+        document.getElementById('select_kelurahan').disabled = "disabled";
+      }else{
+        document.getElementById('select_kelurahan').disabled = "";
+      }
+
+    }
+
+</script>
 
 
 @endsection

@@ -20,11 +20,11 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
 
-    $reklameTotal = PelanggaranController::getJumlahPelanggaran();
+    $data = PelanggaranController::getJumlahPelanggaran();
 
-    return view('dashboard',[ 'reklameTotal' => $reklameTotal ]);
+    return view('dashboard',[ 'data' => $data ]);
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('pelanggaran',PelanggaranController::class);
+Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']);
 
 require __DIR__.'/auth.php';

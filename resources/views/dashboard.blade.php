@@ -37,7 +37,7 @@
                       <img src="assets/img/ad.png" style="max-width: 40px;">
                     </div>
                     <div class="ps-3">
-                      <h6>{{ $reklameTotal }}</h6>
+                      <h6>{{ $data[0] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
                     </div>
                   </div>
@@ -52,7 +52,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-              <a href="#" onclick="underConstruction()">
+              <a href="{{ url('pelanggaran') }}?id_kegiatan=2">
                 <div class="card-body">
                   <h5 class="card-title">PKL <span>| This Month</span></h5>
 
@@ -61,7 +61,7 @@
                        <img src="assets/img/gerobak.png" style="max-width: 40px;">
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                      <h6>{{ $data[1] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -76,7 +76,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-                <a href="#" onclick="underConstruction()">
+                  <a href="{{ url('pelanggaran') }}?id_kegiatan=3">
 
                   <div class="card-body">
                     <h5 class="card-title">AnJal-GePeng <span>| This Month</span></h5>
@@ -86,7 +86,7 @@
                         <img src="assets/img/gepeng.png" style="max-width: 50px;">
                       </div>
                       <div class="ps-3">
-                        <h6>0</h6>
+                         <h6>{{ $data[2] }}</h6>
                         {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                       </div>
@@ -100,7 +100,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-                <a href="#" onclick="underConstruction()">
+                  <a href="{{ url('pelanggaran') }}?id_kegiatan=4">
 
                 <div class="card-body">
                   <h5 class="card-title">PSK <span>| This Month</span></h5>
@@ -110,7 +110,7 @@
                       <i class="bi bi-gender-ambiguous"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[3] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -126,7 +126,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-              <a href="#" onclick="underConstruction()">
+                <a href="{{ url('pelanggaran') }}?id_kegiatan=5">
 
                 <div class="card-body">
                   <h5 class="card-title"> Minol <span>| This Month</span></h5>
@@ -136,7 +136,7 @@
                        <img src="assets/img/beer.png" style="max-width: 40px;">
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[4] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -150,7 +150,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-               <a href="#" onclick="underConstruction()">
+               <a href="{{ url('pelanggaran') }}?id_kegiatan=6">
 
                 <div class="card-body">
                   <h5 class="card-title">Pemondokan <span>| This Month</span></h5>
@@ -160,7 +160,7 @@
                       <i class="bi bi-house-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[5] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -174,7 +174,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-                <a href="#" onclick="underConstruction()">
+                <a href="{{ url('pelanggaran') }}?id_kegiatan=7">
 
                 <div class="card-body">
                   <h5 class="card-title">Parkir Liar <span>| This Month</span></h5>
@@ -184,7 +184,7 @@
                          <img src="assets/img/park.png" style="max-width: 50px;">
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[6] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -198,7 +198,7 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-                <a href="#" onclick="underConstruction()">
+               <a href="{{ url('pelanggaran') }}?id_kegiatan=8">
 
                 <div class="card-body">
                   <h5 class="card-title">Prokes <span>| This Month</span></h5>
@@ -208,7 +208,7 @@
                       <img src="assets/img/mask.png" style="max-width: 60px;">
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[7] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>
@@ -232,7 +232,7 @@
                       <img src="assets/img/pengaduan.png" style="max-width: 50px;">
                     </div>
                     <div class="ps-3">
-                      <h6>0</h6>
+                       <h6>{{ $data[8] }}</h6>
                       {{-- <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span> --}}
 
                     </div>

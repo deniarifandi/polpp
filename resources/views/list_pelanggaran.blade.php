@@ -17,6 +17,13 @@
       </nav>
     </div><!-- End Page Title -->
 
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Berhasil tambah Data Pelanggaran
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <section class="section dashboard">
       <div class="row">
 
@@ -35,7 +42,7 @@
                     {{-- <th scope="col">Jenis Laporan</th> --}}
                     <th scope="col">Regu</th>
                     <th scope="col">Kegiatan</th>
-                    <th scope="col">Pemilik / Vendor</th>
+                    {{-- <th scope="col">Pemilik / Vendor</th> --}}
                     <th scope="col">Jenis Pelanggaran</th>
                     <th scope="col">Tindak Lanjut</th>
                     <th scope="col">Tanggal</th>
@@ -52,12 +59,15 @@
                       {{-- <th>{{ $pelanggaran->id}}</th> --}}
                       <td>{{ $pelanggaran->nama_regu}}</td>
                       <td>{{ $pelanggaran->nama_kegiatan}}</td>
-                      <td>{{ $pelanggaran->nama_pemilik}}</td>
+                      {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
                       <td>{{ $pelanggaran->nama_pelanggaran}}</td>
                       <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
                       <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
-                      <td><button class="btn btn-warning" onclick="underConstruction()">Edit</button> 
-                        <button class="btn btn-danger" onclick="underConstruction()">Delete</button></td>
+                      <td>
+                        <button class="btn btn-primary" onclick="underConstruction()">Detail</button> 
+                        <button class="btn btn-warning" onclick="underConstruction()">Edit</button> 
+                        <button class="btn btn-danger" onclick="underConstruction()">Delete</button>
+                      </td>
                     </tr>
 
                   @endforeach
@@ -65,7 +75,12 @@
                 </tbody>
               </table>
 
-              <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}">Tambah Data</a>
+              <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
+                if(isset($_GET['id_kegiatan'])){ 
+                  echo '?id_kegiatan='.$_GET['id_kegiatan'];
+                }
+              @endphp">
+              Tambah Data</a>
               <!-- End Table with stripped rows -->
 
             </div>
