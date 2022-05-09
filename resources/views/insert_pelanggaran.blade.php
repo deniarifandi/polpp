@@ -403,11 +403,11 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelanggaran</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_pelanggaran" >
+                <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" >
                   <option selected value="">- Pilih Jenis Pelanggaran -</option>
 
                   @foreach($jenis_pelanggarans as $jenis_pelanggaran)
-                  <option value="{{$jenis_pelanggaran->id}}">{{$jenis_pelanggaran->nama}}</option>
+                  <option value="{{$jenis_pelanggaran->id}}" class="pelanggaran_kategori_{{ $jenis_pelanggaran->kategori }}" style="display: none;">{{$jenis_pelanggaran->nama}}</option>
                   @endforeach
 
                 </select>
@@ -645,6 +645,20 @@
 
     }
 
+
+      (function() {
+        var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;
+        // console.log(kategori_pelanggaran);
+
+        const kegiatan_selected = document.getElementsByClassName("pelanggaran_kategori_"+id_kegiatan);
+
+        for (let i = 0; i < kegiatan_selected.length; i++) {
+          kegiatan_selected[i].style.display = "block";
+        }
+
+      })();
+
+  
 </script>
 
 

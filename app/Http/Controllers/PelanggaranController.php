@@ -236,7 +236,7 @@ class PelanggaranController extends Controller
                     echo $e->getMessage();
                 }
 
-            return redirect('/pelanggaran')->with(['success' => 'berhasil']);
+            return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
 
         }catch(Exception $e){
             return Redirect::back()->with(['error' => $e->getMessage()]);

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\KegiatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,15 @@ use App\Http\Controllers\PelanggaranController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/report', function(){
+
+	// $data = KegiatanController::get_label_chart();
+	$data = KegiatanController::get_all_chart();
+	$kecamatans = KegiatanController::get_kecamatan_chart();
+	// echo $data;
+	return view('report',['data' => $data, 'kecamatans' => $kecamatans]);
 });
 
 Route::get('/dashboard', function () {

@@ -305,7 +305,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="#" onclick="underConstruction()">
+        <a class="nav-link " href="{{ URL::to('/report') }}" >
           <i class="bi bi-pie-chart-fill"></i>
           <span>Report</span>
         </a>
@@ -382,6 +382,8 @@
 
   <!-- Template Main JS File -->
   <script src="{{URL::to('/')}}/assets/js/main.js"></script>
+
+
 
    <script type="text/javascript">
       
