@@ -465,6 +465,28 @@
               </div>
             </div>
 
+             <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">GeoLocation</label>
+              <div class="col-sm-8">
+
+                <div class="row">
+                  <div class="col-sm-6">
+                  <input class="form-control" type="text" id="lat" name="lat" placeholder="lat">   
+                  </div>
+                  
+                  <div class="col-sm-6">
+                    <input class="form-control" type="text" id="lon" name="lon" placeholder="lon">   
+                  </div>  
+                  <br>
+                </div>
+                
+                <br>
+                  <div id="map"></div>
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </div>
@@ -605,14 +627,49 @@
         </div>  
 
       </div>
-      
+
 
       <button type="submit" class="btn btn-success">Simpan</button>
+
+  
 
     </form><!-- End General Form Elements -->
     </div>
   </div>
 </section>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+
+<style>
+
+#map {height: 250px; width: 100%; }
+</style>
+
+<script>
+    
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      // x.innerHTML = "Latitude: " + position.coords.latitude +
+      // "<br>Longitude: " + position.coords.longitude;
+
+      document.getElementById("lat").value = position.coords.latitude;
+      document.getElementById("lon").value = position.coords.longitude;
+
+      const marker1 = new mapboxgl.Marker()
+        .setLngLat([position.coords.longitude, position.coords.latitude])
+        .addTo(map);
+
+      map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
+    }
+    </script>
 
 <script type="text/javascript">
     
@@ -624,42 +681,55 @@
     }
 
     function showKelurahan(){
-      document.getElementById('select_kelurahan').value = "";
-      var id_kec = document.getElementById("select_kecamatan").value;
+        document.getElementById('select_kelurahan').value = "";
+        var id_kec = document.getElementById("select_kecamatan").value;
 
-      const kelurahan_all = document.getElementsByClassName("kelurahan_all");
-      for (let i = 0; i < kelurahan_all.length; i++) {
-        kelurahan_all[i].style.display = "none";
+        const kelurahan_all = document.getElementsByClassName("kelurahan_all");
+        for (let i = 0; i < kelurahan_all.length; i++) {
+          kelurahan_all[i].style.display = "none";
+        }
+
+        const kelurahan_selected = document.getElementsByClassName("kecamatan_"+id_kec);
+        for (let i = 0; i < kelurahan_selected.length; i++) {
+          kelurahan_selected[i].style.display = "block";
+        }
+
+        if (id_kec == "") {
+          document.getElementById('select_kelurahan').disabled = "disabled";
+        }else{
+          document.getElementById('select_kelurahan').disabled = "";
+        }
+
       }
-
-      const kelurahan_selected = document.getElementsByClassName("kecamatan_"+id_kec);
-      for (let i = 0; i < kelurahan_selected.length; i++) {
-        kelurahan_selected[i].style.display = "block";
-      }
-
-      if (id_kec == "") {
-        document.getElementById('select_kelurahan').disabled = "disabled";
-      }else{
-        document.getElementById('select_kelurahan').disabled = "";
-      }
-
-    }
-
 
       (function() {
         var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;
-        // console.log(kategori_pelanggaran);
-
+        
         const kegiatan_selected = document.getElementsByClassName("pelanggaran_kategori_"+id_kegiatan);
 
         for (let i = 0; i < kegiatan_selected.length; i++) {
           kegiatan_selected[i].style.display = "block";
         }
 
-      })();
+        getLocation();
 
+
+
+      })();
   
 </script>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJpZmFuZGlkZW5pIiwiYSI6ImNsMzZvNXZxejEzbHAzY3FzcmpuNzNrbm0ifQ.-XX0gvG2ooyVnJvZZHg9Hg';
+          const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+          center: [106.82332708986368,-6.160440512853471 ], // starting position [lng, lat]
+          zoom: 15 // starting zoom
+        });
+
+        
+    </script>
 
 
 @endsection
