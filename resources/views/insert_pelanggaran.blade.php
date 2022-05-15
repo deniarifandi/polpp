@@ -706,6 +706,7 @@
       }
 
       (function() {
+        console.log('auto run');
         var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;
         
         const kegiatan_selected = document.getElementsByClassName("pelanggaran_kategori_"+id_kegiatan);
