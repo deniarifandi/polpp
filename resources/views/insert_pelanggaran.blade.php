@@ -662,10 +662,13 @@
 
       map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
     }
-    
+
     function getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+
+        //navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(success, error);
+
         console.log("Geolocation supported.");
       } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
@@ -673,6 +676,15 @@
       }
     }
 
+      function success(position) {
+       console.log(position);
+       console.log(position.coords.latitude);
+       console.log(position.coords.longitude);
+      }
+
+      function error() {
+        console.log('Geolocation error!');
+      }
 
     </script>
 
