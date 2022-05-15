@@ -638,8 +638,7 @@
   </div>
 </section>
 
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+
 
 <style>
 
@@ -653,6 +652,7 @@
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
       }
     }
 
