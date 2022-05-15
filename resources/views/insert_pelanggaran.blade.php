@@ -647,17 +647,7 @@
 
 <script>
     
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        console.log("Geolocation supported.");
-      } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-        console.log("Geolocation is not supported by this browser.");
-      }
-    }
-
-    function showPosition(position) {
+   function showPosition(position) {
       console.log("show possition start");
     
       document.getElementById("lat").value = position.coords.latitude;
@@ -672,6 +662,18 @@
 
       map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
     }
+    
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        console.log("Geolocation supported.");
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+
+
     </script>
 
 <script type="text/javascript">
