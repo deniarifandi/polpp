@@ -7,7 +7,7 @@
 
 
 <div class="pagetitle">
-  <h1>Tambah Data Pelanggaran</h1>
+  <h1>Edit Data Pelanggaran</h1>
   <nav>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.html">Home</a></li>

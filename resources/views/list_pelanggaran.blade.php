@@ -64,7 +64,7 @@
                       <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
                       <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
                       <td>
-                        <button class="btn btn-primary" onclick="underConstruction()">Detail</button> 
+                        <a class="btn btn-primary" href="{{ url('pelanggaran') }}/5">Detail</a> 
                         <button class="btn btn-warning" onclick="underConstruction()">Edit</button> 
                         <button class="btn btn-danger" onclick="underConstruction()">Delete</button>
                       </td>

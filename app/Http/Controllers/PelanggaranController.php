@@ -15,6 +15,7 @@ use App\Models\Kelurahan;
 use App\Models\Jenis_pkl;
 use App\Models\Jenis_anjal_gepeng;
 use App\Models\Jenis_penertiban_prokes;
+use DB;
 
 use App\Http\Requests\StorePelanggaranRequest;
 use App\Http\Requests\UpdatePelanggaranRequest;
@@ -199,44 +200,48 @@ class PelanggaranController extends Controller
 
             //image / bukti
             
-                for ($i=1; $i <= 5; $i++) { 
-                    if (isset($request->foto_sebelum_[$i])) {
-                        $pelanggaran->foto_sebelum1 = $request->foto_sebelum_[$i];
-                    }
+                // for ($i=1; $i <= 5; $i++) { 
+                //     if (isset($request->foto_sebelum_[$i])) {
+                //         $pelanggaran->foto_sebelum1 = $request->foto_sebelum_[$i];
+                //     }
                     
-                    if (isset($request->foto_proses_[$i])) {
-                        $pelanggaran->foto_proses1 = $request->foto_proses_[$i];
-                    }
+                //     if (isset($request->foto_proses_[$i])) {
+                //         $pelanggaran->foto_proses1 = $request->foto_proses_[$i];
+                //     }
 
-                    if (isset($request->foto_setelah_[$i])) {
-                        $pelanggaran->foto_setelah1 = $request->foto_setelah_[$i];
-                    }
+                //     if (isset($request->foto_setelah_[$i])) {
+                //         $pelanggaran->foto_setelah1 = $request->foto_setelah_[$i];
+                //     }
 
-                }
+                // }
 
                 $pelanggaran->save();
 
                 try{
-                    for ($i=1; $i <= 5; $i++) { 
-                        if (isset($pelanggaran->id)) {
-                                if (isset($request->foto_sebelum_[$i])) {
-                                    Storage::disk('local')->put("dokumentasi_foto_sebelum/".$pelanggaran->id, $request->foto_sebelum_[$i]);
-                                }
-                                
-                                if (isset($request->foto_proses_[$i])) {
-                                    Storage::disk('local')->put("dokumentasi_foto_proses/".$pelanggaran->id, $request->foto_proses_[$i]);
-                                }
 
-                                if (isset($request->foto_setelah_[$i])) {
-                                    Storage::disk('local')->put("dokumentasi_foto_setelah/".$pelanggaran->id, $request->foto_setelah_[$i]);
-                                }
-                        }
-                    }
+                    Storage::disk('local')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
+
+                    // for ($i=1; $i <= 5; $i++) { 
+                    //     if (isset($pelanggaran->id)) {
+                    //             if (isset($request->foto_sebelum_[$i])) {
+                    //                 Storage::disk('local')->put("dokumentasi_foto_sebelum/".$pelanggaran->id, $request->foto_sebelum_[$i]);
+                    //             }
+                                
+                    //             if (isset($request->foto_proses_[$i])) {
+                    //                 Storage::disk('local')->put("dokumentasi_foto_proses/".$pelanggaran->id, $request->foto_proses_[$i]);
+                    //             }
+
+                    //             if (isset($request->foto_setelah_[$i])) {
+                    //                 Storage::disk('local')->put("dokumentasi_foto_setelah/".$pelanggaran->id, $request->foto_setelah_[$i]);
+                    //             }
+                    //     }
+                    // }
                 }catch(\Exception $e){
                     echo $e->getMessage();
                 }
 
-            return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
+            // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
+                return redirect('/pelanggaran/'.$pelanggaran->id);
 
         }catch(Exception $e){
             return Redirect::back()->with(['error' => $e->getMessage()]);
@@ -250,9 +255,67 @@ class PelanggaranController extends Controller
      * @param  \App\Models\Pelanggaran  $pelanggaran
      * @return \Illuminate\Http\Response
      */
-    public function show(Pelanggaran $pelanggaran)
+    public function show($id)
     {
-        //
+        // $regus              = Regu::select('*')->get();
+        // $kegiatans          = Kegiatan::select('*')->get();
+        // $vendors            = Vendor::select('*')->orderBy('nama')->get();
+        // $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
+        // $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
+        // $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
+        // $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
+        // $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
+        // $kelurahans         = Kelurahan::select('*')->orderBy('nama')->get();
+        // $jenis_pkls         = Jenis_pkl::select('*')->orderBy('nama')->get();
+        // $jenis_anjal_gepeng = Jenis_anjal_gepeng::select('*')->orderBy('nama')->get();
+        // $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
+
+
+        // return view('edit_pelanggaran',[
+        //     'regus'             => $regus, 
+        //     'kegiatans'         => $kegiatans, 
+        //     'vendors'           => $vendors,
+        //     'jenis_reklames'    => $jenis_reklames,
+        //     'jenis_pelanggarans'=> $Jenis_pelanggarans,
+        //     'tindak_lanjuts'    => $tindak_lanjuts,
+        //     'ukuran_reklames'   => $ukuran_reklames,
+        //     'kecamatans'        => $kecamatans,
+        //     'kelurahans'        => $kelurahans,
+        //     'jenis_pkls'        => $jenis_pkls,
+        //     'jenis_anjal_gepengs'=> $jenis_anjal_gepeng,
+        //     'jenis_penertiban_prokess'   => $jenis_penertiban_prokes,
+        // ]);
+
+        // echo $id;
+
+        $pelanggarans = DB::table('pelanggarans')
+                        ->select(
+                            'pelanggarans.id_jenis_laporan',
+                            'regus.nama as regu',
+                            'pelanggarans.tgl_peristiwa',
+                            'kegiatans.nama as kegiatan',
+                            'pelanggarans.tema_reklame',
+                            'vendors.nama as pemilik',
+                            'jenis_reklames.nama as jenis_reklame',
+                            'pelanggarans.jumlah_reklame',
+                            'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            'tindak_lanjuts.nama as tindak_lanjut',
+                            'pelanggarans.alamat')
+                        ->join('regus','regus.id','=','pelanggarans.id_regu','left')
+                        ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
+                        ->join('vendors','vendors.id','=','pelanggarans.id_pemilik','left')
+                        ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame','left')
+                        ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
+                        ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut','left')
+                        ->where('pelanggarans.id','=',$id)
+                        ->get();
+
+        
+        // echo $pelanggarans[0];
+
+        // echo $pelanggarans;
+
+        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0]]);
     }
 
     /**
@@ -263,7 +326,7 @@ class PelanggaranController extends Controller
      */
     public function edit(Pelanggaran $pelanggaran)
     {
-        //
+      
     }
 
     /**
