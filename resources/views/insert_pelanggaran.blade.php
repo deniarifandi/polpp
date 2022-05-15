@@ -650,17 +650,9 @@
    function showPosition(position) {
       console.log("show possition start");
     
-      document.getElementById("lat").value = position.coords.latitude;
-      document.getElementById("lon").value = position.coords.longitude;
+      
 
-      const marker1 = new mapboxgl.Marker()
-        .setLngLat([position.coords.longitude, position.coords.latitude])
-        .addTo(map);
-
-        console.log('watermark');
-        console.log(position.coords.longitude, position.coords.latitude);
-
-      map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
+    
     }
 
     function getLocation() {
@@ -677,15 +669,25 @@
     }
 
       function success(position) {
-       console.log(position);
-       console.log(position.coords.latitude);
-       console.log(position.coords.longitude);
+        console.log(position);
+        document.getElementById("lat").value = position.coords.latitude;
+        document.getElementById("lon").value = position.coords.longitude; 
+          const marker1 = new mapboxgl.Marker()
+          .setLngLat([position.coords.longitude, position.coords.latitude])
+          .addTo(map);
+
+          console.log('watermark');
+          console.log(position.coords.longitude, position.coords.latitude);
+
+          map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
+
       }
 
       function error(error) {
 
         console.log('Geolocation error!');
         console.log(error);
+
       }
 
     </script>
