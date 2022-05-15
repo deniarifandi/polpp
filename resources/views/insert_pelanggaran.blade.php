@@ -667,6 +667,8 @@
         .setLngLat([position.coords.longitude, position.coords.latitude])
         .addTo(map);
 
+        console.log(position.coords.longitude, position.coords.latitude);
+
       map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
     }
     </script>
