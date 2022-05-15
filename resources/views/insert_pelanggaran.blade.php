@@ -682,8 +682,10 @@
        console.log(position.coords.longitude);
       }
 
-      function error() {
+      function error(error) {
+
         console.log('Geolocation error!');
+        console.log(error);
       }
 
     </script>
