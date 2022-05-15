@@ -658,6 +658,7 @@
     }
 
     function showPosition(position) {
+      console.log("show possition start");
     
       document.getElementById("lat").value = position.coords.latitude;
       document.getElementById("lon").value = position.coords.longitude;
