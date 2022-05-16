@@ -84,7 +84,7 @@
                   <tr>
                     <th>Foto Lokasi :</th>
                     @if(isset($foto_lokasi[0]))
-                    <td><a href="{{  asset('/storage/'.$foto_lokasi[0]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_lokasi[0]) }}" style="max-width: 300px"></a></td>
+                    <td><a href="{{  asset('/storage/'.$foto_lokasi[0]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_lokasi[0]) }}" style="width: 100%; max-width: 300px"></a></td>
                     @else
                     <td style="color: red">Foto Tidak Ditemukan</td>
                     @endif
