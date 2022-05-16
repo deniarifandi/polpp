@@ -122,7 +122,7 @@
                                 <div class="col-sm-12">
 
                                   @if(isset($foto_sebelum[$i]))
-                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_sebelum[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_sebelum[$i]);  }}" style="max-width: 100%"></a>
+                                    <a href="{{  asset('/storage/'.$foto_sebelum[$i]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_sebelum[$i]) }}" style="max-width: 100%"></a>
                                   @else
                                     <input class="form-control" type="file" name="foto_sebelum_[{{$i}}]" onchange="submitFoto(this)">
                                   @endif
@@ -154,7 +154,7 @@
                                 <div class="col-sm-12">
 
                                   @if(isset($foto_proses[$i]))
-                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_proses[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_proses[$i]);  }}" style="max-width: 100%"></a>
+                                    <a href="{{  asset('/storage/'.$foto_proses[$i]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_proses[$i]) }}" style="max-width: 100%"></a>
                                   @else
                                     <input class="form-control" type="file" name="foto_proses_[{{$i}}]" onchange="submitFoto(this)">
                                   @endif
@@ -183,7 +183,7 @@
                                 <div class="col-sm-12">
 
                                   @if(isset($foto_setelah[$i]))
-                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_setelah[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_setelah[$i]);  }}" style="max-width: 100%"></a>
+                                    <a href="{{  asset('/storage/'.$foto_setelah[$i]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_setelah[$i]) }}" style="max-width: 100%"></a>
                                   @else
                                     <input class="form-control" type="file" name="foto_setelah_[{{$i}}]" onchange="submitFoto(this)">
                                   @endif

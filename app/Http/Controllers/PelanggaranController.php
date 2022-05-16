@@ -220,20 +220,20 @@ class PelanggaranController extends Controller
 
                 try{
 
-                    Storage::disk('local')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
+                    Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
 
                     // for ($i=1; $i <= 5; $i++) { 
                     //     if (isset($pelanggaran->id)) {
                     //             if (isset($request->foto_sebelum_[$i])) {
-                    //                 Storage::disk('local')->put("dokumentasi_foto_sebelum/".$pelanggaran->id, $request->foto_sebelum_[$i]);
+                    //                 Storage::disk('public')->put("dokumentasi_foto_sebelum/".$pelanggaran->id, $request->foto_sebelum_[$i]);
                     //             }
                                 
                     //             if (isset($request->foto_proses_[$i])) {
-                    //                 Storage::disk('local')->put("dokumentasi_foto_proses/".$pelanggaran->id, $request->foto_proses_[$i]);
+                    //                 Storage::disk('public')->put("dokumentasi_foto_proses/".$pelanggaran->id, $request->foto_proses_[$i]);
                     //             }
 
                     //             if (isset($request->foto_setelah_[$i])) {
-                    //                 Storage::disk('local')->put("dokumentasi_foto_setelah/".$pelanggaran->id, $request->foto_setelah_[$i]);
+                    //                 Storage::disk('public')->put("dokumentasi_foto_setelah/".$pelanggaran->id, $request->foto_setelah_[$i]);
                     //             }
                     //     }
                     // }
@@ -261,19 +261,19 @@ class PelanggaranController extends Controller
                 if (isset($request->id)) {
                     if (isset($request->foto_sebelum_[$i])) {
 
-                        Storage::disk('local')->put("dokumentasi_foto_sebelum/".$request->id, $request->foto_sebelum_[$i]);
+                        Storage::disk('public')->put("dokumentasi_foto_sebelum/".$request->id, $request->foto_sebelum_[$i]);
 
                     }
 
                     if (isset($request->foto_proses_[$i])) {
 
-                        Storage::disk('local')->put("dokumentasi_foto_proses/".$request->id, $request->foto_proses_[$i]);
+                        Storage::disk('public')->put("dokumentasi_foto_proses/".$request->id, $request->foto_proses_[$i]);
 
                     }
 
                     if (isset($request->foto_setelah_[$i])) {
 
-                        Storage::disk('local')->put("dokumentasi_foto_setelah/".$request->id, $request->foto_setelah_[$i]);
+                        Storage::disk('public')->put("dokumentasi_foto_setelah/".$request->id, $request->foto_setelah_[$i]);
 
                     }
                 }
@@ -290,7 +290,7 @@ class PelanggaranController extends Controller
     public function getfile(){
 
         
-        $files = Storage::disk('local')->allFiles("dokumentasi_foto_sebelum/1");
+        $files = Storage::disk('public')->allFiles("dokumentasi_foto_sebelum/1");
         
         echo $files[0];
     }
@@ -334,9 +334,9 @@ class PelanggaranController extends Controller
 
         // echo $id;
 
-        $filesSebelum = Storage::disk('local')->allFiles("dokumentasi_foto_sebelum/".$id);
-        $filesProses = Storage::disk('local')->allFiles("dokumentasi_foto_proses/".$id);
-        $filesSetelah = Storage::disk('local')->allFiles("dokumentasi_foto_setelah/".$id);
+        $filesSebelum = Storage::disk('public')->allFiles("dokumentasi_foto_sebelum/".$id);
+        $filesProses = Storage::disk('public')->allFiles("dokumentasi_foto_proses/".$id);
+        $filesSetelah = Storage::disk('public')->allFiles("dokumentasi_foto_setelah/".$id);
 
 
         $pelanggarans = DB::table('pelanggarans')
