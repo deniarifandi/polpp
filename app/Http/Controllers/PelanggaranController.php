@@ -204,8 +204,10 @@ class PelanggaranController extends Controller
                 $pelanggaran->save();
 
                 try{
-
-                    Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
+                    if (isset($request->foto_lokasi)) {
+                        Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
+                    }
+                    
 
                 
                 }catch(\Exception $e){
