@@ -511,6 +511,8 @@
 </style>
 
 <script>
+
+    marker1 = null;
     
    function showPosition(position) {
       console.log("show possition start");
@@ -534,7 +536,7 @@
         console.log(position);
         document.getElementById("lat").value = position.coords.latitude;
         document.getElementById("lon").value = position.coords.longitude; 
-          const marker1 = new mapboxgl.Marker()
+          marker1 = new mapboxgl.Marker()
           .setLngLat([position.coords.longitude, position.coords.latitude])
           .addTo(map);
 
@@ -612,6 +614,17 @@
           zoom: 15 // starting zoom
         });
 
+
+        map.on('click', (e) => {
+          console.log(e);
+          console.log(e.lngLat.lng);
+
+          marker1.setLngLat(e.lngLat);
+          document.getElementById("lat").value = e.lngLat.lat;
+          document.getElementById("lon").value = e.lngLat.lng; 
+
+     
+          });
         
     </script>
 
