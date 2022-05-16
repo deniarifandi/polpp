@@ -53,6 +53,9 @@
                     <th>Kegiatan</th>
                     <td>{{ $pelanggaran->kegiatan }}</td>
                   </tr>
+
+                  @if($pelanggaran->id_kegiatan == 1)
+                  {{-- REKLAME --}}
                   <tr>
                     <th>Tema Reklame : </th>
                     <td>{{ $pelanggaran->tema_reklame }}</td>                   
@@ -69,6 +72,124 @@
                     <th>Jumlah Reklame: </th>
                     <td>{{ $pelanggaran->jumlah_reklame }}</td>
                   </tr>
+                  {{-- END REKLAME --}}
+                  @elseif($pelanggaran->id_kegiatan == 2)
+                  {{-- PKL --}}
+                  <tr>
+                    <th>Jenis PKL</th>
+                    <td>{{ $pelanggaran->pkl }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Nama Pelaku Usaha</th>
+                    <td>{{ $pelanggaran->pkl_nama }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>No Identitas</th>
+                    <td>{{ $pelanggaran->pkl_no_identitas }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Alamat Pelaku Usaha</th>
+                    <td>{{ $pelanggaran->pkl_alamat }}</td>
+                  </tr>
+                  {{-- END PKL --}}
+                  @elseif($pelanggaran->id_kegiatan == 3)
+                  {{-- ANJAL --}}
+                  <tr>
+                    <th>Jenis AnJal-GePeng</th>
+                    <td>{{ $pelanggaran->anjalgepeng }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Nama AnJal-GePeng</th>
+                    <td>{{ $pelanggaran->anjal_gepeng_nama }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>No Identitas</th>
+                    <td>{{ $pelanggaran->anjal_gepeng_no_identitas }}</td>
+                  </tr>
+                  {{-- END ANJAL --}}
+                  @elseif($pelanggaran->id_kegiatan == 4)  
+                  {{-- START PSK --}}
+
+                      <tr>
+                        <th>Nama PSK</th>
+                        <td>{{ $pelanggaran->psk_nama }}</td>
+                      </tr>
+
+                      <tr>
+                        <th>No Identitas</th>
+                        <td>{{ $pelanggaran->psk_no_identitas }}</td>
+                      </tr>
+                  {{-- END PSK --}}
+                  @elseif($pelanggaran->id_kegiatan == 5)  
+                  {{-- START MINOL --}}
+
+                      <tr>
+                        <th>Nama Pelanggar MINOL</th>
+                        <td>{{ $pelanggaran->minol_nama }}</td>
+                      </tr>
+
+                      <tr>
+                        <th>No Identitas</th>
+                        <td>{{ $pelanggaran->minol_no_identitas }}</td>
+                      </tr>
+                  {{-- END Minol --}}
+                  @elseif($pelanggaran->id_kegiatan == 6)  
+                  {{-- START Pemondokan --}}
+
+                      <tr>
+                        <th>Nama Pemondokan</th>
+                        <td>{{ $pelanggaran->pemondokan_nama }}</td>
+                      </tr>
+
+                      <tr>
+                        <th>No Identitas</th>
+                        <td>{{ $pelanggaran->pemondokan_no_identitas }}</td>
+                      </tr>
+                  {{-- END PSK --}}
+                  @elseif($pelanggaran->id_kegiatan == 7)  
+                  {{-- START Parkirliar --}}
+
+                      <tr>
+                        <th>Nama Parkir Liar</th>
+                        <td>{{ $pelanggaran->parkir_nama }}</td>
+                      </tr>
+
+                      <tr>
+                        <th>No Identitas</th>
+                        <td>{{ $pelanggaran->parkir_no_identitas }}</td>
+                      </tr>
+                  {{-- END Parkirliar --}}
+                  @elseif($pelanggaran->id_kegiatan == 8)
+                    <tr>
+                      <th>Jenis Penertiban Prokes</th>
+                      <td>{{ $pelanggaran->prokes }}</td>
+                    </tr>
+                    <tr>
+                      <th>Jenis Pelaku Usaha</th>
+                      @if($pelanggaran->id_jenis_pelaku_usaha)
+                        <td>Perseorangan</td>
+                      @elseif($pelanggaran->id_jenis_pelaku_usaha){
+                        <td>Perseorangan</td>
+                      }
+                      @else
+                        <td>Null</td>
+                      @endif
+                    </tr>
+                    <tr>
+                      <th>Nama</th>
+                      <td>{{ $pelanggaran->prokes_nama }}</td>
+                    </tr>
+                    <tr>
+                      <th>No. Identitas</th>
+                      <td>{{ $pelanggaran->prokes_no_identitas }}</td>
+                    </tr>
+                  @endif
+
                   <tr>
                     <th>Jenis Pelanggaran : </th>
                     <td>{{ $pelanggaran->jenis_pelanggaran }}</td>

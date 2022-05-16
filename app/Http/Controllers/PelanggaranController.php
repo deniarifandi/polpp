@@ -207,15 +207,13 @@ class PelanggaranController extends Controller
                     if (isset($request->foto_lokasi)) {
                         Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
                     }
-                    
-
                 
                 }catch(\Exception $e){
                     return $e->getMessage();
                 }
 
-            return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
-                # return redirect('/pelanggaran/'.$pelanggaran->id);
+            // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
+                return redirect('/pelanggaran/'.$pelanggaran->id);
 
         }catch(Exception $e){
             return Redirect::back()->with(['error' => $e->getMessage()]);
@@ -298,7 +296,27 @@ class PelanggaranController extends Controller
                             'tindak_lanjuts.nama as tindak_lanjut',
                             'pelanggarans.alamat',
                             'pelanggarans.lat',
-                            'pelanggarans.lon'
+                            'pelanggarans.lon',
+                            'jenis_pkls.nama as pkl',
+                            'pelanggarans.pkl_nama',
+                            'pelanggarans.pkl_no_identitas',
+                            'pelanggarans.pkl_alamat',
+                            'jenis_anjal_gepengs.nama as anjalgepeng',
+                            'pelanggarans.anjal_gepeng_nama',
+                            'pelanggarans.anjal_gepeng_no_identitas',
+                            'pelanggarans.psk_nama',
+                            'pelanggarans.psk_no_identitas',
+                            'pelanggarans.minol_nama',
+                            'pelanggarans.minol_no_identitas',
+                            'pelanggarans.pemondokan_nama',
+                            'pelanggarans.pemondokan_no_identitas',
+                            'pelanggarans.parkir_nama',
+                            'pelanggarans.parkir_no_identitas',
+                            'jenis_penertiban_prokes.nama as prokes',
+                            'pelanggarans.id_jenis_pelaku_usaha',
+                            'pelanggarans.prokes_nama',
+                            'pelanggarans.prokes_no_identitas'
+
                         )
                         ->join('regus','regus.id','=','pelanggarans.id_regu','left')
                         ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
@@ -306,6 +324,9 @@ class PelanggaranController extends Controller
                         ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame','left')
                         ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
                         ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut','left')
+                        ->join('jenis_pkls','jenis_pkls.id','=','pelanggarans.id_jenis_pkl','left')
+                        ->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id','=','pelanggarans.id_jenis_anjal_gepeng','left')
+                        ->join('jenis_penertiban_prokes','jenis_penertiban_prokes.id','=','pelanggarans.id_jenis_penertiban_prokes','left')
                         ->where('pelanggarans.id','=',$id)
                         ->get();
 
