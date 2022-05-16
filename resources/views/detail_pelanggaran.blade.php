@@ -6,7 +6,7 @@
 
 @section('content')
     
-    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <div class="pagetitle">
       <h1>Detail Page</h1>
@@ -98,8 +98,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Dokumentasi Foto</h5>
-           
-             
+                          
                   <table class="table" >
                 
                 <tbody>
@@ -107,47 +106,36 @@
                   <form action="{{ url('pelanggaran/upload_image') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     
-                    <div class="row">
+                    <input class="form-control" type="hidden" readonly="" name="id" value="{{ $pelanggaran->id }}">
+
+                    <div class="row" id="inputFoto">
                         <div class="col-lg-4">
 
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
 
-                              <div class="row mb-3">
+                              @for($i = 0; $i< 5; $i++)
+
+                                <div class="row mb-3">
                                 
                                 <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_sebelum_[1]" onchange="this.form.submit()">
+
+                                  @if(isset($foto_sebelum[$i]))
+                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_sebelum[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_sebelum[$i]);  }}" style="max-width: 100%"></a>
+                                  @else
+                                    <input class="form-control" type="file" name="foto_sebelum_[{{$i}}]" onchange="submitFoto(this)">
+                                  @endif
+                                  
+
                                 </div>
                               </div>
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_sebelum_[2]">
-                                </div>
-                              </div>
+                              @endfor
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_sebelum_[3]">
-                                </div>
-                              </div>
+                              
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_sebelum_[4]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_sebelum_[5]">
-                                </div>
-                              </div>
+                    
 
                             </div>
                           </div>
@@ -158,40 +146,24 @@
                             <div class="card-body">
                               <h5 class="card-title">Dokumentasi Foto Proses Penertiban</h5>
 
-                              <div class="row mb-3">
+                              
+                              @for($i = 0; $i< 5; $i++)
+
+                                <div class="row mb-3">
                                 
                                 <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_proses_[1]">
+
+                                  @if(isset($foto_proses[$i]))
+                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_proses[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_proses[$i]);  }}" style="max-width: 100%"></a>
+                                  @else
+                                    <input class="form-control" type="file" name="foto_proses_[{{$i}}]" onchange="submitFoto(this)">
+                                  @endif
+                                  
+
                                 </div>
                               </div>
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_proses_[2]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_proses_[3]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_proses_[4]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_proses_[5]">
-                                </div>
-                              </div>
+                              @endfor
                            
                           </div>
                           </div>
@@ -202,57 +174,62 @@
                             <div class="card-body">
                               <h5 class="card-title">Dokumentasi Foto Setelah Penertiban</h5>
 
-                              <div class="row mb-3">
+                                
+
+                              @for($i = 0; $i< 5; $i++)
+
+                                <div class="row mb-3">
                                 
                                 <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_setelah_[1]">
+
+                                  @if(isset($foto_setelah[$i]))
+                                    <a href="{{  '/polpp'.Storage::url('app/'.$foto_setelah[$i]);  }}" target="_blank"><img src="{{  '/polpp'.Storage::url('app/'.$foto_setelah[$i]);  }}" style="max-width: 100%"></a>
+                                  @else
+                                    <input class="form-control" type="file" name="foto_setelah_[{{$i}}]" onchange="submitFoto(this)">
+                                  @endif
+                                  
+
                                 </div>
                               </div>
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_setelah_[2]">
-                                </div>
-                              </div>
+                              @endfor  
 
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_setelah_[3]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_setelah_[4]">
-                                </div>
-                              </div>
-
-                              <div class="row mb-3">
-                                
-                                <div class="col-sm-12">
-                                  <input class="form-control" type="file" name="foto_setelah_[5]">
-                                </div>
-                              </div>
 
                             </div>
-                            </div>
+                           </div>
                         </div>  
                     </div>
+                    <div class="row" id="loadingFoto" style="display: none">
+                       <div class="col-lg-12">
 
+                          <div class="card">
+                            <div class="card-body">
+                              {{-- test --}}
+                              <br>
+                                <div class="d-flex justify-content-center" style="margin-top: 50px">
+                                  <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+
+                                  </div>
+
+                                  {{-- <h5 style="margin-left: 20px"> Loading Photo</h5> --}}
+                                </div><!-- End Center aligned spinner -->
+                                <div class="d-flex justify-content-center">
+                                  
+                                  <h5 style="margin-top: 20px; margin-bottom: 30px"> Loading Photo</h5>
+                                </div><!-- End Center aligned spinner -->
+                            </div>
+                          </div>
+                        </div>
+
+                    </div>
 
                     {{-- <button type="submit" class="btn btn-success">Simpan & Lanjutkan</button> --}}
                   </form>
 
-                  <input type="file" accept="image/*" capture="camera" />
-
                 </tbody>
               </table>
-            
-     
-           
+      
             </div>
           </div>
 
@@ -260,12 +237,23 @@
       </div>
     </section>
 
-
     <script type="text/javascript">
         
 
-    
+      function submitFoto($this){
+        
+        document.getElementById("inputFoto").style.display= "none";
+        document.getElementById("loadingFoto").style.display = "block";
 
+
+
+        // for (var i = 0; i < 30000; i++) {
+        //   console.log("test");
+        // }
+
+        $this.form.submit();
+        
+      };
     
 
     </script>

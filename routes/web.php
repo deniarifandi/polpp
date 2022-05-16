@@ -39,4 +39,10 @@ Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']
 
 Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_image']);
 
+Route::get('getfile', [PelanggaranController::class, 'getfile']);
+
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
+
 require __DIR__.'/auth.php';

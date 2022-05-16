@@ -253,8 +253,46 @@ class PelanggaranController extends Controller
 
     public function upload_image(request $request){
 
-            print_r($request->all());
+            // print_r($request->all());
+        $errorMessage = null;
 
+        try{
+            for ($i=0; $i < 5; $i++) { 
+                if (isset($request->id)) {
+                    if (isset($request->foto_sebelum_[$i])) {
+
+                        Storage::disk('local')->put("dokumentasi_foto_sebelum/".$request->id, $request->foto_sebelum_[$i]);
+
+                    }
+
+                    if (isset($request->foto_proses_[$i])) {
+
+                        Storage::disk('local')->put("dokumentasi_foto_proses/".$request->id, $request->foto_proses_[$i]);
+
+                    }
+
+                    if (isset($request->foto_setelah_[$i])) {
+
+                        Storage::disk('local')->put("dokumentasi_foto_setelah/".$request->id, $request->foto_setelah_[$i]);
+
+                    }
+                }
+            }
+            return Redirect::back()->with(['success' => "berhasil input foto "]);
+        }catch(Exception $e){
+            $errorMessage = $e;
+            return Redirect::back()->with(['error' => $e->getMessage()]);
+        }
+
+    }
+
+
+    public function getfile(){
+
+        
+        $files = Storage::disk('local')->allFiles("dokumentasi_foto_sebelum/1");
+        
+        echo $files[0];
     }
 
     /**
@@ -296,6 +334,11 @@ class PelanggaranController extends Controller
 
         // echo $id;
 
+        $filesSebelum = Storage::disk('local')->allFiles("dokumentasi_foto_sebelum/".$id);
+        $filesProses = Storage::disk('local')->allFiles("dokumentasi_foto_proses/".$id);
+        $filesSetelah = Storage::disk('local')->allFiles("dokumentasi_foto_setelah/".$id);
+
+
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
                             'pelanggarans.id',
@@ -325,7 +368,7 @@ class PelanggaranController extends Controller
 
         // echo $pelanggarans;
 
-        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0]]);
+        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah]);
     }
 
     /**
