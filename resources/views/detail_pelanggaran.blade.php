@@ -82,6 +82,15 @@
                     <td>{{ $pelanggaran->alamat }}</td>                   
                   </tr>
                   <tr>
+                    <th>Koordinat : </th>
+                    <td>{{ $pelanggaran->lat }} , {{ $pelanggaran->lon }}</td>                   
+                  </tr>
+                  <tr>
+                    <th>Peta Lokasi :</th>
+                    <td> <div id="map"></div></td>
+                  </tr>
+
+                  <tr>
                     <td colspan="2">
                       <a class="btn btn-primary" style="float: right;"{{--  href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}" --}} onclick="underConstruction()">Edit</a>   
                     </td>
@@ -237,6 +246,11 @@
       </div>
     </section>
 
+    <style>
+
+#map {height: 250px; width: 100%; }
+</style>
+
     <script type="text/javascript">
         
 
@@ -245,15 +259,31 @@
         document.getElementById("inputFoto").style.display= "none";
         document.getElementById("loadingFoto").style.display = "block";
 
-
-
-        // for (var i = 0; i < 30000; i++) {
-        //   console.log("test");
-        // }
-
         $this.form.submit();
         
       };
+
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYXJpZmFuZGlkZW5pIiwiYSI6ImNsMzZvNXZxejEzbHAzY3FzcmpuNzNrbm0ifQ.-XX0gvG2ooyVnJvZZHg9Hg';
+          const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+          center: [106.82332708986368,-6.160440512853471 ], // starting position [lng, lat]
+          zoom: 15 // starting zoom
+        });
+
+      (function() {
+        console.log("test");
+         const marker1 = new mapboxgl.Marker()
+          .setLngLat([{{ $pelanggaran->lon }}, {{ $pelanggaran->lat }}])
+          .addTo(map);
+       
+         map.flyTo({center:[{{ $pelanggaran->lon }}, {{ $pelanggaran->lat }}]});
+
+      })();
+  
+        
+    </script>
+
     
 
     </script>

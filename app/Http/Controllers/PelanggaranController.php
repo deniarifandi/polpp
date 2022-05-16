@@ -303,37 +303,7 @@ class PelanggaranController extends Controller
      */
     public function show($id)
     {
-        // $regus              = Regu::select('*')->get();
-        // $kegiatans          = Kegiatan::select('*')->get();
-        // $vendors            = Vendor::select('*')->orderBy('nama')->get();
-        // $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
-        // $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
-        // $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
-        // $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
-        // $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
-        // $kelurahans         = Kelurahan::select('*')->orderBy('nama')->get();
-        // $jenis_pkls         = Jenis_pkl::select('*')->orderBy('nama')->get();
-        // $jenis_anjal_gepeng = Jenis_anjal_gepeng::select('*')->orderBy('nama')->get();
-        // $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
-
-
-        // return view('edit_pelanggaran',[
-        //     'regus'             => $regus, 
-        //     'kegiatans'         => $kegiatans, 
-        //     'vendors'           => $vendors,
-        //     'jenis_reklames'    => $jenis_reklames,
-        //     'jenis_pelanggarans'=> $Jenis_pelanggarans,
-        //     'tindak_lanjuts'    => $tindak_lanjuts,
-        //     'ukuran_reklames'   => $ukuran_reklames,
-        //     'kecamatans'        => $kecamatans,
-        //     'kelurahans'        => $kelurahans,
-        //     'jenis_pkls'        => $jenis_pkls,
-        //     'jenis_anjal_gepengs'=> $jenis_anjal_gepeng,
-        //     'jenis_penertiban_prokess'   => $jenis_penertiban_prokes,
-        // ]);
-
-        // echo $id;
-
+        
         $filesSebelum = Storage::disk('public')->allFiles("dokumentasi_foto_sebelum/".$id);
         $filesProses = Storage::disk('public')->allFiles("dokumentasi_foto_proses/".$id);
         $filesSetelah = Storage::disk('public')->allFiles("dokumentasi_foto_setelah/".$id);
@@ -353,7 +323,10 @@ class PelanggaranController extends Controller
                             'pelanggarans.jumlah_reklame',
                             'jenis_pelanggarans.nama as jenis_pelanggaran',
                             'tindak_lanjuts.nama as tindak_lanjut',
-                            'pelanggarans.alamat')
+                            'pelanggarans.alamat',
+                            'pelanggarans.lat',
+                            'pelanggarans.lon'
+                        )
                         ->join('regus','regus.id','=','pelanggarans.id_regu','left')
                         ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
                         ->join('vendors','vendors.id','=','pelanggarans.id_pemilik','left')
