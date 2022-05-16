@@ -83,7 +83,7 @@
                   </tr>
                   <tr>
                     <td colspan="2">
-                      <a class="btn btn-primary" style="float: right;" href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}">Edit</a>   
+                      <a class="btn btn-primary" style="float: right;"{{--  href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}" --}} onclick="underConstruction()">Edit</a>   
                     </td>
                   </tr>
                 </tbody>
