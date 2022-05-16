@@ -5,7 +5,10 @@
   @section('title','data pelanggaran')
 
   @section('content')
-  
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>  
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
 
     <div class="pagetitle">
       <h1>Dashboard Pelanggaran</h1>
@@ -29,17 +32,15 @@
 
         <!-- Left side columns -->
         <div class="col-lg-12">
-             <div class="card">
-            <div class="card-body">
+             <div class="card" style="min-width: 800px">
+            <div class="card-body" >
               <h5 class="card-title">Rekapitulasi</h5>
               <p>Rekapitulasi Data Pelanggaran</p>
 
               <!-- Table with stripped rows -->
-              <table class="table datatable">
+              <table class="table" id="list_pelanggaran">
                 <thead>
                   <tr>
-                    {{-- <th scope="col">#</th> --}}
-                    {{-- <th scope="col">Jenis Laporan</th> --}}
                     <th scope="col">Regu</th>
                     <th scope="col">Kegiatan</th>
                     {{-- <th scope="col">Pemilik / Vendor</th> --}}
@@ -50,13 +51,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @php
-                    // print_r($pelanggarans[0]);
-                  @endphp
+                
                   @foreach(json_decode($pelanggarans) as $pelanggaran)
                     
                     <tr>
-                      {{-- <th>{{ $pelanggaran->id}}</th> --}}
                       <td>{{ $pelanggaran->nama_regu}}</td>
                       <td>{{ $pelanggaran->nama_kegiatan}}</td>
                       {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
@@ -93,5 +91,14 @@
       </div>
     </section>
 
+    <script type="text/javascript">
+      
+      $(document).ready(function () {
+          // $('#list_pelanggaran').DataTable({
+          //     scrollX: true,
+          // });
+      });
+
+    </script>
 
     @endsection
