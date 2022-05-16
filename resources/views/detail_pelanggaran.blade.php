@@ -8,12 +8,12 @@
 
 
     <div class="pagetitle">
-      <h1>Blank Page</h1>
+      <h1>Detail Page</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
+          <li class="breadcrumb-item active">Detail Page</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -80,6 +80,11 @@
                     <th>Lokasi : </th>
                     <td>{{ $pelanggaran->alamat }}</td>                   
                   </tr>
+                  <tr>
+                    <td colspan="2">
+                      <a class="btn btn-primary" style="float: right;" href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}">Edit</a>   
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -98,140 +103,153 @@
                 
                 <tbody>
                  
-                 <div class="row">
-        <div class="col-lg-4">
+                  <form action="{{ url('pelanggaran/upload_image') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <div class="row">
+                        <div class="col-lg-4">
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Dokumentasi Foto Sebelum Penertiban</h5>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_sebelum_[1]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_sebelum_[1]" onchange="this.form.submit()">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_sebelum_[2]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_sebelum_[2]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_sebelum_[3]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_sebelum_[3]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_sebelum_[4]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_sebelum_[4]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_sebelum_[5]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_sebelum_[5]">
+                                </div>
+                              </div>
 
-            </div>
-          </div>
-        </div>
+                            </div>
+                          </div>
+                        </div>
 
-        <div class="col-lg-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dokumentasi Foto Proses Penertiban</h5>
+                        <div class="col-lg-4">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Dokumentasi Foto Proses Penertiban</h5>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_proses_[1]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_proses_[1]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_proses_[2]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_proses_[2]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_proses_[3]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_proses_[3]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_proses_[4]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_proses_[4]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_proses_[5]">
-                </div>
-              </div>
-           
-          </div>
-          </div>
-        </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_proses_[5]">
+                                </div>
+                              </div>
+                           
+                          </div>
+                          </div>
+                        </div>
 
-        <div class="col-lg-4">
-           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dokumentasi Foto Setelah Penertiban</h5>
+                        <div class="col-lg-4">
+                           <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Dokumentasi Foto Setelah Penertiban</h5>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_setelah_[1]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_setelah_[1]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_setelah_[2]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_setelah_[2]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_setelah_[3]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_setelah_[3]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_setelah_[4]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_setelah_[4]">
+                                </div>
+                              </div>
 
-              <div class="row mb-3">
-                
-                <div class="col-sm-12">
-                  <input class="form-control" type="file" name="foto_setelah_[5]">
-                </div>
-              </div>
+                              <div class="row mb-3">
+                                
+                                <div class="col-sm-12">
+                                  <input class="form-control" type="file" name="foto_setelah_[5]">
+                                </div>
+                              </div>
 
-            </div>
-            </div>
-        </div>  
-      </div>
+                            </div>
+                            </div>
+                        </div>  
+                    </div>
+
+
+                    {{-- <button type="submit" class="btn btn-success">Simpan & Lanjutkan</button> --}}
+                  </form>
+
+                      <button id="start-camera">Start Camera</button>
+<video id="video" width="320" height="240" autoplay></video>
+<button id="click-photo">Click Photo</button>
+<canvas id="canvas" width="320" height="240"></canvas>
+                    
               
                 </tbody>
               </table>
@@ -245,6 +263,28 @@
       </div>
     </section>
 
+
+    <script type="text/javascript">
+        
+        let camera_button = document.querySelector("#start-camera");
+        let video = document.querySelector("#video");
+        let click_button = document.querySelector("#click-photo");
+        let canvas = document.querySelector("#canvas");
+
+        camera_button.addEventListener('click', async function() {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+          video.srcObject = stream;
+        });
+
+        click_button.addEventListener('click', function() {
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            let image_data_url = canvas.toDataURL('image/jpeg');
+
+            // data url of the image
+            console.log(image_data_url);
+        });
+
+    </script>
 
 
 @endsection

@@ -37,4 +37,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']);
 
+Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_image']);
+
 require __DIR__.'/auth.php';

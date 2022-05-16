@@ -40,6 +40,7 @@ class PelanggaranController extends Controller
 
         $id_kegiatan = "1";
         $pelanggarans = Pelanggaran::select(
+                                'pelanggarans.id',
                                 'regus.nama as nama_regu',
                                 'kegiatans.nama as nama_kegiatan',
                                 // 'vendors.nama as nama_vendor',
@@ -249,6 +250,13 @@ class PelanggaranController extends Controller
 
     }
 
+
+    public function upload_image(request $request){
+
+            print_r($request->all());
+
+    }
+
     /**
      * Display the specified resource.
      *
@@ -290,10 +298,12 @@ class PelanggaranController extends Controller
 
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
+                            'pelanggarans.id',
                             'pelanggarans.id_jenis_laporan',
                             'regus.nama as regu',
                             'pelanggarans.tgl_peristiwa',
                             'kegiatans.nama as kegiatan',
+                            'pelanggarans.id_kegiatan',
                             'pelanggarans.tema_reklame',
                             'vendors.nama as pemilik',
                             'jenis_reklames.nama as jenis_reklame',
