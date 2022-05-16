@@ -63,8 +63,8 @@
                       <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
                       <td>
                         <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
-                        <button class="btn btn-warning btn-sm" onclick="underConstruction()">Edit</button> 
-                        <button class="btn btn-danger btn-sm" onclick="underConstruction()">Delete</button>
+                        <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
+                        <button class="btn btn-danger btn-sm" onclick="underConstruction()" disabled="disabled">Delete</button>
                       </td>
                     </tr>
 

@@ -82,12 +82,24 @@
                     <td>{{ $pelanggaran->alamat }}</td>                   
                   </tr>
                   <tr>
+                    <th>Foto Lokasi :</th>
+                    @if(isset($foto_lokasi[0]))
+                    <td><a href="{{  asset('/storage/'.$foto_lokasi[0]) }}" target="_blank"><img src="{{  asset('/storage/'.$foto_lokasi[0]) }}" style="max-width: 300px"></a></td>
+                    @else
+                    <td style="color: red">Foto Tidak Ditemukan</td>
+                    @endif
+                  </tr>
+                  <tr>
                     <th>Koordinat : </th>
                     <td>{{ $pelanggaran->lat }} , {{ $pelanggaran->lon }}</td>                   
                   </tr>
                   <tr>
                     <th>Peta Lokasi :</th>
+                    @if(isset($pelanggaran->lat))
                     <td> <div id="map"></div></td>
+                    @else
+                    <td style="color: red">Map Tidak Ditemukan</td>
+                    @endif
                   </tr>
 
                   <tr>

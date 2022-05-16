@@ -200,21 +200,6 @@ class PelanggaranController extends Controller
             $pelanggaran->lon           = $request->lon;
 
             //image / bukti
-            
-                // for ($i=1; $i <= 5; $i++) { 
-                //     if (isset($request->foto_sebelum_[$i])) {
-                //         $pelanggaran->foto_sebelum1 = $request->foto_sebelum_[$i];
-                //     }
-                    
-                //     if (isset($request->foto_proses_[$i])) {
-                //         $pelanggaran->foto_proses1 = $request->foto_proses_[$i];
-                //     }
-
-                //     if (isset($request->foto_setelah_[$i])) {
-                //         $pelanggaran->foto_setelah1 = $request->foto_setelah_[$i];
-                //     }
-
-                // }
 
                 $pelanggaran->save();
 
@@ -222,27 +207,13 @@ class PelanggaranController extends Controller
 
                     Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
 
-                    // for ($i=1; $i <= 5; $i++) { 
-                    //     if (isset($pelanggaran->id)) {
-                    //             if (isset($request->foto_sebelum_[$i])) {
-                    //                 Storage::disk('public')->put("dokumentasi_foto_sebelum/".$pelanggaran->id, $request->foto_sebelum_[$i]);
-                    //             }
-                                
-                    //             if (isset($request->foto_proses_[$i])) {
-                    //                 Storage::disk('public')->put("dokumentasi_foto_proses/".$pelanggaran->id, $request->foto_proses_[$i]);
-                    //             }
-
-                    //             if (isset($request->foto_setelah_[$i])) {
-                    //                 Storage::disk('public')->put("dokumentasi_foto_setelah/".$pelanggaran->id, $request->foto_setelah_[$i]);
-                    //             }
-                    //     }
-                    // }
+                
                 }catch(\Exception $e){
-                    echo $e->getMessage();
+                    return $e->getMessage();
                 }
 
-            // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
-                return redirect('/pelanggaran/'.$pelanggaran->id);
+            return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
+                # return redirect('/pelanggaran/'.$pelanggaran->id);
 
         }catch(Exception $e){
             return Redirect::back()->with(['error' => $e->getMessage()]);
@@ -307,7 +278,7 @@ class PelanggaranController extends Controller
         $filesSebelum = Storage::disk('public')->allFiles("dokumentasi_foto_sebelum/".$id);
         $filesProses = Storage::disk('public')->allFiles("dokumentasi_foto_proses/".$id);
         $filesSetelah = Storage::disk('public')->allFiles("dokumentasi_foto_setelah/".$id);
-
+        $fileLokasi = Storage::disk('public')->allFiles("foto_lokasi/".$id);
 
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
@@ -341,7 +312,7 @@ class PelanggaranController extends Controller
 
         // echo $pelanggarans;
 
-        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah]);
+        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi]);
     }
 
     /**
