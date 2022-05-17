@@ -143,7 +143,7 @@ class PelanggaranController extends Controller
 
             //detail laporan
             $pelanggaran->id_jenis_laporan  = $request->id_jenis_laporan;
-            $pelanggaran->id_regu           = $request->id_regu;
+            
             $pelanggaran->tgl_peristiwa     = date_format(date_create($request->tgl_peristiwa),"Y-m-d");
             $pelanggaran->id_kegiatan       = $request->id_kegiatan;
 
@@ -199,20 +199,32 @@ class PelanggaranController extends Controller
             $pelanggaran->lat           = $request->lat;
             $pelanggaran->lon           = $request->lon;
 
-            //image / bukti
 
-                $pelanggaran->save();
+            
 
-                try{
-                    if (isset($request->foto_lokasi)) {
-                        Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
-                    }
-                
-                }catch(\Exception $e){
-                    return $e->getMessage();
+            if ($request->id_regu == "tambahvalue") {
+                $regu = new Regu;
+                $regu->nama = $request->input_tambah_regu;
+                $regu->save();
+                $pelanggaran->id_regu = $regu->id;
+            }else{
+                $pelanggaran->id_regu   = $request->id_regu;    
+            }
+
+            $pelanggaran->save();
+
+
+
+            try{
+                if (isset($request->foto_lokasi)) {
+                    Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
                 }
+            
+            }catch(\Exception $e){
+                return $e->getMessage();
+            }
 
-            // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']);
+            // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']); OLD
                 return redirect('/pelanggaran/'.$pelanggaran->id);
 
         }catch(Exception $e){

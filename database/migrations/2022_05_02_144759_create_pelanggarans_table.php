@@ -27,7 +27,7 @@ return new class extends Migration
             $table->tinyInteger('id_pemilik')->nullable();
             $table->tinyInteger('id_jenis_reklame')->nullable();
             $table->tinyInteger('id_ukuran_reklame')->nullable();
-            $table->tinyInteger('jumlah_reklame')->nullable();
+            $table->Integer('jumlah_reklame')->nullable();
             $table->date('masa_berlaku')->nullable();
 
             //pkl

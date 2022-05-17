@@ -51,12 +51,15 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Regu</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_regu" >
+                <select class="form-select" aria-label="Default select example" name="id_regu" id="dropdown_regu"  onchange="checkSelected(1)">
                   <option selected value="">- Pilih Regu -</option>
                   @foreach($regus as $regu)
                   <option value="{{$regu->id}}">{{$regu->nama}}</option>
                   @endforeach
+                  <option value="tambahvalue">- Tambah Regu -</option>
                 </select>
+
+                <input type="text" id="input_tambah_regu" class="form-control" name="input_tambah_regu" style="display: none" placeholder="Nama Regu Baru">
               </div>
             </div>
             <div class="row mb-3">
@@ -588,7 +591,7 @@
       }
 
       (function() {
-        console.log('auto run');
+        // console.log('auto run');
         var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;
         
         const kegiatan_selected = document.getElementsByClassName("pelanggaran_kategori_"+id_kegiatan);
@@ -616,8 +619,8 @@
 
 
         map.on('click', (e) => {
-          console.log(e);
-          console.log(e.lngLat.lng);
+          // console.log(e);
+          // console.log(e.lngLat.lng);
 
           marker1.setLngLat(e.lngLat);
           document.getElementById("lat").value = e.lngLat.lat;
@@ -626,6 +629,21 @@
      
           });
         
+    </script>
+
+    <script type="text/javascript">
+      
+
+      function checkSelected(id){
+        var e = document.getElementById("dropdown_regu");
+        if (e.options[e.selectedIndex].value == "tambahvalue") {
+          document.getElementById("input_tambah_regu").style.display = "block";
+        }else{
+          document.getElementById("input_tambah_regu").style.display = "none";
+        }
+        
+      }
+
     </script>
 
 
