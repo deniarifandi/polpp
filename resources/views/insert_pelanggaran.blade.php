@@ -471,11 +471,11 @@
 
                 <div class="row">
                   <div class="col-sm-6">
-                  <input class="form-control" type="text" id="lat" name="lat" placeholder="lat">   
+                  <input class="form-control" type="text" id="lat" name="lat" placeholder="lat" readonly="">   
                   </div>
                   
                   <div class="col-sm-6">
-                    <input class="form-control" type="text" id="lon" name="lon" placeholder="lon">   
+                    <input class="form-control" type="text" id="lon" name="lon" placeholder="lon" readonly="">   
                   </div>  
                   <br>
                 </div>
