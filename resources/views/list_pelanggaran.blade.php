@@ -86,9 +86,9 @@
 
                   @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
                     @if($pelanggarans->currentPage() == $i)
-                      <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}$id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                      <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
                     @else
-                      <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}$id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                      <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
                     @endif
                   @endfor
                     
