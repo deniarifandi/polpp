@@ -49,10 +49,10 @@ class PelanggaranController extends Controller
                                 'tindak_lanjuts.nama as nama_tindak_lanjut',
                                 'tgl_peristiwa'
                         )
-                        ->join('regus','regus.id', '=','pelanggarans.id_regu')
-                        ->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan')
-                        ->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran')
-                        ->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut');
+                        ->join('regus','regus.id', '=','pelanggarans.id_regu', 'left')
+                        ->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan','left')
+                        ->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran','left')
+                        ->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut','left');
 
 
         if (isset($_GET['id_kegiatan'])) {
