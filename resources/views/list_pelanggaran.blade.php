@@ -75,33 +75,44 @@
 
               </table>
 
-                 <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-
-                  @if($pelanggarans->currentPage() > 1)
-                  <li class="page-item"><a class="page-link" href="{{$pelanggarans->previousPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Previous</a></li>
-                  @else
-                  <li class="page-item disabled"><a class="page-link" href="#" type="button">Previous</a></li>
-                  @endif
-
-                  @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
-                    @if($pelanggarans->currentPage() == $i)
-                      <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
-                    @else
-                      <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
-                    @endif
-                  @endfor
-                    
-                  @if($pelanggarans->currentPage() == $pelanggarans->lastPage())
-                  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                  @else
-                  <li class="page-item"><a class="page-link" href="{{$pelanggarans->nextPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Next</a></li>
-                  @endif                  
+               <div class="row">
                   
+                  <div class="col-lg-6">
+                      Showing 1 to 10 of {{$pelanggarans->count()}} Entries
+                  </div>              
 
+                  <div class="col-lg-6">
+                       <nav aria-label="Page navigation example">
+                          <ul class="pagination justify-content-end">
 
-                </ul>
-              </nav><!-- End Basic Pagination -->
+                            @if($pelanggarans->currentPage() > 1)
+                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->previousPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Previous</a></li>
+                            @else
+                            <li class="page-item disabled"><a class="page-link" href="#" type="button">Previous</a></li>
+                            @endif
+
+                            @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
+                              @if($pelanggarans->currentPage() == $i)
+                                <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                              @else
+                                <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                              @endif
+                            @endfor
+                              
+                            @if($pelanggarans->currentPage() == $pelanggarans->lastPage())
+                            <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            @else
+                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->nextPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Next</a></li>
+                            @endif                  
+                            
+                          </ul>
+
+                        </nav><!-- End Basic Pagination -->
+
+                  </div>  
+
+               </div>
+
 
               <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
                 if(isset($_GET['id_kegiatan'])){ 
