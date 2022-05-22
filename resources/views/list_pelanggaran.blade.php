@@ -23,6 +23,7 @@
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       Berhasil tambah Data Pelanggaran
+      
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
@@ -36,7 +37,7 @@
             <div class="card-body" >
               <h5 class="card-title">Rekapitulasi</h5>
               <p>Rekapitulasi Data Pelanggaran</p>
-
+              
               <!-- Table with stripped rows -->
               <table class="table" id="list_pelanggaran">
                 <thead>
@@ -52,7 +53,7 @@
                 </thead>
                 <tbody>
                 
-                  @foreach(json_decode($pelanggarans) as $pelanggaran)
+                  @foreach($pelanggarans as $pelanggaran)
                     
                     <tr>
                       <td>{{ $pelanggaran->nama_regu}}</td>
@@ -71,7 +72,12 @@
                   @endforeach
 
                 </tbody>
+
               </table>
+
+              
+
+
 
               <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
                 if(isset($_GET['id_kegiatan'])){ 
@@ -90,6 +96,8 @@
        
       </div>
     </section>
+
+
 
     <script type="text/javascript">
       

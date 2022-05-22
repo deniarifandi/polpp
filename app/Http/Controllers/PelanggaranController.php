@@ -39,56 +39,27 @@ class PelanggaranController extends Controller
     {
 
         $id_kegiatan = "1";
-        $pelanggarans = Pelanggaran::select(
+        $pelanggarans = DB::table('pelanggarans')
+                        ->select(
                                 'pelanggarans.id',
                                 'regus.nama as nama_regu',
                                 'kegiatans.nama as nama_kegiatan',
-                                // 'vendors.nama as nama_vendor',
                                 'jenis_pelanggarans.nama as nama_pelanggaran',
                                 'tindak_lanjuts.nama as nama_tindak_lanjut',
                                 'tgl_peristiwa'
-                        );
-
-        // $pelanggarans = $pelanggarans->join('vendors','vendors.id', '=','pelanggarans.id_pemilik');
-        $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu');
-        $pelanggarans = $pelanggarans->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan');
-        $pelanggarans = $pelanggarans->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran');
-        $pelanggarans = $pelanggarans->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut');
+                        )
+                        ->join('regus','regus.id', '=','pelanggarans.id_regu')
+                        ->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan')
+                        ->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran')
+                        ->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut');
 
 
         if (isset($_GET['id_kegiatan'])) {
 
-            $pelanggarans = $pelanggarans->where('id_kegiatan',$_GET['id_kegiatan'])
-                        ->get();
-
-        }else{
-            $pelanggarans = $pelanggarans->get();
+             $pelanggarans = $pelanggarans->where('id_kegiatan',$_GET['id_kegiatan']);
         }
         
-        $data = [];
-
-        
-
-        foreach ($pelanggarans as $pelanggaran) {
-
-
-            $data[] = array(
-                "id" => $pelanggaran->id,
-                "nama_regu" => $pelanggaran->nama_regu,
-                "nama_kegiatan" => $pelanggaran->nama_kegiatan,
-                "nama_pemilik" => $pelanggaran->nama_vendor,
-                "nama_pelanggaran"  => $pelanggaran->nama_pelanggaran,
-                "nama_tindak_lanjut"  => $pelanggaran->nama_tindak_lanjut,
-                "tgl_peristiwa" => $pelanggaran->tgl_peristiwa
-                
-            );
-
-        }
-        // print_r($data);
-        $json_data = json_encode($data);
-
-        // echo $pelanggaran;
-         return view('list_pelanggaran', ['pelanggarans' => $json_data]);
+        return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10)]);
     }
 
     /**
