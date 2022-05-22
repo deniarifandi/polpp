@@ -39,7 +39,7 @@
               <p>Rekapitulasi Data Pelanggaran</p>
               
               <!-- Table with stripped rows -->
-              <table class="table" id="list_pelanggaran">
+              <table class="table table-striped" id="list_pelanggaran">
                 <thead>
                   <tr>
                     <th scope="col">Regu</th>
@@ -52,7 +52,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                
+                  
                   @foreach($pelanggarans as $pelanggaran)
                     
                     <tr>
@@ -70,14 +70,38 @@
                     </tr>
 
                   @endforeach
-
+          
                 </tbody>
 
               </table>
 
-              
+                 <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+
+                  @if($pelanggarans->currentPage() > 1)
+                  <li class="page-item"><a class="page-link" href="{{$pelanggarans->previousPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Previous</a></li>
+                  @else
+                  <li class="page-item disabled"><a class="page-link" href="#" type="button">Previous</a></li>
+                  @endif
+
+                  @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
+                    @if($pelanggarans->currentPage() == $i)
+                      <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}$id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                    @else
+                      <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}$id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                    @endif
+                  @endfor
+                    
+                  @if($pelanggarans->currentPage() == $pelanggarans->lastPage())
+                  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                  @else
+                  <li class="page-item"><a class="page-link" href="{{$pelanggarans->nextPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Next</a></li>
+                  @endif                  
+                  
 
 
+                </ul>
+              </nav><!-- End Basic Pagination -->
 
               <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
                 if(isset($_GET['id_kegiatan'])){ 
@@ -85,6 +109,8 @@
                 }
               @endphp">
               Tambah Data</a>
+
+
               <!-- End Table with stripped rows -->
 
             </div>
