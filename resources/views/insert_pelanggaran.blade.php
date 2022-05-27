@@ -53,10 +53,10 @@
               <div class="col-sm-8">
                 <select class="form-select" aria-label="Default select example" name="id_regu" id="dropdown_regu"  onchange="checkSelected(1)">
                   <option selected value="">- Pilih Regu -</option>
+                  <option value="tambahvalue">+ Tambah Regu +</option>
                   @foreach($regus as $regu)
                   <option value="{{$regu->id}}">{{$regu->nama}}</option>
                   @endforeach
-                  <option value="tambahvalue">- Tambah Regu -</option>
                 </select>
 
                 <input type="text" id="input_tambah_regu" class="form-control" name="input_tambah_regu" style="display: none" placeholder="Nama Regu Baru">
@@ -104,12 +104,14 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Pemilik / Vendor</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_pemilik" >
+                <select class="form-select" aria-label="Default select example" id="dropdown_pemilik" name="id_pemilik" onchange="checkSelected(2)">
                   <option selected value="">- Pilih Pemilik -</option>
+                  <option value="tambahvalue">+ Tambah Pemilik +</option>
                   @foreach($vendors as $vendor)
                   <option value="{{$vendor->id}}">{{$vendor->nama}}</option>
                   @endforeach
                 </select>
+                <input type="text" id="input_tambah_pemilik" class="form-control" name="input_tambah_pemilik" style="display: none" placeholder="Nama Pemilik Baru">
               </div>
             </div>
             <div class="row mb-3">
@@ -635,12 +637,24 @@
       
 
       function checkSelected(id){
-        var e = document.getElementById("dropdown_regu");
-        if (e.options[e.selectedIndex].value == "tambahvalue") {
-          document.getElementById("input_tambah_regu").style.display = "block";
-        }else{
-          document.getElementById("input_tambah_regu").style.display = "none";
+
+        if (id == 1) { // id regu
+          var e = document.getElementById("dropdown_regu");
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_regu").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_regu").style.display = "none";
+          }
+        }else if(id == 2){ // id pemilik
+          var e = document.getElementById("dropdown_pemilik");
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_pemilik").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_pemilik").style.display = "none";
+          }
         }
+        
+
         
       }
 

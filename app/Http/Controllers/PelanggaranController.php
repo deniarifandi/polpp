@@ -36,10 +36,16 @@ class PelanggaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+       echo "test";
+    }
+
     public function index()
     {
 
-        $id_kegiatan = "1";
+        $id_kegiatan = "0";
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
                                 'pelanggarans.id',
@@ -58,9 +64,10 @@ class PelanggaranController extends Controller
         if (isset($_GET['id_kegiatan'])) {
 
              $pelanggarans = $pelanggarans->where('id_kegiatan',$_GET['id_kegiatan']);
+             $id_kegiatan = $_GET['id_kegiatan'];
         }
         
-        return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10)]);
+        return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(5), 'id_kegiatan' => $id_kegiatan]);
     }
 
     /**
@@ -121,7 +128,7 @@ class PelanggaranController extends Controller
 
             //detail pelanggaran reklame
             $pelanggaran->tema_reklame      = $request->tema_reklame;
-            $pelanggaran->id_pemilik        = $request->id_pemilik;
+            // $pelanggaran->id_pemilik        = $request->id_pemilik;
             $pelanggaran->id_jenis_reklame  = $request->id_jenis_reklame;
             $pelanggaran->id_ukuran_reklame = $request->id_ukuran_reklame;
             $pelanggaran->jumlah_reklame    = $request->jumlah_reklame;
@@ -182,6 +189,18 @@ class PelanggaranController extends Controller
             }else{
                 $pelanggaran->id_regu   = $request->id_regu;    
             }
+
+            if ($request->id_pemilik == "tambahvalue") {
+                $pemilik = new Vendor;
+                $pemilik->nama = $request->input_tambah_pemilik;
+                $pemilik->save();
+                $pelanggaran->id_pemilik = $pemilik->id;
+            }else{
+                $pelanggaran->id_pemilik   = $request->id_pemilik;    
+            }
+
+
+
 
             $pelanggaran->save();
 

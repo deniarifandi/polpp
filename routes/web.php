@@ -27,7 +27,7 @@ Route::get('/report', function(){
 	$kecamatans = KegiatanController::get_kecamatan_chart();
 	// echo $data;
 	return view('report',['data' => $data, 'kecamatans' => $kecamatans]);
-});
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
 

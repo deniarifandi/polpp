@@ -86,23 +86,23 @@
                           <ul class="pagination justify-content-end">
 
                             @if($pelanggarans->currentPage() > 1)
-                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->previousPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->previousPageUrl()}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif">Previous</a></li>
                             @else
                             <li class="page-item disabled"><a class="page-link" href="#" type="button">Previous</a></li>
                             @endif
 
                             @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
                               @if($pelanggarans->currentPage() == $i)
-                                <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                                <li class="page-item active"><a class="page-link" href="{{ $pelanggarans->url($i)}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif">{{$i}}</a></li>
                               @else
-                                <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">{{$i}}</a></li>
+                                <li class="page-item"><a class="page-link" href="{{ $pelanggarans->url($i)}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif">{{$i}}</a></li>
                               @endif
                             @endfor
                               
                             @if($pelanggarans->currentPage() == $pelanggarans->lastPage())
                             <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                             @else
-                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->nextPageUrl()}}&id_kegiatan=@php echo $_GET['id_kegiatan'] @endphp">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="{{$pelanggarans->nextPageUrl()}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif">Next</a></li>
                             @endif                  
                             
                           </ul>
