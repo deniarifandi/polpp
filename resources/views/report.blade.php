@@ -69,6 +69,8 @@
 
       </div>
 
+      <h2>REKLAME</h2>
+
       <div class="row">
 
         <div class="col-lg-6">
@@ -86,9 +88,62 @@
           </div>
         </div>
         
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Lokasi Pelanggaran Reklame
+              </h5>
+
+            
+
+            </div>
+            
+          </div>
+        </div>
+        
       </div>
-       
+
+
+       <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Jenis Pelanggaran Reklame
+              </h5>
+
+              
+
+            </div>
+            
+          </div>
+        </div>
+        
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+               Tindak Lanjut Reklame
+              </h5>
+
+            
+
+            </div>
+            
+          </div>
+        </div>
+        
       </div>
+
+
+   
     </section>
 
     {{-- @include('graph.chart_theme') --}}

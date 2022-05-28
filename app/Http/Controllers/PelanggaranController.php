@@ -129,12 +129,12 @@ class PelanggaranController extends Controller
             //detail pelanggaran reklame
             $pelanggaran->tema_reklame      = $request->tema_reklame;
             // $pelanggaran->id_pemilik        = $request->id_pemilik;
-            $pelanggaran->id_jenis_reklame  = $request->id_jenis_reklame;
-            $pelanggaran->id_ukuran_reklame = $request->id_ukuran_reklame;
+            //$pelanggaran->id_jenis_reklame  = $request->id_jenis_reklame;
+            //$pelanggaran->id_ukuran_reklame = $request->id_ukuran_reklame;
             $pelanggaran->jumlah_reklame    = $request->jumlah_reklame;
 
             //detail pkl
-            $pelanggaran->id_jenis_pkl      = $request->id_jenis_pkl;
+            //$pelanggaran->id_jenis_pkl      = $request->id_jenis_pkl;
             $pelanggaran->pkl_nama          = $request->pkl_nama;
             $pelanggaran->pkl_no_identitas  = $request->pkl_no_identitas;
             $pelanggaran->pkl_alamat        = $request->pkl_alamat;
@@ -199,6 +199,37 @@ class PelanggaranController extends Controller
                 $pelanggaran->id_pemilik   = $request->id_pemilik;    
             }
 
+            if ($request->id_jenis_reklame == "tambahvalue") {
+                $jenisReklame = new Jenis_reklame;
+                $jenisReklame->nama = $request->input_tambah_jenis_reklame;
+                $jenisReklame->save();
+                $pelanggaran->id_jenis_reklame = $jenisReklame->id;
+            }else{
+                $pelanggaran->id_jenis_reklame   = $request->id_jenis_reklame;    
+            }
+
+            if ($request->id_ukuran_reklame == "tambahvalue") {
+                $ukuranReklame = new Ukuran_reklame;
+                $ukuranReklame->nama = $request->input_tambah_ukuran_reklame;
+                $ukuranReklame->save();
+                $pelanggaran->id_ukuran_reklame = $ukuranReklame->id;
+            }else{
+                $pelanggaran->id_ukuran_reklame   = $request->id_ukuran_reklame;    
+            }
+
+
+            if ($request->id_jenis_pkl == "tambahvalue") {
+                $jenisPkl = new Jenis_pkl;
+                $jenisPkl->nama = $request->input_tambah_jenis_pkl;
+                $jenisPkl->save();
+                $pelanggaran->id_jenis_pkl = $jenisPkl->id;
+            }else{
+                $pelanggaran->id_jenis_pkl      = $request->id_jenis_pkl;
+            }
+
+
+
+            
 
 
 

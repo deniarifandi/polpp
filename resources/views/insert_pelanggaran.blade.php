@@ -117,23 +117,27 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Reklame</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_reklame" >
+                <select class="form-select" aria-label="Default select example" name="id_jenis_reklame" id="dropdown_jenis_reklame"  onchange="checkSelected(3)">
                   <option selected value="">- Pilih Jenis Reklame -</option>
+                  <option value="tambahvalue">+ Tambah Jenis Reklame +</option>
                   @foreach($jenis_reklames as $jenis_reklame)
                   <option value="{{$jenis_reklame->id}}">{{$jenis_reklame->nama}}</option>
                   @endforeach
                 </select>
+                <input type="text" id="input_tambah_jenis_reklame" class="form-control" name="input_tambah_jenis_reklame" style="display: none" placeholder="Jenis Reklame Baru">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Ukuran Reklame</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_ukuran_reklame" >
+                <select class="form-select" aria-label="Default select example" name="id_ukuran_reklame" id="dropdown_ukuran_reklame" onchange="checkSelected(4)">
                   <option selected value="">- Pilih Ukuran Reklame -</option>
+                  <option value="tambahvalue">+ Tambah Ukuran Baru +</option>
                   @foreach($ukuran_reklames as $ukuran_reklame)
                   <option value="{{$ukuran_reklame->id}}">{{$ukuran_reklame->nama}}</option>
                   @endforeach
                 </select>
+                <input type="text" id="input_tambah_ukuran_reklame" class="form-control" name="input_tambah_ukuran_reklame" style="display: none" placeholder="Jenis Ukuran Baru">
               </div>
             </div>
 
@@ -160,12 +164,14 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis PKL</label>
               <div class="col-sm-8">
-                 <select class="form-select" aria-label="Default select example" name="id_jenis_pkl" >
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_pkl" id="dropdown_jenis_pkl" onchange="checkSelected(5)">
                   <option selected value="">- Pilih Jenis PKL -</option>
+                  <option value="tambahvalue">+ Tambah Jenis PKL Baru +</option>
                   @foreach($jenis_pkls as $jenis_pkl)
                   <option value="{{$jenis_pkl->id}}">{{$jenis_pkl->nama}}</option>
                   @endforeach
                 </select>
+                <input type="text" id="input_tambah_jenis_pkl" class="form-control" name="input_tambah_jenis_pkl" style="display: none" placeholder="Jenis PKL Baru">
               </div>
             </div>
            
@@ -639,19 +645,55 @@
       function checkSelected(id){
 
         if (id == 1) { // id regu
+          
           var e = document.getElementById("dropdown_regu");
+          
           if (e.options[e.selectedIndex].value == "tambahvalue") {
             document.getElementById("input_tambah_regu").style.display = "block";
           }else{
             document.getElementById("input_tambah_regu").style.display = "none";
           }
+
         }else if(id == 2){ // id pemilik
+          
           var e = document.getElementById("dropdown_pemilik");
+          
           if (e.options[e.selectedIndex].value == "tambahvalue") {
             document.getElementById("input_tambah_pemilik").style.display = "block";
           }else{
             document.getElementById("input_tambah_pemilik").style.display = "none";
           }
+
+        }else if(id == 3){ // jenis reklame
+          
+          var e = document.getElementById("dropdown_jenis_reklame");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_reklame").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_reklame").style.display = "none";
+          }
+          
+        }else if(id == 4){ // jenis reklame
+          
+          var e = document.getElementById("dropdown_ukuran_reklame");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_ukuran_reklame").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_ukuran_reklame").style.display = "none";
+          }
+          
+        }else if(id == 5){ // jenis reklame
+          
+          var e = document.getElementById("dropdown_jenis_pkl");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_pkl").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_pkl").style.display = "none";
+          }
+          
         }
         
 

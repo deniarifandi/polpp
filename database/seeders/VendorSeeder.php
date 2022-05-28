@@ -19,9 +19,6 @@ class VendorSeeder extends Seeder
             'nama' => "Meteor Cell",
             'jenis' => 1,
         ],[
-            'nama' => "SuperIndo Supermarket",
-            'jenis' => 1,
-        ],[
             'nama' => "Alibaba Original Store",
             'jenis' => 1,
         ],[
