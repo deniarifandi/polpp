@@ -20,6 +20,10 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
+Route::get('/front', function () {
+	return view('front');
+});
+
 Route::get('/report', function(){
 
 	// $data = KegiatanController::get_label_chart();
