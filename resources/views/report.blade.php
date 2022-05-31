@@ -97,6 +97,7 @@
                 Lokasi Pelanggaran Reklame
               </h5>
 
+              @include('graph.lokasi_pelanggaran_reklame')
             
 
             </div>
@@ -117,7 +118,7 @@
                 Jenis Pelanggaran Reklame
               </h5>
 
-              
+            @include('graph.jenis_pelanggaran_reklame')
 
             </div>
             
@@ -133,7 +134,7 @@
                Tindak Lanjut Reklame
               </h5>
 
-            
+            @include('graph.jenis_tindak_lanjut_reklame')
 
             </div>
             
