@@ -67,7 +67,7 @@ class PelanggaranController extends Controller
              $id_kegiatan = $_GET['id_kegiatan'];
         }
         
-        return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(5), 'id_kegiatan' => $id_kegiatan]);
+        return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10), 'id_kegiatan' => $id_kegiatan]);
     }
 
     /**
@@ -168,8 +168,8 @@ class PelanggaranController extends Controller
             $pelanggaran->prokes_no_identitas   =   $request->prokes_no_identitas;
 
             //pelanggaran & tindak lanjut
-            $pelanggaran->id_jenis_pelanggaran  = $request->id_jenis_pelanggaran;
-            $pelanggaran->id_tindak_lanjut      = $request->id_tindak_lanjut;
+           // $pelanggaran->id_jenis_pelanggaran  = $request->id_jenis_pelanggaran;
+            //$pelanggaran->id_tindak_lanjut      = $request->id_tindak_lanjut;
 
             //lokasi keterangan
             $pelanggaran->id_kecamatan  = $request->id_kecamatan;
@@ -228,8 +228,24 @@ class PelanggaranController extends Controller
             }
 
 
-
+            if ($request->id_jenis_pelanggaran == "tambahvalue") {
+                $jenisPelanggaran = new Jenis_pelanggaran;
+                $jenisPelanggaran->nama = $request->input_tambah_jenis_pelanggaran;
+                $jenisPelanggaran->kategori = $request->id_kegiatan;
+                $jenisPelanggaran->save();
+                $pelanggaran->id_jenis_pelanggaran = $jenisPelanggaran->id;
+            }else{
+                $pelanggaran->id_jenis_pelanggaran =$pelanggaran->id_jenis_pelanggaran;
+            }
             
+            if ($request->id_tindak_lanjut == "tambahvalue") {
+                $tindakLanjut = new Tindak_lanjut;
+                $tindakLanjut->nama = $request->input_tambah_tindak_lanjut;
+                $tindakLanjut->save();
+                $pelanggaran->id_tindak_lanjut = $tindakLanjut->id;
+            }else{
+                $pelanggaran->id_tindak_lanjut      = $request->id_tindak_lanjut;
+            }
 
 
 

@@ -144,7 +144,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jumlah Reklame</label>
               <div class="col-sm-8">
-                <input type="number" class="form-control" name="jumlah_reklame">
+                <input type="number" class="form-control" name="jumlah_reklame" min="0">
               </div>
             </div>
 
@@ -414,28 +414,29 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelanggaran</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" >
+                <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" onchange="checkSelected(6)">
                   <option selected value="">- Pilih Jenis Pelanggaran -</option>
-
+                  <option value="tambahvalue">+ Tambah Jenis Pelanggaran +</option>
                   @foreach($jenis_pelanggarans as $jenis_pelanggaran)
                   <option value="{{$jenis_pelanggaran->id}}" class="pelanggaran_kategori_{{ $jenis_pelanggaran->kategori }}" style="display: none;">{{$jenis_pelanggaran->nama}}</option>
                   @endforeach
-
                 </select>
+                 <input type="text" id="input_tambah_jenis_pelanggaran" class="form-control" name="input_tambah_jenis_pelanggaran" style="display: none" placeholder="Jenis Pelanggaran Baru">
               </div>
             </div>
 
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tindak Lanjut</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_tindak_lanjut" >
+                <select class="form-select" aria-label="Default select example" id="dropdown_tindak_lanjut" name="id_tindak_lanjut"  onchange="checkSelected(7)">
                   <option selected value="">- Pilih Jenis Tindakan -</option>
+                  <option value="tambahvalue">+ Tambah Jenis Tindak Lanjut +</option>
 
                   @foreach($tindak_lanjuts as $tindak_lanjut)
                   <option value="{{$tindak_lanjut->id}}">{{$tindak_lanjut->nama}}</option>
                   @endforeach
-
                 </select>
+                  <input type="text" id="input_tambah_tindak_lanjut" class="form-control" name="input_tambah_tindak_lanjut" style="display: none" placeholder="Jenis Tindak Lanjut Baru">
               </div>
             </div>
 
@@ -694,6 +695,22 @@
             document.getElementById("input_tambah_jenis_pkl").style.display = "none";
           }
           
+        }else if(id == 6){
+            var e = document.getElementById("select_jenis_pelanggaran");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_pelanggaran").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_pelanggaran").style.display = "none";
+          }
+        }else if(id == 7){
+            var e = document.getElementById("dropdown_tindak_lanjut");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_tindak_lanjut").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_tindak_lanjut").style.display = "none";
+          }
         }
         
 
