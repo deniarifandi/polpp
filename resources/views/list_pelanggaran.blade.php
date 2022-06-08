@@ -5,10 +5,8 @@
   @section('title','data pelanggaran')
 
   @section('content')
-    
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>  
-    <script type="text/javascript" src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+
+    @include('style.table_style')
 
     <div class="pagetitle">
       <h1>Dashboard Pelanggaran</h1>
@@ -34,48 +32,109 @@
         <!-- Left side columns -->
         <div class="col-lg-12">
              <div class="card" style="min-width: 800px">
-            <div class="card-body" >
-              <h5 class="card-title">Rekapitulasi</h5>
-              <p>Rekapitulasi Data Pelanggaran</p>
+              <div class="card-body" >
+            
               
-              <!-- Table with stripped rows -->
-              <table class="table table-striped" id="list_pelanggaran">
-                <thead>
-                  <tr>
-                    <th scope="col">Regu</th>
-                    <th scope="col">Kegiatan</th>
-                    {{-- <th scope="col">Pemilik / Vendor</th> --}}
-                    <th scope="col">Jenis Pelanggaran</th>
-                    <th scope="col">Tindak Lanjut</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                  @foreach($pelanggarans as $pelanggaran)
-                    
-                    <tr>
-                      <td>{{ $pelanggaran->nama_regu}}</td>
-                      <td>{{ $pelanggaran->nama_kegiatan}}</td>
-                      {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
-                      <td>{{ $pelanggaran->nama_pelanggaran}}</td>
-                      <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
-                      <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
-                      <td>
-                        <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
-                        <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
-                        <button class="btn btn-danger btn-sm" onclick="underConstruction()" disabled="disabled">Delete</button>
-                      </td>
-                    </tr>
+                <div>
+                    <div class="table-responsive">
+                        <div class="table-wrapper">     
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="show-entries">
+                                            <span>Show</span>
+                                            <select>
+                                                <option>5</option>
+                                                <option>10</option>
+                                                <option>15</option>
+                                                <option>20</option>
+                                            </select>
+                                            <span>entries</span>
+                                        </div>            
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h2 class="text-center">Data <b>Pelanggaran</b></h2> 
+                                    </div>
+                                    <div class="col-sm-2">
+                                        
+                                        <a class="btn btn-primary pull-right col-lg-12" href="{{ url('pelanggaran/create')}}/@php 
+                                          if(isset($_GET['id_kegiatan'])){ 
+                                            echo '?id_kegiatan='.$_GET['id_kegiatan'];
+                                          }
+                                        @endphp">
+                                        Tambah Data</a>
 
-                  @endforeach
-          
-                </tbody>
+                                    </div>
+                                    <div class="col-sm-2 offset-sm-2">
+                                      <div class="input-group mb-3">
+                                      <input type="text" class="form-control" placeholder="Cari Data" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled="">
+                                      <div class="input-group-append">
+                                        <button class="btn btn-secondary" type="button" disabled=""><i class="bi bi-search"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <table class="table table-bordered" id="list_pelanggaran">
+                            <thead>
+                              <tr>
+                                <th scope="col">Regu <i class="fa fa-sort"></i></th>
+                                <th scope="col">Kegiatan</th>
+                                {{-- <th scope="col">Pemilik / Vendor</th> --}}
+                                <th scope="col">Jenis Pelanggaran</th>
+                                <th scope="col">Tindak Lanjut</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Action</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              
+                              @foreach($pelanggarans as $pelanggaran)
+                                
+                                <tr>
+                                  <td>{{ $pelanggaran->nama_regu}}</td>
+                                  <td>{{ $pelanggaran->nama_kegiatan}}</td>
+                                  {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
+                                  <td>{{ $pelanggaran->nama_pelanggaran}}</td>
+                                  <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
+                                  <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
+                                  <td>
+                                   {{--  <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
+                                    <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
+                                    <button class="btn btn-danger btn-sm" onclick="underConstruction()" disabled="disabled">Delete</button> --}}
+                                    <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
+                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE872;</i></a>
+                                  </td>
+                                </tr>
 
-              </table>
+                              @endforeach
+                      
+                            </tbody>
 
-               <div class="row">
+                          </table>
+                           <div class="clearfix">
+                              <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                              <ul class="pagination">
+                                    <li id="prevLi" class="page-item"><a id="prevButton" class="page-link" >Previous</a></li>
+                                      @for($i = 1; $i <= $pelanggarans->lastPage(); $i++)
+                                    <li id="pageLi[{{$i}}]" class="page-item"><a id="pageButton[{{$i}}]" class="page-link" href="{{ $pelanggarans->url($i)}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif" >{{$i}}</a></li>
+                                      @endfor
+
+                                    <li id="nextLi" class="page-item"><a id="nextButton" class="page-link" >Next</a></li>
+                                
+                              </ul>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    
+
+           {{--     <div class="row">
                   
                   <div class="col-lg-6">
                       Showing 1 to 10 of {{$pelanggarans->count()}} Entries
@@ -111,15 +170,15 @@
 
                   </div>  
 
-               </div>
+               </div> --}}
 
 
-              <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
+             {{--  <a class="btn btn-success pull-right" href="{{ url('pelanggaran/create')}}/@php 
                 if(isset($_GET['id_kegiatan'])){ 
                   echo '?id_kegiatan='.$_GET['id_kegiatan'];
                 }
               @endphp">
-              Tambah Data</a>
+              Tambah Data</a> --}}
 
 
               <!-- End Table with stripped rows -->
@@ -139,9 +198,24 @@
     <script type="text/javascript">
       
       $(document).ready(function () {
-          // $('#list_pelanggaran').DataTable({
-          //     scrollX: true,
-          // });
+
+          var prevButton = document.getElementById("prevButton");
+          prevButton.href="{{$pelanggarans->previousPageUrl()}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif";
+          var nextButton = document.getElementById("nextButton");
+          nextButton.href="{{$pelanggarans->nextPageUrl()}}@if($id_kegiatan != 0)&id_kegiatan={{ $id_kegiatan }} @endif";
+          var pageLi = document.getElementById("pageLi[{{ $pelanggarans->currentPage() }}]");
+          pageLi.classList.add("active");
+         
+
+        if ({{$pelanggarans->currentPage()}} <= 1) {
+            var prevLi = document.getElementById("prevLi");
+            prevLi.classList.add("disabled");
+        }else if({{$pelanggarans->currentPage()}} >= {{ $pelanggarans->lastPage() }}){
+            
+            var nextLi = document.getElementById("nextLi");
+            nextLi.classList.add("disabled");
+        }
+
       });
 
     </script>

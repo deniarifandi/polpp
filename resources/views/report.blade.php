@@ -144,8 +144,134 @@
       </div>
 
 
+      <h2>PKL</h2>
+
+       <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Jenis Pelanggaran PKL
+              </h5>
+
+              @include('graph.jenis_pelanggaran_pkl')
+
+            </div>
+            
+          </div>
+        </div>
+        
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+               Wilayah Pelanggaran PKL
+              </h5>
+
+              @include('graph.lokasi_pelanggaran_pkl')
+
+            </div>
+            
+          </div>
+        </div>
+
+         
+        
+      </div>
+
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Operasi Penertiban PKL
+              </h5>
+
+              @include('graph.grafik_operasi_penertiban_pkl')
+
+            </div>
+            
+          </div>
+        </div>
+
+          <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+               Tindak Lanjut PKL
+              </h5>
+              @include('graph.jenis_tindak_lanjut_pkl')
+            </div>
+            
+          </div>
+        </div>
+        
+        
+      </div>
+
+
+      <h2>ANJAL GEPENG</h2>
+
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Lokasi Pelanggaran Anjal-Gepeng
+              </h5>
+              @include('graph.lokasi_pelanggaran_anjal')
+            </div>
+            
+          </div>
+        </div>
+
+          <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+               Jenis Anjal-Gepeng
+              </h5>
+              @include('graph.jenis_pelanggaran_anjal')
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+
+         <div class="row">
+
+          <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Tindak Lanjut Anjal Gepeng
+              </h5>
+                @include('graph.jenis_tindak_lanjut_anjal')
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
    
+
+
     </section>
+
+
 
     {{-- @include('graph.chart_theme') --}}
 

@@ -68,6 +68,7 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
         
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            <li><a class="nav-link scrollto" href="{{URL::to('/login') }}">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -82,8 +83,8 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>About Us</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur</p>
+          <h2>Tentang Kami</h2>
+      
         </div>
 
         <div class="row">
@@ -94,21 +95,16 @@
           </div>
           <div class="col-lg-6" data-aos="fade-left">
             <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 ">
-              <h3>Voluptatem dignissimos provident quasi corporis</h3>
-              <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
-              </p>
+              <br>
+              <p>Satuan Polisi Pamong Praja Provinsi Jawa Timur mempunyai tugas menegakkan peraturan daerah dan peraturan pelaksanaannya, menyelenggarakan ketertiban umum dan ketenteraman, pengawasan serta perlindungan masyarakat</p>
+             <br>
               <ul>
-                <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                <li><i class="bx bx-check-double"></i> Penyusunan program dan pelaksanaan penegakan peraturan daerah dan peraturan gubernur, penyelenggaraan ketertiban umum dan ketenteraman masyarakat serta perlindungan masyarakat</li>
+                <br>
+                <li><i class="bx bx-check-double"></i> Pelaksanaan penegakan peraturan daerah dan peraturan gubernur.</li>
+                
               </ul>
-              <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum
-              </p>
+             
             </div>
           </div>
         </div>
@@ -122,30 +118,30 @@
 
         <div class="section-title" data-aos="fade-up">
           <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p>
+          <p>Tugas dan Fungsi</p>
         </div>
 
         <div class="row">
           <div class="col-lg-6 order-2 order-lg-1">
             <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
               <i class="bx bx-receipt"></i>
-              <h4>Est labore ad</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+           
+              <p>Penyusunan program dan pelaksanaan penegakan peraturan daerah dan peraturan gubernur, penyelenggaraan ketertiban umum dan ketenteraman masyarakat serta perlindungan masyarakat</p>
             </div>
             <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="100">
               <i class="bx bx-cube-alt"></i>
-              <h4>Harum esse qui</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+             
+              <p>Pelaksanaan penegakan peraturan daerah dan peraturan gubernur</p>
             </div>
             <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="200">
               <i class="bx bx-images"></i>
-              <h4>Aut occaecati</h4>
-              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+              
+              <p>Pelaksanaan kebijakan penyelenggaraan ketertiban umum dan ketenteraman masyarakat di daerah</p>
             </div>
             <div class="icon-box mt-5" data-aos="fade-up" data-aos-delay="300">
               <i class="bx bx-shield"></i>
-              <h4>Beatae veritatis</h4>
-              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+             
+              <p>Pelaksanaan kebijakan perlindungan masyarakat</p>
             </div>
           </div>
           <div class="image col-lg-6 order-1 order-lg-2"  data-aos="fade-left" data-aos-delay="100">
@@ -190,7 +186,7 @@
 
 
     <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
+   {{--  <section id="team" class="team">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -260,13 +256,13 @@
         </div>
 
       </div>
-    </section>
+    </section> --}}
     <!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
  
     <!-- ======= Frequently Asked Questions Section ======= -->
-    <section id="faq" class="faq">
+   {{--  <section id="faq" class="faq">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -332,7 +328,8 @@
         </ul>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
+    </section> --}}
+    <!-- End Frequently Asked Questions Section -->
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact section-bg">
@@ -391,7 +388,7 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-secondary" style="background: grey" disabled="">Send Message</button></div>
             </form>
 
           </div>

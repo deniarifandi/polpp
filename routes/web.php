@@ -17,7 +17,7 @@ use App\Http\Controllers\KegiatanController;
 
 Route::get('/', function () {
 
-    return redirect('/dashboard');
+    return redirect('/front');
 });
 
 Route::get('/front', function () {

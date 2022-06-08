@@ -39,7 +39,7 @@ class PelanggaranController extends Controller
 
     public function __construct()
     {
-       echo "test";
+       
     }
 
     public function index()

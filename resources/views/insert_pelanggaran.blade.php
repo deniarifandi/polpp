@@ -601,7 +601,12 @@
 
       (function() {
         // console.log('auto run');
-        var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;
+        
+        @if(isset($_GET['id_kegiatan']))
+          var id_kegiatan = @php echo $_GET['id_kegiatan']; @endphp;  
+        @else
+          window.location.replace("{{URL::to('/pelanggaran/create?id_kegiatan=1')}}");
+        @endif
         
         const kegiatan_selected = document.getElementsByClassName("pelanggaran_kategori_"+id_kegiatan);
 
