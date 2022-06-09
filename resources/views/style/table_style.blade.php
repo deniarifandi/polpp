@@ -128,4 +128,13 @@ table.table td i {
     margin-top: 10px;
     font-size: 13px;
 }
+
+.page-item.active .page-link{
+    background-color: #6a510d;
+}
+
+.btn-primary{
+    background-color: #6a510d;
+    border-color: #d8cdae;
+}
 </style>

@@ -14,12 +14,12 @@
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
+  background: #fffae9;
   color: #444444;
 }
 
 a {
-  color: #4154f1;
+  color: #6a510d;
   text-decoration: none;
 }
 
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #6a510d;
 }
 
 /*--------------------------------------------------------------
@@ -226,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  
   font-family: "Poppins", sans-serif;
 }
 .card-title span {
@@ -291,21 +291,21 @@ h1, h2, h3, h4, h5, h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  color: #6a510d;
   font-weight: 600;
 }
 .breadcrumb a {
-  color: #899bbd;
+  color: #6a510d;
   transition: 0.3s;
 }
 .breadcrumb a:hover {
   color: #51678f;
 }
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #6a510d;
 }
 .breadcrumb .active {
-  color: #51678f;
+  color: #6a510d;
   font-weight: 600;
 }
 
@@ -345,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #6a510d;
   font-family: "Nunito", sans-serif;
 }
 
@@ -363,7 +363,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: #012970;
+  color: #6a510d;
 }
 .header .search-bar {
   min-width: 360px;
@@ -432,7 +432,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #012970;
 }
 .header-nav .nav-profile {
-  color: #012970;
+  color: #6a510d;
 }
 .header-nav .nav-profile img {
   max-height: 36px;
@@ -599,23 +599,23 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #4154f1;
+  color: #6a510d;
   transition: 0.3;
-  background: #f6f9ff;
+  background: #fff9e9;
   padding: 10px 15px;
   border-radius: 4px;
 }
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #4154f1;
+  color: #6a510d;
 }
 .sidebar-nav .nav-link.collapsed {
-  color: #012970;
+  color: #6a510d;
   background: #fff;
 }
 .sidebar-nav .nav-link.collapsed i {
-  color: #899bbd;
+  color: #6a510d;
 }
 .sidebar-nav .nav-link:hover {
   color: #4154f1;
@@ -700,7 +700,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #012970;
+  
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -714,12 +714,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-grow: 0;
 }
 .dashboard .sales-card .card-icon {
-  color: #4154f1;
-  background: #f6f6fe;
+  color: #6a510d;
+  background: #6a510d;
 }
 .dashboard .revenue-card .card-icon {
-  color: #2eca6a;
-  background: #e0f8e9;
+  color: #6a510d;
+  background: #fef9e9;
 }
 .dashboard .customers-card .card-icon {
   color: #ff771d;
@@ -1063,15 +1063,15 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0;
   font-size: 14px;
   transition: all 0.3s;
-  border-top: 1px solid #cddfff;
+  border-top: 1px solid #6a510d;
 }
 .footer .copyright {
   text-align: center;
-  color: #012970;
+  color: #6a510d;
 }
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: #012970;
+  color: #6a510d;
 }

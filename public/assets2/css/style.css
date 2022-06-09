@@ -8,9 +8,12 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+main{
+  background-color: #fff9e9;
+}
 body {
   font-family: "Open Sans", sans-serif;
-  color: #555555;
+  color: #6a510d;
 }
 
 a {
@@ -73,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997;
   transition: all 0.5s;
-  background: #fff;
+  background: #fff9e9;
   box-shadow: 0 4px 10px -3px rgba(191, 191, 191, 0.5);
 }
 #header .logo h1 {
@@ -371,7 +374,7 @@ section {
 }
 
 .section-bg {
-  background-color: whitesmoke;
+  background-color: #f7f1e1;
 }
 
 .section-title {
@@ -384,11 +387,11 @@ section {
   text-transform: uppercase;
   margin-bottom: 15px;
   padding-bottom: 0;
-  color: #151515;
+  color: #6a510d;
 }
 .section-title p {
   margin-bottom: 0;
-  color: #aeaeae;
+  color: #6a510d;
 }
 
 /*--------------------------------------------------------------
@@ -435,7 +438,7 @@ section {
 }
 .services .icon-box p {
   font-size: 15px;
-  color: #959595;
+  color: #6a510d;
   margin-left: 60px;
 }
 .services .image {

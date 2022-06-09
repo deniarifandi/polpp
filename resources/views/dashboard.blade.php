@@ -33,7 +33,7 @@
                   <h5 class="card-title">Reklame <span>| Bulan Ini</span></h5>
 
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="background: #e0f8e9">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="background: #fef9e9">
                       <img src="assets/img/ad.png" style="max-width: 40px;">
                     </div>
                     <div class="ps-3">
@@ -107,7 +107,7 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-gender-ambiguous"></i>
+                      <i class="bi bi-gender-ambiguous" style="color: #6a510d"></i>
                     </div>
                     <div class="ps-3">
                        <h6>{{ $data[3] }}</h6>
@@ -157,7 +157,7 @@
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-house-fill"></i>
+                      <i class="bi bi-house-fill" style="color: #6a510d"></i>
                     </div>
                     <div class="ps-3">
                        <h6>{{ $data[5] }}</h6>
