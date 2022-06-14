@@ -29,6 +29,8 @@
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
   <!-- Template Main CSS File -->
   <link href="assets2/css/style.css" rel="stylesheet">
 
@@ -40,12 +42,17 @@
   ======================================================== -->
 </head>
 
+<style>
+
+#map {height: 250px; width: 100%; }
+</style>
+
 <body>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
-      <a href="index.html" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
+      <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
       <h1 data-aos="zoom-in">Selamat Datang di Website SatPol PP Kota Malang</h1>
       <h2 data-aos="fade-up">Official Satpol PP Kota Malang</h2>
       <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
@@ -376,27 +383,52 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-left">
+            <form action="{{ route('laporan_post') }}" method="post" role="form" class="php-email-form">
+              @csrf
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" >
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="subjek" id="subject" placeholder="Judul Laporan" >
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="pesan" rows="5" placeholder="Tuliskan detail pesan laporan" ></textarea>
               </div>
+              <div class="form-group mt-3">
+                <input type="file" class="form-control" id="exampleFormControlFile1" style="height: auto">
+              </div>
+
+                  <div class="row mb-3">
+                  <label for="inputText" class="col-sm-4 col-form-label">GeoLocation</label>
+                  <div class="col-sm-8">
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                      <input class="form-control" type="text" id="lat" name="latitude" placeholder="lat" readonly="">   
+                      </div>
+                      
+                      <div class="col-sm-6">
+                        <input class="form-control" type="text" id="lon" name="longitude" placeholder="lon" readonly="">   
+                      </div>  
+                      <br>
+                    </div>
+                    
+                    <br>
+                      <div id="map"></div>
+                  </div>
+                </div>
+
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit" class="btn btn-secondary" style="background: grey" disabled="">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn btn-primary" >Send Message</button></div>
             </form>
 
           </div>
@@ -458,10 +490,90 @@
   <script src="assets2/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets2/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets2/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets2/vendor/php-email-form/validate.js"></script>
+ {{--  <script src="assets2/vendor/php-email-form/validate.js"></script> --}}
 
   <!-- Template Main JS File -->
   <script src="assets2/js/main.js"></script>
+
+      <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYXJpZmFuZGlkZW5pIiwiYSI6ImNsMzZvNXZxejEzbHAzY3FzcmpuNzNrbm0ifQ.-XX0gvG2ooyVnJvZZHg9Hg';
+          const map = new mapboxgl.Map({
+          container: 'map', // container ID
+          style: 'mapbox://styles/mapbox/streets-v11', // style URL
+          center: [106.82332708986368,-6.160440512853471 ], // starting position [lng, lat]
+          zoom: 15 // starting zoom
+        });
+
+
+        map.on('click', (e) => {
+          // console.log(e);
+          // console.log(e.lngLat.lng);
+
+          marker1.setLngLat(e.lngLat);
+          document.getElementById("lat").value = e.lngLat.lat;
+          document.getElementById("lon").value = e.lngLat.lng; 
+
+     
+          });
+        
+    </script>
+
+    <script>
+
+    marker1 = null;
+    
+    function showPosition(position) {
+      console.log("show possition start");
+    
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+
+        //navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(success, error);
+
+        console.log("Geolocation supported.");
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+
+      function success(position) {
+        console.log(position);
+        document.getElementById("lat").value = position.coords.latitude;
+        document.getElementById("lon").value = position.coords.longitude; 
+          marker1 = new mapboxgl.Marker()
+          .setLngLat([position.coords.longitude, position.coords.latitude])
+          .addTo(map);
+
+          console.log('watermark');
+          console.log(position.coords.longitude, position.coords.latitude);
+
+          map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
+
+      }
+
+      function error(error) {
+
+        console.log('Geolocation error!');
+        console.log(error);
+
+      }
+
+    </script>
+
+      <script type="text/javascript">
+      
+        (function() {
+      
+          getLocation();
+
+        })();
+
+    </script>
+
 
 </body>
 

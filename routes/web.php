@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::get('/dashboard', function () {
 Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']);
 
 Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_image']);
+
+Route::post('laporan/laporan_post', [LaporanController::class, 'laporan_post'])->name('laporan_post');;
 
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 
