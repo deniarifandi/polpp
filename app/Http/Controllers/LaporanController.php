@@ -17,5 +17,7 @@ class LaporanController extends Controller
 		    'longitude'	=> $request->input('longitude'),
 		    'latitude'	=> $request->input('latitude')
 		]);
+
+		return redirect('/');
     }
 }
