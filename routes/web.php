@@ -46,6 +46,8 @@ Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']
 Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_image']);
 
 Route::post('laporan/laporan_post', [LaporanController::class, 'laporan_post'])->name('laporan_post');;
+Route::get('laporan/index', [LaporanController::class, 'index'])->name('laporan_index');;
+Route::get('laporan/detail/{id}', [LaporanController::class, 'detail'])->name('laporan_detail');;
 
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("nama")->nullable();
             $table->string("email")->nullable();
+            $table->string("nik")->nullable();
             $table->string("subjek")->nullable();
             $table->string("pesan")->nullable();
             $table->string("longitude")->nullable();

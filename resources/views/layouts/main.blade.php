@@ -242,7 +242,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link "  href="#" onclick="underConstruction()">
+        <a class="nav-link "  href="{{ URL::to('/laporan/index') }}" >
           <i class="bi bi-megaphone-fill"></i>
           <span>Laporan/Pengaduan</span>
         </a>

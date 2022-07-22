@@ -49,12 +49,13 @@
 
 <body>
 
+
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
       <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
-      <h1 data-aos="zoom-in">Selamat Datang di Website SatPol PP Kota Malang</h1>
-      <h2 data-aos="fade-up">Official Satpol PP Kota Malang</h2>
+      <h1 data-aos="zoom-in">Web Aplikasi Pencegahan dan Penanganan Gangguan Trantibum</h1>
+      <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
       <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
@@ -383,28 +384,31 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="{{ route('laporan_post') }}" method="post" role="form" class="php-email-form">
+            <form action="{{ route('laporan_post') }}" method="post" role="form" class="php-email-form"  enctype="multipart/form-data">
               @csrf
               <div class="row">
-                <div class="col-md-6 form-group">
+                <div class="col-md-4 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Nama" required>
                 </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
+                <div class="col-md-4 form-group">
+                  <input type="text" name="nik" class="form-control" id="nik" placeholder="NIK" required>
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
                   <input type="email" class="form-control" name="email" id="email" placeholder="Email" >
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subjek" id="subject" placeholder="Judul Laporan" >
+                <input type="text" class="form-control" name="subjek" id="subject" placeholder="Judul Laporan" required="">
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="pesan" rows="5" placeholder="Tuliskan detail pesan laporan" ></textarea>
+                <textarea class="form-control" name="pesan" rows="5" placeholder="Tuliskan detail pesan laporan" required=""></textarea>
               </div>
               <div class="form-group mt-3">
-                <input type="file" class="form-control" id="exampleFormControlFile1" style="height: auto">
+                <input type="file" name="fotolaporan" class="form-control" id="exampleFormControlFile1" style="height: auto">
               </div>
 
                   <div class="row mb-3">
-                  <label for="inputText" class="col-sm-4 col-form-label">GeoLocation</label>
+                  <label for="inputText" class="col-sm-4 col-form-label">Lokasi Pelanggaran</label>
                   <div class="col-sm-8">
 
                     <div class="row">
@@ -471,6 +475,7 @@
     <div class="container footer-bottom clearfix">
       <div class="copyright">
         &copy; Copyright <strong><span>Knight</span></strong>. All Rights Reserved
+
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
@@ -478,11 +483,14 @@
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-free-bootstrap-theme/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+         <a href="#contact" class="btn btn-primary" style="border-radius: 100%; position: fixed; right: 15px; bottom: 75px; width: 75px; height: 75px; z-index: 10000; font-size: 38px"><i class="bi bi-telephone-fill"> </i></a>
       </div>
     </div>
+
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
 
   <!-- Vendor JS Files -->
   <script src="assets2/vendor/aos/aos.js"></script>
