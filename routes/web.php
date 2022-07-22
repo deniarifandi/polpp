@@ -50,6 +50,8 @@ Route::get('laporan/index', [LaporanController::class, 'index'])->name('laporan_
 Route::get('laporan/detail/{id}', [LaporanController::class, 'detail'])->name('laporan_detail');;
 Route::get('laporan/detail_print/{id}', [LaporanController::class, 'detail_print'])->name('laporan_detail_print');;
 
+Route::get('pelanggaran/pelanggaran_print/{id}', [PelanggaranController::class, 'pelanggaran_print'])->name('pelanggaran_print');;
+
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 
 Route::get('/greeting', function () {

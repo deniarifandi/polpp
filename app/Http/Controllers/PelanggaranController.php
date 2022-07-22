@@ -435,4 +435,67 @@ class PelanggaranController extends Controller
 
         return $data;
     }
+
+
+    public function pelanggaran_print($id)
+    {
+        
+        $filesSebelum = Storage::disk('public')->allFiles("dokumentasi_foto_sebelum/".$id);
+        $filesProses = Storage::disk('public')->allFiles("dokumentasi_foto_proses/".$id);
+        $filesSetelah = Storage::disk('public')->allFiles("dokumentasi_foto_setelah/".$id);
+        $fileLokasi = Storage::disk('public')->allFiles("foto_lokasi/".$id);
+
+        $pelanggarans = DB::table('pelanggarans')
+                        ->select(
+                            'pelanggarans.id',
+                            'pelanggarans.id_jenis_laporan',
+                            'regus.nama as regu',
+                            'pelanggarans.tgl_peristiwa',
+                            'kegiatans.nama as kegiatan',
+                            'pelanggarans.id_kegiatan',
+                            'pelanggarans.tema_reklame',
+                            'vendors.nama as pemilik',
+                            'jenis_reklames.nama as jenis_reklame',
+                            'pelanggarans.jumlah_reklame',
+                            'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            'tindak_lanjuts.nama as tindak_lanjut',
+                            'pelanggarans.alamat',
+                            'pelanggarans.lat',
+                            'pelanggarans.lon',
+                            'jenis_pkls.nama as pkl',
+                            'pelanggarans.pkl_nama',
+                            'pelanggarans.pkl_no_identitas',
+                            'pelanggarans.pkl_alamat',
+                            'jenis_anjal_gepengs.nama as anjalgepeng',
+                            'pelanggarans.anjal_gepeng_nama',
+                            'pelanggarans.anjal_gepeng_no_identitas',
+                            'pelanggarans.psk_nama',
+                            'pelanggarans.psk_no_identitas',
+                            'pelanggarans.minol_nama',
+                            'pelanggarans.minol_no_identitas',
+                            'pelanggarans.pemondokan_nama',
+                            'pelanggarans.pemondokan_no_identitas',
+                            'pelanggarans.parkir_nama',
+                            'pelanggarans.parkir_no_identitas',
+                            'jenis_penertiban_prokes.nama as prokes',
+                            'pelanggarans.id_jenis_pelaku_usaha',
+                            'pelanggarans.prokes_nama',
+                            'pelanggarans.prokes_no_identitas'
+
+                        )
+                        ->join('regus','regus.id','=','pelanggarans.id_regu','left')
+                        ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
+                        ->join('vendors','vendors.id','=','pelanggarans.id_pemilik','left')
+                        ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame','left')
+                        ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
+                        ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut','left')
+                        ->join('jenis_pkls','jenis_pkls.id','=','pelanggarans.id_jenis_pkl','left')
+                        ->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id','=','pelanggarans.id_jenis_anjal_gepeng','left')
+                        ->join('jenis_penertiban_prokes','jenis_penertiban_prokes.id','=','pelanggarans.id_jenis_penertiban_prokes','left')
+                        ->where('pelanggarans.id','=',$id)
+                        ->get();
+
+        return view('detail_pelanggaran_print', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi]);
+    }
+
 }
