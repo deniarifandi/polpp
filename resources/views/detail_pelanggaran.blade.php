@@ -225,7 +225,9 @@
 
                   <tr>
                     <td colspan="2">
-                      <a class="btn btn-primary" style="float: right;"{{--  href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}" --}} onclick="underConstruction()">Edit</a>   
+                      <a class="btn btn-success" style="float: right;" href="{{ url('pelanggaran/pelanggaran_print') }}/{{ $pelanggaran->id }}" target="_blank" > Print Laporan</a> 
+
+                      <a class="btn btn-primary" style="float: right; margin-right: 5px"{{--  href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}" --}} onclick="underConstruction()">Edit</a>   
                     </td>
                   </tr>
                 </tbody>
