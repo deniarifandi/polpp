@@ -291,7 +291,7 @@
               <div class="text-center">
                 <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
                 </div>
-                <button type="submit" class="btn btn-primary"  disabled="true">Send Message</button>
+                <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>
               </div>
             </form>
 
@@ -440,14 +440,8 @@
 
         })();
 
-
-        $("form").each(function() {
-            $(this).find(':input[type="submit"]').prop('disabled', true);
-        });
         function correctCaptcha() {
-            $("form").each(function() {
-                $(this).find(':input[type="submit"]').prop('disabled', false);
-            });
+          console.log("capta benar");
         }
 
 
