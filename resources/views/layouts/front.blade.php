@@ -288,10 +288,16 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center">
-                <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
+              <div class="row text-center">
+                <div class="col-lg-5 offset-lg-4">
+                  <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
+                    </div>
+                     <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>  
                 </div>
-                <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>
+             
+                   
+                
+                
               </div>
             </form>
 
@@ -318,8 +324,6 @@
             <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
           </div>
         </div>
-
-      
 
         <div class="social-links">
           <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
