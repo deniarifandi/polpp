@@ -444,7 +444,7 @@
      <script>
        function onSubmit(token) {
           console.log("test");
-         //document.getElementById("laporan_form").submit();
+         document.getElementById("laporan_form").submit();
        }
      </script>
 
