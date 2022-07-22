@@ -254,7 +254,7 @@
                   <input type="text" name="nik" class="form-control" id="nik" placeholder="NIK" required>
                 </div>
                 <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" >
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="">
                 </div>
               </div>
               <div class="form-group mt-3">
@@ -264,7 +264,7 @@
                 <textarea class="form-control" name="pesan" rows="5" placeholder="Tuliskan detail pesan laporan" required=""></textarea>
               </div>
               <div class="form-group mt-3">
-                <input type="file" name="fotolaporan" class="form-control" id="exampleFormControlFile1" style="height: auto">
+                <input type="file" name="fotolaporan" class="form-control" id="exampleFormControlFile1" style="height: auto" required="">
               </div>
 
                   <div class="row mb-3">
