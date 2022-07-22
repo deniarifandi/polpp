@@ -443,8 +443,8 @@
 
      <script>
        function onSubmit(token) {
-          console.log("test");
-         document.getElementById("laporan_form").submit();
+          console.log(token);
+         //document.getElementById("laporan_form").submit();
        }
      </script>
 
