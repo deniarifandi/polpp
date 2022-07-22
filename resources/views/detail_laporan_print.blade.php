@@ -1,38 +1,30 @@
 
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
-@extends('layouts.main')
+    <style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
 
-@section('title','tambah pelanggaran')
 
-@section('content')
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <div class="pagetitle">
-      <h1>Detail Page</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Detail Page</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Detail Laporan Pelanggaran</h5>
-                <table class="table">
+              
+                <table class="table" >
                 
                 <tbody>
+                    <tr>
+                      <th colspan="3">DETAIL LAPORAN PELANGGARAN</th>
+                    </tr>
                   <tr>
                     <th>Id Laporan</th>
                     <td>
                      {{$pelanggaran[0]->id}}
+                    </td>
+                    <td rowspan="10">
+                      <a href="" target="_blank"><img src="{{  asset('/storage/'.$foto_laporan[0]) }}" style="max-width: 400px"></a>
+                  
                     </td>
                   </tr>
                   <tr>
@@ -81,45 +73,14 @@
                     <td style="color: red">Map Tidak Ditemukan</td>
                     @endif
                   </tr>
-                  <tr>
-                    <th>Tindakan</th>
-                    <td style="float: right;"><a class="btn btn-primary" href="{{ url('laporan/detail_print') }}/{{ $pelanggaran[0]->id }}" >Print Laporan</a> <button class="btn btn-success">Sudah Diproses</button></td>
-                  </tr>
+                  
      
                 </tbody>
               </table>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Dokumentasi Foto</h5>
-                          
-                  <table class="table" >
-                
-                <tbody>
-                 
-                  
-                    <a href="" target="_blank"><img src="{{  asset('/storage/'.$foto_laporan[0]) }}" style="max-width: 100%"></a>
-                  
-
-                </tbody>
-              </table>
-      
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
+         
     <style>
 
-#map {height: 250px; width: 100%; }
+#map {height: 250px; width: 300px; }
 </style>
 
     <script type="text/javascript">
@@ -138,7 +99,7 @@
           const map = new mapboxgl.Map({
           container: 'map', // container ID
           style: 'mapbox://styles/mapbox/streets-v11', // style URL
-          center: [106.82332708986368,-6.160440512853471 ], // starting position [lng, lat]
+          center: [{{ $pelanggaran[0]->longitude }}, {{ $pelanggaran[0]->latitude }}], // starting position [lng, lat]
           zoom: 15 // starting zoom
         });
 
@@ -148,16 +109,9 @@
           .setLngLat([{{ $pelanggaran[0]->longitude }}, {{ $pelanggaran[0]->latitude }}])
           .addTo(map);
        
-         map.flyTo({center:[{{ $pelanggaran[0]->longitude }}, {{ $pelanggaran[0]->latitude }}]});
+       //  map.flyTo({center:[{{ $pelanggaran[0]->longitude }}, {{ $pelanggaran[0]->latitude }}]});
 
       })();
   
         
     </script>
-
-    
-
-    </script>
-
-
-@endsection

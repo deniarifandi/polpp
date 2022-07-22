@@ -48,6 +48,7 @@ Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_i
 Route::post('laporan/laporan_post', [LaporanController::class, 'laporan_post'])->name('laporan_post');;
 Route::get('laporan/index', [LaporanController::class, 'index'])->name('laporan_index');;
 Route::get('laporan/detail/{id}', [LaporanController::class, 'detail'])->name('laporan_detail');;
+Route::get('laporan/detail_print/{id}', [LaporanController::class, 'detail_print'])->name('laporan_detail_print');;
 
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 

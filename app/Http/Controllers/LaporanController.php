@@ -60,5 +60,22 @@ class LaporanController extends Controller
         return view('detail_laporan', ['pelanggaran' => $pelanggarans, 'foto_laporan' => $file_laporan]);
    }
 
+   public function detail_print($id){
+      //echo $id;
+
+        $id_kegiatan = "0";
+        $pelanggarans = DB::table('laporans')
+                        ->select(
+                                '*'
+                        )->where('id','=',$id)->get();
+        //print_r($pelanggarans);
+
+        $file_laporan = Storage::disk('public')->allFiles("foto_laporan/".$id);
+
+        // print_r($file_laporan);
+
+        return view('detail_laporan_print', ['pelanggaran' => $pelanggarans, 'foto_laporan' => $file_laporan]);
+   }
+
 
 }
