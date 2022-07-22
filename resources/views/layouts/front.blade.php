@@ -442,6 +442,7 @@
 
         function correctCaptcha() {
           console.log("capta benar");
+          document.getElementById("laporButton").disabled = false;
         }
 
 
