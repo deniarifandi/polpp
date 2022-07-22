@@ -33,7 +33,7 @@
   <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
   <!-- Template Main CSS File -->
   <link href="assets2/css/style.css" rel="stylesheet">
-   <script src="https://www.google.com/recaptcha/api.js"></script>
+   {{-- <script src="https://www.google.com/recaptcha/api.js"></script> --}}
 
   <!-- =======================================================
   * Template Name: Knight - v4.7.0
@@ -441,6 +441,9 @@
 
 
 
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+        async defer>
     </script>
 
 
