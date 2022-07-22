@@ -239,7 +239,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="{{ route('laporan_post') }}" method="post" role="form" class="php-email-form"  enctype="multipart/form-data">
+            <form action="{{ route('laporan_post') }}" id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data">
               @csrf
               <div class="row">
                 <div class="col-md-4 form-group">
@@ -443,7 +443,7 @@
 
      <script>
        function onSubmit(token) {
-         document.getElementById("demo-form").submit();
+         document.getElementById("laporan_form").submit();
        }
      </script>
 
