@@ -83,7 +83,7 @@
                   </tr>
                   <tr>
                     <th>Tindakan</th>
-                    <td style="float: right;"><a class="btn btn-primary" href="{{ url('laporan/detail_print') }}/{{ $pelanggaran[0]->id }}" >Print Laporan</a> <button class="btn btn-success">Sudah Diproses</button></td>
+                    <td style="float: right;"><a class="btn btn-primary" href="{{ url('laporan/detail_print') }}/{{ $pelanggaran[0]->id }}" target="_blank" >Print Laporan</a> <button class="btn btn-success">Sudah Diproses</button></td>
                   </tr>
      
                 </tbody>
