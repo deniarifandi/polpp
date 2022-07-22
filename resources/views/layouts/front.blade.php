@@ -289,9 +289,9 @@
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center">
-                <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg">
+                <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
                 </div>
-                <button type="submit" class="btn btn-primary"  >Send Message</button>
+                <button type="submit" class="btn btn-primary"  disabled="true">Send Message</button>
               </div>
             </form>
 
