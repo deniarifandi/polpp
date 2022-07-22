@@ -65,13 +65,17 @@
                      {{$pelanggaran[0]->pesan}}
                     </td>
                   </tr>
-                
-{{-- 
+                   <tr>
+                    <th>Peta Lokasi :</th>
+                  </tr>
                   <tr>
-                    <td colspan="2">
-                      <a class="btn btn-primary" style="float: right;" href="{{ url('pelanggaran') }}/create?id_kegiatan={{ $pelanggaran->id_kegiatan }}&id={{ $pelanggaran->id }}" onclick="underConstruction()">Edit</a>   
-                    </td>
-                  </tr> --}}
+                    @if(isset($pelanggaran[0]->longitude))
+                    <td colspan="2"> <div id="map"></div></td>
+                    @else
+                    <td style="color: red">Map Tidak Ditemukan</td>
+                    @endif
+                  </tr>
+     
                 </tbody>
               </table>
             </div>
