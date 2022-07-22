@@ -235,7 +235,7 @@ class PelanggaranController extends Controller
                 $jenisPelanggaran->save();
                 $pelanggaran->id_jenis_pelanggaran = $jenisPelanggaran->id;
             }else{
-                $pelanggaran->id_jenis_pelanggaran =$pelanggaran->id_jenis_pelanggaran;
+                $pelanggaran->id_jenis_pelanggaran =$request->id_jenis_pelanggaran;
             }
             
             if ($request->id_tindak_lanjut == "tambahvalue") {
