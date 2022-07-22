@@ -81,6 +81,10 @@
                     <td style="color: red">Map Tidak Ditemukan</td>
                     @endif
                   </tr>
+                  <tr>
+                    <th>Tindakan</th>
+                    <td style="float: right;"><button class="btn btn-primary">Print Laporan</button> <button class="btn btn-success">Sudah Diproses</button></td>
+                  </tr>
      
                 </tbody>
               </table>

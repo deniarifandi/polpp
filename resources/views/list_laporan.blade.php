@@ -77,7 +77,8 @@
                                 <th scope="col">NIK</th>
                                 <th scope="col">Judul</th>
                                 <th scope="col">Pesan</th>
-                                <th scope="col">Long / Lat</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col"> Status </th>
 
                               </tr>
                             </thead>
@@ -93,6 +94,13 @@
                                   <td>{{ $pelanggaran->subjek}}</td>
                                   <td>{{ $pelanggaran->pesan}}</td>
                                   <td>{{ date_format(date_create($pelanggaran->created_at), "d-M-Y") }}</td>
+                                  <td>
+                                    @if($pelanggaran->status == "on process")
+                                    <button type="button" class="btn btn-primary btn-sm" style="background-color: #0d6efd;" disabled="true">OnProcess</button>
+                                    @else
+                                    <button type="button" class="btn btn-success btn-sm" style="background-color: #009b52;" disabled="true">Sudah Diproses</button>
+                                    @endif
+                                  </td>
                                   <td>
                                    {{--  <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
                                     <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
