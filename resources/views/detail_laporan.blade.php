@@ -65,6 +65,12 @@
                      {{$pelanggaran[0]->pesan}}
                     </td>
                   </tr>
+                  <tr>
+                    <th>Status</th>
+                    <td>
+                     {{$pelanggaran[0]->status}}
+                    </td>
+                  </tr>
                    <tr>
                     <th>Peta Lokasi :</th>
                   </tr>

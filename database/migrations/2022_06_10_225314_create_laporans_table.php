@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("pesan")->nullable();
             $table->string("longitude")->nullable();
             $table->string("latitude")->nullable();
+            $table->string("status")->nullable();
             $table->timestamps();
         });
     }
