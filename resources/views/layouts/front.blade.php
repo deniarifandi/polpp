@@ -53,11 +53,15 @@
 
 
   <!-- ======= Hero Section ======= -->
+   
+
   <section id="hero">
+
     <div class="hero-container">
       <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
       <h1 data-aos="zoom-in">Web Aplikasi Pencegahan dan Penanganan Gangguan Trantibum</h1>
       <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
+
       <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
@@ -294,10 +298,7 @@
                     </div>
                      <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>  
                 </div>
-             
-                   
-                
-                
+                 
               </div>
             </form>
 
@@ -441,6 +442,13 @@
         (function() {
       
           getLocation();
+
+          @if (Session::has('success'))
+            alert("Berhasil Mengirimkan Laporan!");
+          @else
+            
+          @endif
+       
 
         })();
 

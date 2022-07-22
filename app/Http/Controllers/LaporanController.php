@@ -29,7 +29,7 @@ class LaporanController extends Controller
 
       Storage::disk('public')->put("foto_laporan/".$laporan->id, $request->fotolaporan);
 
-		  return redirect('/');
+		  return redirect()->back()->with('success', 'berhasil');
     }
    
 
