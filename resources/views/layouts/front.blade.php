@@ -41,6 +41,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <style>
@@ -288,9 +289,9 @@
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center">
-                <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg"> 
-                  <button type="submit" class="btn btn-primary"  >Send Message</button>
+                <div class="g-recaptcha" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg">
                 </div>
+                <button type="submit" class="btn btn-primary"  >Send Message</button>
               </div>
             </form>
 
@@ -442,9 +443,7 @@
 
 
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-        async defer>
-    </script>
+    
 
 
 </body>
