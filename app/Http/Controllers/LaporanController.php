@@ -8,6 +8,7 @@ use App\Models\Laporan;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
+use Image;
 
 class LaporanController extends Controller
 {
@@ -24,12 +25,59 @@ class LaporanController extends Controller
       $laporan->latitude  = $request->input('latitude');
       $laporan->status    = "on process";
       $laporan->save();
-      print_r($laporan->id);
+      //print_r($laporan->id);
 
+      //$img = Image::make($request->fotolaporan);
 
-      Storage::disk('public')->put("foto_laporan/".$laporan->id, $request->fotolaporan);
+      // $img = Image::make($request->file('fotolaporan'))->resize(300, 200);
+      // return $img->response('jpg');
 
-		  return redirect()->back()->with('success', 'berhasil');
+      $image = $request->fotolaporan;
+      $nameImage = $request->fotolaporan->getClientOriginalName();
+      
+      $size = Image::make($image->getRealPath())->filesize();
+      //echo $size;
+      if ($size > 1000000 && $size < 5000000 ) {
+
+          $height = Image::make($image->getRealPath())->height();
+          $width  = Image::make($image->getRealPath())->width();
+          $thumbImage = Image::make($image->getRealPath())->resize($width/2, $height/2);
+          mkdir(public_path('storage') .'/foto_laporan/'.$laporan->id, 0777, true);
+          $thumbPath  = public_path('storage') .'/foto_laporan/'.$laporan->id.'/'. $nameImage; 
+          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+      }else if ($size >= 5000000 && $size < 10000000) {
+
+          $height = Image::make($image->getRealPath())->height();
+          $width  = Image::make($image->getRealPath())->width();
+          $thumbImage = Image::make($image->getRealPath())->resize($width/4, $height/4);
+          mkdir(public_path('storage') .'/foto_laporan/'.$laporan->id, 0777, true);
+          $thumbPath  = public_path('storage') .'/foto_laporan/'.$laporan->id.'/'. $nameImage; 
+          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+      }else if ($size >= 10000000) {
+
+          $height = Image::make($image->getRealPath())->height();
+          $width  = Image::make($image->getRealPath())->width();
+          $thumbImage = Image::make($image->getRealPath())->resize($width/6, $height/6);
+          mkdir(public_path('storage') .'/foto_laporan/'.$laporan->id, 0777, true);
+          $thumbPath  = public_path('storage') .'/foto_laporan/'.$laporan->id.'/'. $nameImage; 
+          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+      }else{
+          $thumbImage = Image::make($image->getRealPath());
+          mkdir(public_path('storage') .'/foto_laporan/'.$laporan->id, 0777, true);
+          $thumbPath  = public_path('storage') . '/foto_laporan/'.$laporan->id.'/'.$nameImage; 
+          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+          echo $thumbPath;
+          echo "save not comp";
+      }
+      
+      // 
+      
+       return redirect()->back()->with('success', 'berhasil');
+      
+
     }
    
 

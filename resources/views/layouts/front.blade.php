@@ -296,7 +296,7 @@
                 <div class="col-lg-5 offset-lg-4">
                   <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
                     </div>
-                     <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>  
+                     <button type="submit" class="btn btn-primary" id="laporButton">Send Message</button>  
                 </div>
                  
               </div>
