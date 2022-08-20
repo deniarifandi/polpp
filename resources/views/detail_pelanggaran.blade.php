@@ -19,6 +19,15 @@
       </nav>
     </div><!-- End Page Title -->
 
+       @if ($message = Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      Berhasil tambah Data Pelanggaran
+      
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+
     <section class="section">
       <div class="row">
         <div class="col-lg-6">

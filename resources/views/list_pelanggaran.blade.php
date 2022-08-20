@@ -26,6 +26,13 @@
     </div>
     @endif
 
+    @if ($message = Session::get('successhapus'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Berhasil hapus data pelanggaran
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <section class="section dashboard">
       <div class="row">
 
@@ -93,6 +100,12 @@
                               
                               @foreach($pelanggarans as $pelanggaran)
                                 
+                                <form id="deleteForm[{{ $pelanggaran->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('pelanggaran.destroy', $pelanggaran->id) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                               
+                                </form>
+
                                 <tr>
                                   <td>{{ $pelanggaran->nama_regu}}</td>
                                   <td>{{ $pelanggaran->nama_kegiatan}}</td>
@@ -101,12 +114,12 @@
                                   <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
                                   <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
                                   <td>
-                                   {{--  <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
-                                    <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
-                                    <button class="btn btn-danger btn-sm" onclick="underConstruction()" disabled="disabled">Delete</button> --}}
+                                  
                                     <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip" ><i class="material-icons">&#xE254;</i></a>
+                                    
+                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip"onclick="myFunction({{ $pelanggaran->id }})"><i class="material-icons">&#xE872;</i></a>
+
                                   </td>
                                 </tr>
 
@@ -194,6 +207,8 @@
     </section>
 
 
+      
+
 
     <script type="text/javascript">
       
@@ -217,6 +232,22 @@
         }
 
       });
+
+    </script>
+
+    <script type="text/javascript">
+      
+
+      function myFunction(idPelanggaran) {
+        let text = "Yakin menghapus data ini?";
+        if (confirm(text) == true) {
+          document.getElementById("deleteForm["+idPelanggaran+"]").submit();
+         
+        } else {
+          
+        }
+        
+      }
 
     </script>
 

@@ -263,7 +263,7 @@ class PelanggaranController extends Controller
             }
 
             // return redirect('/pelanggaran?id_kegiatan='.$request->id_kegiatan)->with(['success' => 'berhasil']); OLD
-                return redirect('/pelanggaran/'.$pelanggaran->id);
+                return redirect('/pelanggaran/'.$pelanggaran->id)->with(['success' => "berhasil tambah data "]);;
 
         }catch(Exception $e){
             return Redirect::back()->with(['error' => $e->getMessage()]);
@@ -419,7 +419,20 @@ class PelanggaranController extends Controller
      */
     public function destroy(Pelanggaran $pelanggaran)
     {
-        //
+        try{
+            $pelanggaran = pelanggaran::findOrFail($pelanggaran->id);
+            $pelanggaran->delete();
+            Storage::disk('public')->deleteDirectory("dokumentasi_foto_sebelum/".$pelanggaran->id);
+            Storage::disk('public')->deleteDirectory("dokumentasi_foto_proses/".$pelanggaran->id);
+            Storage::disk('public')->deleteDirectory("dokumentasi_foto_setelah/".$pelanggaran->id);
+            Storage::disk('public')->deleteDirectory("foto_lokasi/".$pelanggaran->id);
+            return Redirect::back()->with(['successhapus' => "berhasil hapus data "]);
+
+        }
+        catch(Exception $e){
+             return Redirect::back()->with(['errorhapus' => $e->getMessage()]);
+        }
+        
     }
 
     public static function getJumlahPelanggaran(){
