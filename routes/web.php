@@ -42,6 +42,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::resource('pelanggaran',PelanggaranController::class)->middleware(['auth']);
+Route::get('pelanggaran/edit/{id}', [PelanggaranController::class, 'edit'])->middleware(['auth']);
 
 Route::post('pelanggaran/upload_image', [PelanggaranController::class, 'upload_image']);
 

@@ -118,7 +118,14 @@ class PelanggaranController extends Controller
     {
        
         try{
-            $pelanggaran                    = new Pelanggaran;
+            if ($request->id != null) {
+                $pelanggaran = pelanggaran::find($request->id);
+            }
+            else{
+                $pelanggaran                    = new Pelanggaran;    
+            }
+
+            
 
             //detail laporan
             $pelanggaran->id_jenis_laporan  = $request->id_jenis_laporan;
@@ -394,9 +401,42 @@ class PelanggaranController extends Controller
      * @param  \App\Models\Pelanggaran  $pelanggaran
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pelanggaran $pelanggaran)
+    public function edit($id)
     {
-      
+        
+
+        $regus              = Regu::select('*')->get();
+        $kegiatans          = Kegiatan::select('*')->get();
+        $vendors            = Vendor::select('*')->orderBy('nama')->get();
+        $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
+        $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
+        $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
+        $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
+        $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
+        $kelurahans         = Kelurahan::select('*')->orderBy('nama')->get();
+        $jenis_pkls         = Jenis_pkl::select('*')->orderBy('nama')->get();
+        $jenis_anjal_gepeng = Jenis_anjal_gepeng::select('*')->orderBy('nama')->get();
+        $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
+        $pelanggaran =   pelanggaran::select('*')->where('id','=',$id)->get();
+
+        // echo $pelanggaran[0];
+
+        return view('edit_pelanggaran',[
+            'regus'             => $regus, 
+            'kegiatans'         => $kegiatans, 
+            'vendors'           => $vendors,
+            'jenis_reklames'    => $jenis_reklames,
+            'jenis_pelanggarans'=> $Jenis_pelanggarans,
+            'tindak_lanjuts'    => $tindak_lanjuts,
+            'ukuran_reklames'   => $ukuran_reklames,
+            'kecamatans'        => $kecamatans,
+            'kelurahans'        => $kelurahans,
+            'jenis_pkls'        => $jenis_pkls,
+            'jenis_anjal_gepengs'=> $jenis_anjal_gepeng,
+            'jenis_penertiban_prokess'   => $jenis_penertiban_prokes,
+            'id_kegiatan' => $pelanggaran[0]->id_kegiatan,
+            'pelanggaran' => $pelanggaran[0]
+        ]);
     }
 
     /**

@@ -116,7 +116,11 @@
                                   <td>
                                   
                                     <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip" ><i class="material-icons">&#xE254;</i></a>
+
+                                    
+                                    <a href="{{ url('pelanggaran')}}/edit/{{ $pelanggaran->id }}" type="submit" class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
+                                    
+                                    
                                     
                                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"onclick="myFunction({{ $pelanggaran->id }})"><i class="material-icons">&#xE872;</i></a>
 
