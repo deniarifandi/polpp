@@ -79,6 +79,7 @@
                                 <th scope="col">Pesan</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col"> Status </th>
+                                <th>Tindakan</th>
 
                               </tr>
                             </thead>
@@ -95,7 +96,7 @@
                                   <td>{{ $pelanggaran->pesan}}</td>
                                   <td>{{ date_format(date_create($pelanggaran->created_at), "d-M-Y") }}</td>
                                   <td>
-                                    @if($pelanggaran->status == "on process")
+                                    @if($pelanggaran->status == 1)
                                     <button type="button" class="btn btn-primary btn-sm" style="background-color: #0d6efd;" disabled="true">OnProcess</button>
                                     @else
                                     <button type="button" class="btn btn-success btn-sm" style="background-color: #009b52;" disabled="true">Sudah Diproses</button>
@@ -105,9 +106,9 @@
                                    {{--  <a class="btn btn-primary btn-sm" href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}">Detail</a> 
                                     <button class="btn btn-warning btn-sm" onclick="underConstruction()" disabled="disabled">Edit</button> 
                                     <button class="btn btn-danger btn-sm" onclick="underConstruction()" disabled="disabled">Delete</button> --}}
-                                    <a class="view" title="View" data-toggle="tooltip"  href="{{ url('laporan/detail') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE872;</i></a>
+                                    <a class="btn btn-warning view btn-sm" style="color:white" title="View" data-toggle="tooltip"  href="{{ url('laporan/detail') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
+                                    {{-- <a href="#" class="edit" title="Edit" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE254;</i></a> --}}
+                                    {{-- <a href="#" class="delete" title="Delete" data-toggle="tooltip" onclick="underConstruction()"><i class="material-icons">&#xE872;</i></a> --}}
                                   </td>
                                 </tr>
 

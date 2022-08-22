@@ -23,7 +23,7 @@ class LaporanController extends Controller
       $laporan->pesan     = $request->input('pesan');
       $laporan->longitude = $request->input('longitude');
       $laporan->latitude  = $request->input('latitude');
-      $laporan->status    = "on process";
+      $laporan->status    = 1;
       $laporan->save();
       //print_r($laporan->id);
 
@@ -123,6 +123,23 @@ class LaporanController extends Controller
         // print_r($file_laporan);
 
         return view('detail_laporan_print', ['pelanggaran' => $pelanggarans, 'foto_laporan' => $file_laporan]);
+   }
+
+   public function proses_laporan($id){ 
+
+        $laporan = Laporan::find($id);
+        $laporan->status = 0;
+        $laporan->save();
+
+        return redirect()->back()->with('success', 'berhasil');
+   }
+
+   public function un_proses_laporan($id){
+        $laporan = Laporan::find($id);
+        $laporan->status = 1;
+        $laporan->save();
+
+        return redirect()->back()->with('success', 'berhasil');
    }
 
 

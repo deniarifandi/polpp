@@ -73,7 +73,7 @@
 
                                     </div>
                                     <div class="col-sm-2 offset-sm-2">
-                                      <div class="input-group mb-3">
+                                      <div class="input-group mb-3" style="display: none;">
                                       <input type="text" class="form-control" placeholder="Cari Data" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled="">
                                       <div class="input-group-append">
                                         <button class="btn btn-secondary" type="button" disabled=""><i class="bi bi-search"></i>

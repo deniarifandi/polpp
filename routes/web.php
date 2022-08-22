@@ -50,6 +50,9 @@ Route::post('laporan/laporan_post', [LaporanController::class, 'laporan_post'])-
 Route::get('laporan/index', [LaporanController::class, 'index'])->name('laporan_index');;
 Route::get('laporan/detail/{id}', [LaporanController::class, 'detail'])->name('laporan_detail');;
 Route::get('laporan/detail_print/{id}', [LaporanController::class, 'detail_print'])->name('laporan_detail_print');;
+Route::get('laporan/proses_laporan/{id}',[LaporanController::class, 'proses_laporan'])->name('proses_laporan');
+Route::get('laporan/un_proses_laporan/{id}',[LaporanController::class, 'un_proses_laporan'])->name('un_proses_laporan');
+
 
 Route::get('pelanggaran/pelanggaran_print/{id}', [PelanggaranController::class, 'pelanggaran_print'])->name('pelanggaran_print');;
 

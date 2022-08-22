@@ -68,7 +68,12 @@
                   <tr>
                     <th>Status</th>
                     <td>
-                     {{$pelanggaran[0]->status}}
+                      @if($pelanggaran[0]->status == 1)
+                        <button class="btn btn-warning" disabled >On Process</button>
+                      @else
+                        <button href="#" class="btn btn-success" disabled>Sudah Diproses</button>
+                      @endif
+
                     </td>
                   </tr>
                    <tr>
@@ -83,7 +88,11 @@
                   </tr>
                   <tr>
                     <th>Tindakan</th>
-                    <td style="float: right;"><a class="btn btn-primary" href="{{ url('laporan/detail_print') }}/{{ $pelanggaran[0]->id }}" target="_blank" >Print Laporan</a> <button class="btn btn-success" onclick="alert('under construction')">Sudah Diproses</button></td>
+                    <td style="float: right;">
+                      <a class="btn btn-primary" href="{{ url('laporan/detail_print') }}/{{ $pelanggaran[0]->id }}" target="_blank" >Print Laporan</a> 
+                      <a class="btn btn-success" href="{{ url('laporan/proses_laporan') }}/{{ $pelanggaran[0]->id }}" >Sudah Proses</a> 
+                      <a class="btn btn-danger" href="{{ url('laporan/un_proses_laporan') }}/{{ $pelanggaran[0]->id }}" >Batalkan Proses</a> 
+                    </td>
                   </tr>
      
                 </tbody>
@@ -103,9 +112,11 @@
                 
                 <tbody>
                  
-                  
+                    @if(isset($foto_laporan[0]))
                     <a href="" target="_blank"><img src="{{  asset('/storage/'.$foto_laporan[0]) }}" style="max-width: 100%"></a>
-                  
+                    @else
+
+                    @endif
 
                 </tbody>
               </table>
