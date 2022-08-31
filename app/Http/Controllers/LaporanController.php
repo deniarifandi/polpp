@@ -142,5 +142,130 @@ class LaporanController extends Controller
         return redirect()->back()->with('success', 'berhasil');
    }
 
+     //////////////////////////////////////////////////
+    public function api_total_kegiatan($tahun){
+
+    
+        for ($x=1; $x < 13; $x++) { 
+            for ($i=1; $i < 13; $i++) { 
+                $bulankeg[$x][$i] = DB::table('pelanggarans')
+                ->select(DB::raw('count(id) as total'))
+                ->where(DB::raw('MONTH(tgl_peristiwa)'), "=", $i)
+                ->where('id_kegiatan','=',$x)
+                ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                ->get();       
+            }
+        }
+        
+        
+        // echo $bulan[0]->total;
+
+        echo '[{
+                    "name": "Reklame",
+                    "data":  ['  .$bulankeg[1][1][0]->total.",".$bulankeg[1][2][0]->total.",".$bulankeg[1][3][0]->total.","
+                                .$bulankeg[1][4][0]->total.",".$bulankeg[1][5][0]->total.",".$bulankeg[1][6][0]->total.","
+                                .$bulankeg[1][7][0]->total.",".$bulankeg[1][8][0]->total.",".$bulankeg[1][9][0]->total.","
+                                .$bulankeg[1][10][0]->total.",".$bulankeg[1][11][0]->total.",".$bulankeg[1][12][0]->total.
+                            ']
+
+                },{
+                    "name": "PKL",
+                    "data": ['  .$bulankeg[2][1][0]->total.",".$bulankeg[2][2][0]->total.",".$bulankeg[2][3][0]->total.","
+                                .$bulankeg[2][4][0]->total.",".$bulankeg[2][5][0]->total.",".$bulankeg[2][6][0]->total.","
+                                .$bulankeg[2][7][0]->total.",".$bulankeg[2][8][0]->total.",".$bulankeg[2][9][0]->total.","
+                                .$bulankeg[2][10][0]->total.",".$bulankeg[2][11][0]->total.",".$bulankeg[2][12][0]->total.
+                            ']
+
+                },
+                {
+                    "name": "AnJal-GePeng",
+                    "data": ['  .$bulankeg[3][1][0]->total.",".$bulankeg[3][2][0]->total.",".$bulankeg[3][3][0]->total.","
+                                .$bulankeg[3][4][0]->total.",".$bulankeg[3][5][0]->total.",".$bulankeg[3][6][0]->total.","
+                                .$bulankeg[3][7][0]->total.",".$bulankeg[3][8][0]->total.",".$bulankeg[3][9][0]->total.","
+                                .$bulankeg[3][10][0]->total.",".$bulankeg[3][11][0]->total.",".$bulankeg[3][12][0]->total.
+                            ']
+
+                },{
+                    "name": "PSK",
+                    "data": ['  .$bulankeg[4][1][0]->total.",".$bulankeg[4][2][0]->total.",".$bulankeg[4][3][0]->total.","
+                                .$bulankeg[4][4][0]->total.",".$bulankeg[4][5][0]->total.",".$bulankeg[4][6][0]->total.","
+                                .$bulankeg[4][7][0]->total.",".$bulankeg[4][8][0]->total.",".$bulankeg[4][9][0]->total.","
+                                .$bulankeg[4][10][0]->total.",".$bulankeg[4][11][0]->total.",".$bulankeg[4][12][0]->total.
+                            ']
+
+                },{
+                    "name": "Minol",
+                    "data": ['  .$bulankeg[5][1][0]->total.",".$bulankeg[5][2][0]->total.",".$bulankeg[5][3][0]->total.","
+                                .$bulankeg[5][4][0]->total.",".$bulankeg[5][5][0]->total.",".$bulankeg[5][6][0]->total.","
+                                .$bulankeg[5][7][0]->total.",".$bulankeg[5][8][0]->total.",".$bulankeg[5][9][0]->total.","
+                                .$bulankeg[5][10][0]->total.",".$bulankeg[5][11][0]->total.",".$bulankeg[5][12][0]->total.
+                            ']
+
+                },
+                {
+                    "name": "Pemondokan",
+                    "data": ['  .$bulankeg[6][1][0]->total.",".$bulankeg[6][2][0]->total.",".$bulankeg[6][3][0]->total.","
+                                .$bulankeg[6][4][0]->total.",".$bulankeg[6][5][0]->total.",".$bulankeg[6][6][0]->total.","
+                                .$bulankeg[6][7][0]->total.",".$bulankeg[6][8][0]->total.",".$bulankeg[6][9][0]->total.","
+                                .$bulankeg[6][10][0]->total.",".$bulankeg[6][11][0]->total.",".$bulankeg[6][12][0]->total.
+                            ']
+
+                },{
+                    "name": "Parkir Liar",
+                    "data": ['  .$bulankeg[7][1][0]->total.",".$bulankeg[7][2][0]->total.",".$bulankeg[7][3][0]->total.","
+                                .$bulankeg[7][4][0]->total.",".$bulankeg[7][5][0]->total.",".$bulankeg[7][6][0]->total.","
+                                .$bulankeg[7][7][0]->total.",".$bulankeg[7][8][0]->total.",".$bulankeg[7][9][0]->total.","
+                                .$bulankeg[7][10][0]->total.",".$bulankeg[7][11][0]->total.",".$bulankeg[7][12][0]->total.
+                            ']
+
+                },{
+                    "name": "Prokes",
+                    "data": ['  .$bulankeg[8][1][0]->total.",".$bulankeg[8][2][0]->total.",".$bulankeg[8][3][0]->total.","
+                                .$bulankeg[8][4][0]->total.",".$bulankeg[8][5][0]->total.",".$bulankeg[8][6][0]->total.","
+                                .$bulankeg[8][7][0]->total.",".$bulankeg[8][8][0]->total.",".$bulankeg[8][9][0]->total.","
+                                .$bulankeg[8][10][0]->total.",".$bulankeg[8][11][0]->total.",".$bulankeg[8][12][0]->total.
+                            ']
+
+                }]';
+        
+
+    }
+
+    public function api_jenis_penertiban($tahun){
+
+        $pelanggaran = DB::table('pelanggarans')
+                ->select(DB::raw('count(id_kegiatan) as data'), 'kegiatans.nama as name')
+                ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                ->join('kegiatans', 'pelanggarans.id_kegiatan', '=','kegiatans.id')
+                ->groupBy('kegiatans.nama')
+                ->orderBy('kegiatans.id')
+                ->get();       
+
+        echo $pelanggaran;
+
+    }
+
+    public function api_lokasi_pelanggaran($tahun){
+
+
+        // $pelanggaran = DB::table('pelanggarans')
+        //         ->select(DB::raw('count(id_kecamatan) as data'), 'id_kecamatan')
+        //         ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+        //         ->join('kecamatans', 'pelanggarans.id_kegiatan', '=','kecamatans.id','left')
+        //         ->groupBy('id_kecamatan')
+        //         // ->orderBy('kecamatans.id')
+        //         ->get();       
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama',DB::raw('count(id_kecamatan) as data'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+        echo $pelanggaran;
+
+    }
+
 
 }

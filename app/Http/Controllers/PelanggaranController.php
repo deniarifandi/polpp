@@ -551,4 +551,14 @@ class PelanggaranController extends Controller
         return view('detail_pelanggaran_print', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi]);
     }
 
+
+
+
+
+
+
+
+
+  
+
 }

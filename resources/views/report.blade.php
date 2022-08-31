@@ -20,7 +20,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Grafik Report Pelanggaran (data set prototype)</li>
+          <li class="breadcrumb-item active">Grafik Report Pelanggaran</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -29,10 +29,32 @@
 
       <div class="row">
 
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <br>
+                    
+                        <select name="tahun" id="tahun" class="btn btn-primary" onchange="gantiTahun()" style="width:100%">
+                          @for($i = 2021; $i <= 2024; $i++)
+                            <option value="{{$i}}">{{$i}}</option>
+                          @endfor
+                        </select>      
+                      
+                  </div>
+                </div>
+              </div>        
+
          <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Grafik Total Hasil Kegiatan</h5>
+              <div class="row">
+                <div class="col-lg-6">
+                  <h5 class="card-title">Grafik Perbandingan Tipe Pelanggaran Tahun :  </h5>     
+                </div>  
+                <div class="col-lg-6">
+                 
+                </div>
+              </div>
 
               @include('graph.grafik_total_kegiatan')
 
@@ -271,8 +293,29 @@
 
     </section>
 
+    <script type="text/javascript">
+      
+    $(document).ready(function () {
+
+         // console.log("test");
+
+      });
 
 
-    {{-- @include('graph.chart_theme') --}}
+    </script>
+
+    <script type="text/javascript">
+      
+      function gantiTahun(){
+
+        // console.log( document.getElementById("tahun").value);
+        var tahun = document.getElementById("tahun").value;
+        window.location.replace("{{ URL::to('/report') }}?tahun="+tahun);
+      }
+
+    </script>
+
+
+
 
     @endsection

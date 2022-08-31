@@ -1,8 +1,8 @@
 
 
 <figure class="highcharts-figure">
-  <div style="padding: 10px">
-    <div id="jenis_pelanggaran_pkl" style="padding: 25px; margin: 0px"></div>
+  <div style="padding: 0px">
+    <div id="jenis_pelanggaran_pkl" style="padding-top:0 px; margin: 0px"></div>
   </div>
     
     

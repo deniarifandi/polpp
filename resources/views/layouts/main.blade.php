@@ -258,6 +258,13 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
+       <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ URL::to('/administration/index') }}">
+          <i class="bi bi-gear"></i>
+          <span>Administration</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="underConstruction()">
           <i class="bi bi-card-list"></i>

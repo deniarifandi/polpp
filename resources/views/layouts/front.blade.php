@@ -62,7 +62,7 @@
       <h1 data-aos="zoom-in">Web Aplikasi Pencegahan dan Penanganan Gangguan Trantibum</h1>
       <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
 
-      <a data-aos="fade-up" data-aos-delay="200" href="#about" class="btn-get-started scrollto">Get Started</a>
+      <a data-aos="fade-up" data-aos-delay="200" href="#contact" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
 
@@ -100,8 +100,8 @@
 
   <main id="main">
 
-    <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
+        <!-- ======= About Us Section ======= -->
+    <section id="about" class="about" style="display:none">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -114,6 +114,7 @@
             <div class="image">
               <img src="assets2/img/polpp1.jpg" class="img-fluid" alt="">
             </div>
+
           </div>
           <div class="col-lg-6" data-aos="fade-left">
             <div class="content pt-4 pt-lg-0 pl-0 pl-lg-3 ">
@@ -126,16 +127,86 @@
                 <li><i class="bx bx-check-double"></i> Pelaksanaan penegakan peraturan daerah dan peraturan gubernur.</li>
                 
               </ul>
-             
             </div>
           </div>
+        
         </div>
 
       </div>
     </section><!-- End About Us Section -->
 
+      <section id="twitter" class="contact section-bg" style="padding-bottom:20px">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Kabar Terkini</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <a class="twitter-timeline" data-height="950" data-lang="id" data-theme="dark" href="https://twitter.com/satpolppmalang2?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
+
+          </div>
+
+          <div class="col-lg-4">
+
+            <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
+              <div class="row">
+                  <div class="col-md-12">
+                @include('graph.jenis_penertiban')
+              </div>
+             
+              </div>
+            </form>
+
+
+              <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
+              <div class="row">
+                  <div class="col-md-12">
+                @include('graph.jenis_pelanggaran_pkl')
+              </div>
+             
+              </div>
+            </form>
+           
+
+          </div>
+
+
+          <div class="col-lg-4">
+
+            <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px"> 
+              <div class="row">
+                  <div class="col-md-12">
+                @include('graph.jenis_tindak_lanjut_anjal')
+              </div>
+             
+              </div>
+            </form>
+
+
+              <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom: 25px">
+              <div class="row">
+                  <div class="col-md-12">
+                @include('graph.jenis_pelanggaran_anjal')
+              </div>
+             
+              </div>
+            </form>
+           
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <section id="services" class="services" style="display:none">
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
@@ -168,10 +239,12 @@
           </div>
           <div class="image col-lg-6 order-1 order-lg-2"  data-aos="fade-left" data-aos-delay="100">
             
-          <img src="assets2/img/polpp2.jpg" class="img-fluid" alt="">
+            <img src="assets2/img/polpp2.jpg" class="img-fluid" alt="">
 
           </div>
         </div>
+
+        
 
       </div>
     </section><!-- End Services Section -->
@@ -181,29 +254,7 @@
 
     <!-- ======= Portfolio Section ======= -->
     
-     <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Mini Dashboard</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p>
-        </div>
-
-        <div class="row">
-            
-            <div class="col-md-6">
-                @include('graph.jenis_penertiban')
-            </div>
-            <div class="col-md-6">
-                @include('graph.lokasi_pelanggaran')
-            </div>
-            
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
+    
     <!-- ======= Testimonials Section ======= -->
 
 
@@ -213,7 +264,7 @@
 
         <div class="section-title">
           <h2>Contact & Laporan</h2>
-          <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p>
+          {{-- <p>Magnam dolores commodi suscipit eius consequatur ex aliquid fuga eum quidem</p> --}}
         </div>
 
         <div class="row">
@@ -322,7 +373,7 @@
           <div class="col-lg-6">
             <a href="#header" class="scrollto footer-logo"><img src="assets2/img/logopolpp.png" alt=""></a>
             <h3>SatPol PP Malang Kota</h3>
-            <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+            {{-- <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p> --}}
           </div>
         </div>
 
