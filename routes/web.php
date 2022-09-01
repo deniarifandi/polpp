@@ -63,6 +63,18 @@ Route::get('laporan/api_lokasi_pelanggaran/{tahun}',[LaporanController::class, '
 
 Route::get('laporan/api_jenis_reklame/{tahun}',[LaporanController::class, 'api_jenis_reklame'])->name('api_jenis_reklame');
 Route::get('laporan/api_lokasi_pelanggaran_reklame/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_reklame'])->name('api_lokasi_pelanggaran_reklame');
+Route::get('laporan/api_jenis_pelanggaran_reklame/{tahun}',[LaporanController::class, 'api_jenis_pelanggaran_reklame'])->name('api_jenis_pelanggaran_reklame');
+Route::get('laporan/api_jenis_tindak_lanjut_reklame/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_reklame'])->name('api_jenis_tindak_lanjut_reklame');
+
+Route::get('laporan/api_jenis_pkl/{tahun}',[LaporanController::class, 'api_jenis_pkl'])->name('api_jenis_pkl');
+Route::get('laporan/api_lokasi_pelanggaran_pkl/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_pkl'])->name('api_lokasi_pelanggaran_pkl');
+Route::get('laporan/api_jenis_pelanggaran_pkl/{tahun}',[LaporanController::class, 'api_jenis_pelanggaran_pkl'])->name('api_jenis_pelanggaran_pkl');
+Route::get('laporan/api_jenis_tindak_lanjut_pkl/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_pkl'])->name('api_jenis_tindak_lanjut_pkl');
+
+Route::get('laporan/api_jenis_anjal/{tahun}',[LaporanController::class, 'api_jenis_anjal'])->name('api_jenis_anjal');
+Route::get('laporan/api_lokasi_pelanggaran_anjal/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_anjal'])->name('api_lokasi_pelanggaran_anjal');
+Route::get('laporan/api_jenis_pelanggaran_anjal/{tahun}',[LaporanController::class, 'api_jenis_pelanggaran_anjal'])->name('api_jenis_pelanggaran_anjal');
+Route::get('laporan/api_jenis_tindak_lanjut_anjal/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_anjal'])->name('api_jenis_tindak_lanjut_anjal');
 
 
 ////ADMINISTRATION

@@ -55,7 +55,7 @@
                     seriesData[i] = 0;
                 }
 
-                    console.log(seriesData);
+                    // console.log(seriesData);
               }    
 
              Highcharts.chart('grafik_lokasi_pelanggaran_reklame', {

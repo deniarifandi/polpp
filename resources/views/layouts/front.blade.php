@@ -155,7 +155,7 @@
             <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
               <div class="row">
                   <div class="col-md-12">
-                @include('graph.jenis_penertiban')
+                @include('graph.grafik_total_kegiatan')
               </div>
              
               </div>

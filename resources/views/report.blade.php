@@ -100,7 +100,7 @@
             
             <div class="card-body">
               <h5 class="card-title">
-                Jenis Reklame
+                Pelanggaran Tiap Jenis Reklame 
               </h5>
 
               @include('graph.jenis_reklame')
@@ -116,7 +116,7 @@
             
             <div class="card-body">
               <h5 class="card-title">
-                Lokasi Pelanggaran Reklame
+                Lokasi Pelanggaran Pemasangan Reklame
               </h5>
 
               @include('graph.lokasi_pelanggaran_reklame')
@@ -137,7 +137,7 @@
             
             <div class="card-body">
               <h5 class="card-title">
-                Jenis Pelanggaran Reklame
+                Jenis Pelanggaran Tiap Reklame
               </h5>
 
             @include('graph.jenis_pelanggaran_reklame')
@@ -213,7 +213,7 @@
             
             <div class="card-body">
               <h5 class="card-title">
-                Operasi Penertiban PKL
+                Tipe Pelanggaran PKL
               </h5>
 
               @include('graph.grafik_operasi_penertiban_pkl')

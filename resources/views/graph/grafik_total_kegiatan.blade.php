@@ -28,7 +28,13 @@
         }
       @endphp
 
-      document.getElementById("tahun").value = tahun;
+      try{
+        document.getElementById("tahun").value = tahun;  
+      }catch(err){
+        
+      }
+
+      
 
 </script>
 
