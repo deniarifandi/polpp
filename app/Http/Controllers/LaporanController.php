@@ -247,25 +247,29 @@ class LaporanController extends Controller
 
     public function api_lokasi_pelanggaran($tahun){
 
-
-        // $pelanggaran = DB::table('pelanggarans')
-        //         ->select(DB::raw('count(id_kecamatan) as data'), 'id_kecamatan')
-        //         ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
-        //         ->join('kecamatans', 'pelanggarans.id_kegiatan', '=','kecamatans.id','left')
-        //         ->groupBy('id_kecamatan')
-        //         // ->orderBy('kecamatans.id')
-        //         ->get();       
-
         $pelanggaran = DB::table('kecamatans')
-                    ->select('kecamatans.nama',DB::raw('count(id_kecamatan) as data'))
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
                     ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
                     ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
                     ->groupBy('nama')
                     ->orderBy('kecamatans.id')
                     ->get();
 
-        echo $pelanggaran;
+         echo $pelanggaran;
 
+    }
+
+    public function api_jenis_reklame($tahun){
+
+        $pelanggaran = DB::table('pelanggarans')
+                    ->select('jenis_reklames.nama as name',DB::raw('count(jenis_reklames.nama) as y'))
+                    ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame')
+                    ->where('id_kegiatan','=',1)
+                    ->groupBy('jenis_reklames.nama')
+                    ->orderBy('jenis_reklames.id')
+                    ->get();
+
+        echo $pelanggaran;
     }
 
 

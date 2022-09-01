@@ -40,8 +40,6 @@
     Highcharts.getJSON('{{URL::to("/")}}/laporan/api_total_kegiatan/'+tahun, function(data) {
           var seriesData = [];
 
-          
-
           // Create the chart
           Highcharts.chart('grafik_total_kegiatan', {
                     chart: {

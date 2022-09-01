@@ -36,70 +36,60 @@
 
 <script type="text/javascript">
 
+        var seriesData = [];
 
 
-    Highcharts.getJSON('{{URL::to("/")}}/laporan/api_lokasi_pelanggaran/'+tahun, function(data) {
-          var seriesData = [];
 
-          for (var i = 0; i < data.length; i++) {
-           
-                try{
-                    seriesData[i] = data[i]["data"];
-                    console.log(data[i]["data"]);
-                }catch(error){
-                    seriesData[i] = 0;
-                }
-
-          }
-
-          // Create the chart
-            Highcharts.chart('grafik_lokasi_pelanggaran', {
-                chart: {
-                    type: 'pie',
-                    options3d: {
-                        enabled: true,
-                        alpha: 45,
-                        beta: 0
-                    }
-                },
-                title: {
-                    text: 'Akumulasi Lokasi Pelanggaran Tahun '+tahun
-                },
-                accessibility: {
-                    point: {
-                        valueSuffix: '%'
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        depth: 30,
-                        dataLabels: {
+        Highcharts.getJSON('{{URL::to("/")}}/laporan/api_lokasi_pelanggaran/'+tahun, function(data) {
+        
+             Highcharts.chart('grafik_lokasi_pelanggaran', {
+                    chart: {
+                        type: 'pie',
+                        options3d: {
                             enabled: true,
-                            format: '{point.name}'
+                            alpha: 45,
+                            beta: 0
                         }
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    name: 'Prosentase',
-                    data: [
-                        ['Blimbing', parseFloat(seriesData[0])],
-                        ['Kedungkandang', parseFloat(seriesData[1])],
-                        ['Klojen', parseFloat(seriesData[2])],
-                        ['Lowokwaru', parseFloat(seriesData[3])],
-                        ['Sukun', parseFloat(seriesData[4])]
-                    ]
-                }]
-            });
+                    },
+                    title: {
+                        text: 'Akumulasi Lokasi Pelanggaran Tahun '+tahun
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            depth: 30,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}'
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Prosentase',
+                        data: data
+                        
+                    }]
+                });
 
-
+            
         });
 
+
+        function runChart1(){
+
+              
+
+        }
 
 
 
