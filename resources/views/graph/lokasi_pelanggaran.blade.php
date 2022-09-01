@@ -41,7 +41,23 @@
 
 
         Highcharts.getJSON('{{URL::to("/")}}/laporan/api_lokasi_pelanggaran/'+tahun, function(data) {
-        
+            
+              var seriesData = [];
+
+              for (var i = 0; i < data.length; i++) {
+                
+                try{
+                    seriesData.push({
+                        name : data[i].name,
+                        y : parseFloat(data[i].y)
+                    });
+                }catch(error){
+                    seriesData[i] = 0;
+                }
+
+                    console.log(seriesData);
+              }    
+
              Highcharts.chart('grafik_lokasi_pelanggaran', {
                     chart: {
                         type: 'pie',
@@ -76,21 +92,13 @@
                     series: [{
                         type: 'pie',
                         name: 'Prosentase',
-                        data: data
+                        data: seriesData
                         
                     }]
                 });
 
             
         });
-
-
-        function runChart1(){
-
-              
-
-        }
-
 
 
 </script>
