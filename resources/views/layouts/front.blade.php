@@ -145,59 +145,66 @@
         <div class="row">
 
           <div class="col-lg-4">
-            <a class="twitter-timeline" data-height="950" data-lang="id" data-theme="dark" href="https://twitter.com/satpolppmalang2?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
+            <a class="twitter-timeline" data-height="1000" data-lang="id" data-theme="dark" href="https://twitter.com/satpolppmalang2?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> 
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
 
           </div>
 
-          <div class="col-lg-4">
+          <div class="col-lg-8">
 
-            <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
-              <div class="row">
-                  <div class="col-md-12">
-                @include('graph.grafik_total_kegiatan')
+            <div class="row">
+
+              <div class="col-lg-12-">
+                <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
+                  <div class="row">
+                      <div class="col-md-12">
+                    @include('graph.grafik_total_kegiatan')
+                  </div>
+                 
+                  </div>
+                </form>                 
               </div>
-             
-              </div>
-            </form>
+
+               <div class="col-lg-6">
+
+                  <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px"> 
+                    <div class="row">
+                        <div class="col-md-12">
+                      @include('graph.lokasi_pelanggaran')
+                    </div>
+                   
+                    </div>
+                  </form>
+
+                </div>
+
+                 <div class="col-lg-6">
+
+                    <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom: 25px">
+                    <div class="row">
+                        <div class="col-md-12">
+                      @include('graph.jenis_penertiban')
+                    </div>
+                   
+                    </div>
+                  </form>
+                 
+
+                </div>
+                    
+                    
+            </div>
+            
 
 
-              <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px">
-              <div class="row">
-                  <div class="col-md-12">
-                @include('graph.jenis_pelanggaran_pkl')
-              </div>
-             
-              </div>
-            </form>
-           
 
-          </div>
+          </div>  
+      
 
+          
+          
 
-          <div class="col-lg-4">
-
-            <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom:25px"> 
-              <div class="row">
-                  <div class="col-md-12">
-                @include('graph.jenis_tindak_lanjut_anjal')
-              </div>
-             
-              </div>
-            </form>
-
-
-              <form id="laporan_form" method="post" role="form" class="php-email-form"  enctype="multipart/form-data" style="margin-bottom: 25px">
-              <div class="row">
-                  <div class="col-md-12">
-                @include('graph.jenis_pelanggaran_anjal')
-              </div>
-             
-              </div>
-            </form>
-           
-
-          </div>
+         
 
 
         </div>

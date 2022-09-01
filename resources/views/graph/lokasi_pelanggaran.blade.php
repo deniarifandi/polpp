@@ -3,8 +3,8 @@
 
 <figure class="highcharts-figure">
 
-  <div style="padding: 10px">
-    <div id="grafik_lokasi_pelanggaran" style="padding: 25px; margin: 0px"></div>
+  <div style="padding: 0px">
+    <div id="grafik_lokasi_pelanggaran" style="padding: 0px; margin: 0px"></div>
   </div>
     
 
@@ -29,7 +29,11 @@
         }
       @endphp
 
-      document.getElementById("tahun").value = tahun;
+      try{
+        document.getElementById("tahun").value = tahun;  
+      }catch(err){
+        
+      }
 
 </script>
 

@@ -2,8 +2,8 @@
 
 <figure class="highcharts-figure">
 
-  <div style="padding: 10px">
-    <div id="grafik_total_kegiatan" style="padding: 25px; margin: 0px"></div>
+  <div style="padding: 0px">
+    <div id="grafik_total_kegiatan" style="padding: 0px; margin: 0px"></div>
   </div>
     
 
