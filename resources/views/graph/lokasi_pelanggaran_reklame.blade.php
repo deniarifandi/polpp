@@ -4,7 +4,7 @@
 <figure class="highcharts-figure">
 
   <div style="padding: 10px">
-    <div id="grafik_lokasi_reklame" style="padding: 25px; margin: 0px"></div>
+    <div id="grafik_lokasi_pelanggaran_reklame" style="padding: 25px; margin: 0px"></div>
   </div>
     
 
@@ -40,9 +40,25 @@
 
 
 
-        Highcharts.getJSON('{{URL::to("/")}}/laporan/api_jenis_reklame/'+tahun, function(data) {
-        
-             Highcharts.chart('grafik_lokasi_reklame', {
+        Highcharts.getJSON('{{URL::to("/")}}/laporan/api_lokasi_pelanggaran_reklame/'+tahun, function(data) {
+            
+              var seriesData = [];
+
+              for (var i = 0; i < data.length; i++) {
+                
+                try{
+                    seriesData.push({
+                        name : data[i].name,
+                        y : parseFloat(data[i].y)
+                    });
+                }catch(error){
+                    seriesData[i] = 0;
+                }
+
+                    console.log(seriesData);
+              }    
+
+             Highcharts.chart('grafik_lokasi_pelanggaran_reklame', {
                     chart: {
                         type: 'pie',
                         options3d: {
@@ -52,46 +68,37 @@
                         }
                     },
                     title: {
-                        text: 'Akumulasi Lokasi Pelanggaran Tahun '+tahun
+                        text: 'Akumulasi Lokasi Pelanggaran Reklame Tahun '+tahun
                     },
                     accessibility: {
                         point: {
                             valueSuffix: '%'
                         }
                     },
-                     plotOptions: {
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
                         pie: {
                             allowPointSelect: true,
                             cursor: 'pointer',
-                            depth: 35,
+                            depth: 30,
                             dataLabels: {
                                 enabled: true,
                                 format: '{point.name}'
                             }
                         }
                     },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    
                     series: [{
                         type: 'pie',
-                        name: 'Prosentase  ',
-                        data: data
+                        name: 'Prosentase',
+                        data: seriesData
                         
                     }]
                 });
 
             
         });
-
-
-        function runChart1(){
-
-              
-
-        }
-
 
 
 </script>

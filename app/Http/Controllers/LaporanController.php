@@ -272,5 +272,19 @@ class LaporanController extends Controller
         echo $pelanggaran;
     }
 
+     public function api_lokasi_pelanggaran_reklame($tahun){
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->where('pelanggarans.id_kegiatan','=',1)
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+         echo $pelanggaran;
+
+    }
 
 }

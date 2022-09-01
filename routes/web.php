@@ -60,7 +60,9 @@ Route::get('laporan/un_proses_laporan/{id}',[LaporanController::class, 'un_prose
 Route::get('laporan/api_total_kegiatan/{tahun}',[LaporanController::class, 'api_total_kegiatan'])->name('api_total_kegiatan');
 Route::get('laporan/api_jenis_penertiban/{tahun}',[LaporanController::class, 'api_jenis_penertiban'])->name('api_jenis_penertiban');
 Route::get('laporan/api_lokasi_pelanggaran/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran'])->name('api_lokasi_pelanggaran');
+
 Route::get('laporan/api_jenis_reklame/{tahun}',[LaporanController::class, 'api_jenis_reklame'])->name('api_jenis_reklame');
+Route::get('laporan/api_lokasi_pelanggaran_reklame/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_reklame'])->name('api_lokasi_pelanggaran_reklame');
 
 
 ////ADMINISTRATION
