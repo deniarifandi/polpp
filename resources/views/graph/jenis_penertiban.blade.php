@@ -174,31 +174,31 @@
             series: [
                 {
                     name: 'Reklame',
-                    data: [seriesData[0]]
+                    data: [parseFloat(seriesData[0])]
 
                 }, {
                     name: 'PKL',
-                    data: [seriesData[1]]
+                    data: [parseFloat(seriesData[1])]
 
                 }, {
                     name: 'AnJal-GePeng',
-                    data: [seriesData[2]]
+                    data: [parseFloat(seriesData[2])]
 
                 }, {
                     name: 'PSK',
-                    data: [seriesData[3]]
+                    data: [parseFloat(seriesData[3])]
                 },{
                     name: 'Minol',
-                    data: [seriesData[4]]
+                    data: [parseFloat(seriesData[4])]
                 },{
                     name: 'Pemondokan',
-                    data: [seriesData[5]]
+                    data: [parseFloat(seriesData[5])]
                 },{
                     name: 'Parkir Liar',
-                    data: [seriesData[6]]
+                    data: [parseFloat(seriesData[6])]
                 },{
                     name: 'Prokes',
-                    data: [seriesData[7]]
+                    data: [parseFloat(seriesData[7])]
                 }
 
                 ],
