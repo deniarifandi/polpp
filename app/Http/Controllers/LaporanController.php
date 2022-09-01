@@ -259,6 +259,7 @@ class LaporanController extends Controller
         $pelanggaran = DB::table('kecamatans')
                     ->select('kecamatans.nama',DB::raw('count(id_kecamatan) as data'))
                     ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
                     ->groupBy('nama')
                     ->orderBy('kecamatans.id')
                     ->get();
