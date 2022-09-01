@@ -88,11 +88,11 @@
                     type: 'pie',
                     name: 'Prosentase',
                     data: [
-                        ['Blimbing', seriesData[0]],
-                        ['Kedungkandang', seriesData[1]],
-                        ['Klojen', seriesData[2]],
-                        ['Lowokwaru', seriesData[3]],
-                        ['Sukun', seriesData[4]]
+                        ['Blimbing', parseFloat(seriesData[0])],
+                        ['Kedungkandang', parseFloat(seriesData[1])],
+                        ['Klojen', parseFloat(seriesData[2])],
+                        ['Lowokwaru', parseFloat(seriesData[3])],
+                        ['Sukun', parseFloat(seriesData[4])]
                     ]
                 }]
             });
