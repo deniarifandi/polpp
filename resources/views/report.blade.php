@@ -424,6 +424,39 @@
           </div>
 
 
+          <h2>Prokes</h2>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Lokasi Pelanggaran Prokes
+                  </h5>
+                  @include('graph.lokasi_pelanggaran_Prokes')
+                </div>
+                
+              </div>
+            </div>
+
+             <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tindak Lanjut Prokes
+                  </h5>
+                    @include('graph.jenis_tindak_lanjut_Prokes')
+                </div>
+                
+              </div>
+            </div>
+
+          
+          </div>
+
     </section>
 
     <script type="text/javascript">

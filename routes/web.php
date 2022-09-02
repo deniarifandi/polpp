@@ -88,6 +88,9 @@ Route::get('laporan/api_jenis_tindak_lanjut_pemondokan/{tahun}',[LaporanControll
 Route::get('laporan/api_lokasi_pelanggaran_parkir/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_parkir'])->name('api_lokasi_pelanggaran_parkir');
 Route::get('laporan/api_jenis_tindak_lanjut_parkir/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_parkir'])->name('api_jenis_tindak_lanjut_parkir');
 
+Route::get('laporan/api_lokasi_pelanggaran_prokes/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_prokes'])->name('api_lokasi_pelanggaran_prokes');
+Route::get('laporan/api_jenis_tindak_lanjut_prokes/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_prokes'])->name('api_jenis_tindak_lanjut_prokes');
+
 ////ADMINISTRATION
 Route::get('administration/index',[AdministrationController::class, 'index'])->name('dashboard_admin')->middleware(['auth']);
 
