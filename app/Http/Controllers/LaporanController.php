@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Image;
+use Illuminate\Validation\Rules;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LaporanController extends Controller
 {
@@ -596,6 +599,21 @@ class LaporanController extends Controller
 
         echo $pelanggaran;
 
+    }
+
+
+    public function register_user(Request $request){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
     }
 
 }

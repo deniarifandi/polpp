@@ -19,7 +19,13 @@ use App\Http\Controllers\AdministrationController;
 
 Route::get('/', function () {
     return redirect('/front');
-});
+})->name("base");
+
+Route::get('/registerUser', function () {
+    return view('/auth/register_user');
+})->middleware(['auth']);
+Route::post('/register_user', [LaporanController::class, 'register_user'])->name('register_user');
+
 
 Route::get('/front', function () {
 	return view('front');
