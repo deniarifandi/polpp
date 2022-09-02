@@ -435,7 +435,7 @@
                   <h5 class="card-title">
                     Lokasi Pelanggaran Prokes
                   </h5>
-                  @include('graph.lokasi_pelanggaran_Prokes')
+                  @include('graph.lokasi_pelanggaran_prokes')
                 </div>
                 
               </div>
@@ -448,7 +448,7 @@
                   <h5 class="card-title">
                     Tindak Lanjut Prokes
                   </h5>
-                    @include('graph.jenis_tindak_lanjut_Prokes')
+                    @include('graph.jenis_tindak_lanjut_prokes')
                 </div>
                 
               </div>
