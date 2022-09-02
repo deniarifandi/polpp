@@ -76,6 +76,17 @@ Route::get('laporan/api_lokasi_pelanggaran_anjal/{tahun}',[LaporanController::cl
 Route::get('laporan/api_jenis_pelanggaran_anjal/{tahun}',[LaporanController::class, 'api_jenis_pelanggaran_anjal'])->name('api_jenis_pelanggaran_anjal');
 Route::get('laporan/api_jenis_tindak_lanjut_anjal/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_anjal'])->name('api_jenis_tindak_lanjut_anjal');
 
+Route::get('laporan/api_lokasi_pelanggaran_psk/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_psk'])->name('api_lokasi_pelanggaran_psk');
+Route::get('laporan/api_jenis_tindak_lanjut_psk/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_psk'])->name('api_jenis_tindak_lanjut_psk');
+
+Route::get('laporan/api_lokasi_pelanggaran_minol/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_minol'])->name('api_lokasi_pelanggaran_minol');
+Route::get('laporan/api_jenis_tindak_lanjut_minol/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_minol'])->name('api_jenis_tindak_lanjut_minol');
+
+Route::get('laporan/api_lokasi_pelanggaran_pemondokan/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_pemondokan'])->name('api_lokasi_pelanggaran_pemondokan');
+Route::get('laporan/api_jenis_tindak_lanjut_pemondokan/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_pemondokan'])->name('api_jenis_tindak_lanjut_pemondokan');
+
+Route::get('laporan/api_lokasi_pelanggaran_parkir/{tahun}',[LaporanController::class, 'api_lokasi_pelanggaran_parkir'])->name('api_lokasi_pelanggaran_parkir');
+Route::get('laporan/api_jenis_tindak_lanjut_parkir/{tahun}',[LaporanController::class, 'api_jenis_tindak_lanjut_parkir'])->name('api_jenis_tindak_lanjut_parkir');
 
 ////ADMINISTRATION
 Route::get('administration/index',[AdministrationController::class, 'index'])->name('dashboard_admin')->middleware(['auth']);

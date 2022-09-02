@@ -290,6 +290,139 @@
       </div>
    
 
+        <h2>PSK</h2>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Lokasi Pelanggaran PSK
+                  </h5>
+                  @include('graph.lokasi_pelanggaran_psk')
+                </div>
+                
+              </div>
+            </div>
+
+             <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tindak Lanjut PSK
+                  </h5>
+                    @include('graph.jenis_tindak_lanjut_psk')
+                </div>
+                
+              </div>
+            </div>
+
+          
+          </div>
+
+
+           <h2>Minol</h2>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Lokasi Pelanggaran Minol
+                  </h5>
+                  @include('graph.lokasi_pelanggaran_minol')
+                </div>
+                
+              </div>
+            </div>
+
+             <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tindak Lanjut Minol
+                  </h5>
+                    @include('graph.jenis_tindak_lanjut_minol')
+                </div>
+                
+              </div>
+            </div>
+          
+          </div>
+
+            <h2>Pemondokan</h2>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Lokasi Pelanggaran Pemondokan
+                  </h5>
+                  @include('graph.lokasi_pelanggaran_pemondokan')
+                </div>
+                
+              </div>
+            </div>
+
+             <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tindak Lanjut Pemondokan
+                  </h5>
+                    @include('graph.jenis_tindak_lanjut_pemondokan')
+                </div>
+                
+              </div>
+            </div>
+
+          
+          </div>
+
+
+                <h2>Parkir</h2>
+
+          <div class="row">
+
+            <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Lokasi Pelanggaran Parkir Liar
+                  </h5>
+                  @include('graph.lokasi_pelanggaran_parkir')
+                </div>
+                
+              </div>
+            </div>
+
+             <div class="col-lg-6">
+              <div class="card">
+                
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tindak Lanjut Parkir Liar
+                  </h5>
+                    @include('graph.jenis_tindak_lanjut_parkir')
+                </div>
+                
+              </div>
+            </div>
+
+          
+          </div>
+
 
     </section>
 

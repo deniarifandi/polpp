@@ -445,4 +445,126 @@ class LaporanController extends Controller
     }
 
 
+    public function api_lokasi_pelanggaran_psk($tahun){
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->where('pelanggarans.id_kegiatan','=',4)
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+         echo $pelanggaran;
+
+    }
+
+      public function api_jenis_tindak_lanjut_psk($tahun){
+
+              $pelanggaran = DB::table('pelanggarans')
+                    ->select('tindak_lanjuts.nama as name',DB::raw('count(tindak_lanjuts.nama) as data'))
+                    ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut')
+                    ->where('id_kegiatan','=',4)
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->groupBy('tindak_lanjuts.nama')
+                    ->orderBy('tindak_lanjuts.id')
+                    ->get();
+
+        echo $pelanggaran;
+
+    }
+
+     public function api_lokasi_pelanggaran_minol($tahun){
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->where('pelanggarans.id_kegiatan','=',5)
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+         echo $pelanggaran;
+
+    }
+
+      public function api_jenis_tindak_lanjut_minol($tahun){
+
+              $pelanggaran = DB::table('pelanggarans')
+                    ->select('tindak_lanjuts.nama as name',DB::raw('count(tindak_lanjuts.nama) as data'))
+                    ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut')
+                    ->where('id_kegiatan','=',5)
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->groupBy('tindak_lanjuts.nama')
+                    ->orderBy('tindak_lanjuts.id')
+                    ->get();
+
+        echo $pelanggaran;
+
+    }
+
+
+      public function api_lokasi_pelanggaran_pemondokan($tahun){
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->where('pelanggarans.id_kegiatan','=',6)
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+         echo $pelanggaran;
+
+    }
+
+      public function api_jenis_tindak_lanjut_pemondokan($tahun){
+
+              $pelanggaran = DB::table('pelanggarans')
+                    ->select('tindak_lanjuts.nama as name',DB::raw('count(tindak_lanjuts.nama) as data'))
+                    ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut')
+                    ->where('id_kegiatan','=',6)
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->groupBy('tindak_lanjuts.nama')
+                    ->orderBy('tindak_lanjuts.id')
+                    ->get();
+
+        echo $pelanggaran;
+
+    }
+
+
+     public function api_lokasi_pelanggaran_parkir($tahun){
+
+        $pelanggaran = DB::table('kecamatans')
+                    ->select('kecamatans.nama as name',DB::raw('count(id_kecamatan) as y'))
+                    ->join('pelanggarans','pelanggarans.id_kecamatan','=','kecamatans.id','left')
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->where('pelanggarans.id_kegiatan','=',7)
+                    ->groupBy('nama')
+                    ->orderBy('kecamatans.id')
+                    ->get();
+
+         echo $pelanggaran;
+
+    }
+
+      public function api_jenis_tindak_lanjut_parkir($tahun){
+
+              $pelanggaran = DB::table('pelanggarans')
+                    ->select('tindak_lanjuts.nama as name',DB::raw('count(tindak_lanjuts.nama) as data'))
+                    ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut')
+                    ->where('id_kegiatan','=',7)
+                    ->where(DB::raw('YEAR(tgl_peristiwa)'), "=", $tahun)
+                    ->groupBy('tindak_lanjuts.nama')
+                    ->orderBy('tindak_lanjuts.id')
+                    ->get();
+
+        echo $pelanggaran;
+
+    }
+
 }
