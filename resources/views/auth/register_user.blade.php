@@ -10,7 +10,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="flex items-center justify-end mt-4">
-            <x-button onclick="window.location.replace('{{ URL::to('/') }}')">
+            <x-button onclick="window.location.replace('{{ URL::to('/user_management') }}')">
                     {{ __('Cancel') }}
             </x-button>
         </div>

@@ -258,20 +258,21 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-      {{--  <li class="nav-item">
+
+     {{--   <li class="nav-item">
         <a class="nav-link collapsed" href="{{ URL::to('/administration/index') }}">
           <i class="bi bi-gear"></i>
           <span>Administration</span>
         </a>
       </li><!-- End Profile Page Nav --> --}}
 
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" onclick="underConstruction()">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ URL::to('/user_management') }}">
           <i class="bi bi-card-list"></i>
           <span>User Management</span>
         </a>
       </li><!-- End Register Page Nav -->
-     --}}
+    
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <i class="bi bi-box-arrow-in-right"></i>

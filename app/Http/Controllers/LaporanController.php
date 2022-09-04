@@ -616,4 +616,13 @@ class LaporanController extends Controller
         ]);
     }
 
+
+    public function user_management(Request $request){
+
+        $users = DB::table('users')
+            ->get();
+
+        return view('user_management',['users'=>$users]);
+    }
+
 }

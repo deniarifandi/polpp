@@ -31,6 +31,8 @@ Route::get('/front', function () {
 	return view('front');
 });
 
+Route::get('user_management', [LaporanController::class, 'user_management'])->name('user_management')->middleware(['auth']);
+
 Route::get('/report', function(){
 	
 	$data = KegiatanController::get_all_chart();
