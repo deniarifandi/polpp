@@ -13,7 +13,7 @@
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
         <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-        @include('graph.chart_theme')
+        {{-- @include('graph.chart_theme') --}}
 
     <div class="pagetitle">
       <h1>Dashboard Pelanggaran</h1>
