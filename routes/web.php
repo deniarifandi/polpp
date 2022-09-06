@@ -24,8 +24,12 @@ Route::get('/', function () {
 Route::get('/registerUser', function () {
     return view('/auth/register_user');
 })->middleware(['auth']);
-Route::post('/register_user', [LaporanController::class, 'register_user'])->name('register_user');
 
+
+
+Route::post('/register_user', [LaporanController::class, 'register_user'])->name('register_user');
+Route::get('/edit_user', [LaporanController::class, 'edit_user'])->name('edit_user');
+Route::delete('/delete_user', [LaporanController::class, 'delete_user'])->name('delete_user');
 
 Route::get('/front', function () {
 	return view('front');

@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="{{URL::to('/')}}">
+            <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
@@ -10,10 +10,9 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="flex items-center justify-end mt-4">
-            <x-button onclick="window.location.replace('{{ URL::to('/user_management') }}')" style="background-color: red; margin-bottom: 25px;">
+            <x-button onclick="window.location.replace('{{ URL::to('/user_management') }}')" style="background-color: red;">
                     {{ __('Cancel') }}
             </x-button>
-
         </div>
 
            
@@ -22,21 +21,21 @@
             @csrf
 
             <div>
-                <x-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')"  style="display: none;" />                
+                <x-input id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id')" value="{{$user[0]->id}}" required autofocus style="display: none;" />                
             </div>
 
             <!-- Name -->
             <div>
                 <x-label for="name" :value="__('Name')" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" value="{{$user[0]->name}}" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"  required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" value="{{ $user[0]->email }}" required />
             </div>
 
             <!-- Password -->
@@ -46,8 +45,8 @@
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="new-password" 
-
+                                 autocomplete="new-password" 
+                                placeholder="***tidak berubah***"
                                 />
             </div>
 
@@ -57,7 +56,8 @@
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation"  
+                                placeholder="***tidak berubah***"/>
             </div>
 
 

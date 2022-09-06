@@ -603,17 +603,49 @@ class LaporanController extends Controller
 
 
     public function register_user(Request $request){
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        if ($request->id == null) {
+            
+            $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            return redirect("/user_management")->with('success', 'berhasil');
+
+        }else{
+            
+            if ($request->password != null) {
+                $user = DB::table('users')
+                ->where('id', $request->id)
+                ->update(array(
+                    'name' => $request->name,
+                    'password' => Hash::make($request->password),
+                ));
+                 return redirect("/user_management")->with('success', 'berhasil');
+            }else{
+
+                $user = DB::table('users')
+                ->where('id', $request->id)
+                ->update(array(
+                    'name' => $request->name
+                ));
+                 return redirect("/user_management")->with('success', 'berhasil');
+
+            }
+
+
+
+        }
+        
+
     }
 
 
@@ -623,6 +655,28 @@ class LaporanController extends Controller
             ->get();
 
         return view('user_management',['users'=>$users]);
+    }
+
+    public function edit_user(Request $request){
+
+        // echo $_GET['user_id'];
+
+         $user = DB::table('users')
+            ->where('id', $_GET['user_id'])
+            ->get();
+
+        // echo $user;
+        return view('/auth/edit_user',["user" => $user]);
+
+    }
+
+    public function delete_user(Request $request){
+
+           // $pelanggaran = User::findOrFail($_GET['user_id']->id);
+           //  $pelanggaran->delete();
+
+            echo $request->id;
+
     }
 
 }

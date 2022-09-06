@@ -20,7 +20,7 @@
 
     @if ($message = Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Berhasil tambah Data Pelanggaran
+      Berhasil Tambah/Ubah Data User
       
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -28,7 +28,7 @@
 
     @if ($message = Session::get('successhapus'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Berhasil hapus data pelanggaran
+          Berhasil hapus data User
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
@@ -96,11 +96,11 @@
                               @endphp
                               @foreach($users as $user)
                                 
-                               {{--  <form id="deleteForm[{{ $pelanggaran->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('pelanggaran.destroy', $pelanggaran->id) }}">
+                                <form id="deleteForm[{{ $user->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('delete_user', $user->id) }}">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                
-                                </form> --}}
+                                </form>
 
                                 <tr>
                                   <td>{{ $user->id }}</td>
@@ -108,7 +108,7 @@
                             
 
                                   <td>
-                                    <a href="{{ url('pelanggaran')}}/edit/{{ $user->id }}" type="submit" class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
+                                    <a href="edit_user?user_id={{ $user->id }}" type="submit" class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
                                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"onclick="myFunction({{ $user->id }})" 
                                       @if($indexUser == 0)
                                         disabled="disabled" style="color:black; pointer-events: none;"  
@@ -162,7 +162,16 @@
 
     <script type="text/javascript">
       
-    
+     function myFunction(idPelanggaran) {
+        let text = "Yakin menghapus data ini?";
+        if (confirm(text) == true) {
+          document.getElementById("deleteForm["+idPelanggaran+"]").submit();
+         
+        } else {
+          
+        }
+        
+      }
 
     </script>
 
