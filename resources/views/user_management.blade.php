@@ -33,6 +33,13 @@
     </div>
     @endif
 
+     @if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          hapus data error : {{ $message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <section class="section dashboard">
       <div class="row">
 
@@ -96,10 +103,10 @@
                               @endphp
                               @foreach($users as $user)
                                 
-                                <form id="deleteForm[{{ $user->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('delete_user', $user->id) }}">
+                                <form id="deleteForm[{{ $user->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('delete_user') }}">
                                 {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                               
+                                {{ method_field('POST') }}
+                                <input type="text" name="id_user" value="{{$user->id}}">
                                 </form>
 
                                 <tr>

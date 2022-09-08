@@ -29,7 +29,7 @@ Route::get('/registerUser', function () {
 
 Route::post('/register_user', [LaporanController::class, 'register_user'])->name('register_user');
 Route::get('/edit_user', [LaporanController::class, 'edit_user'])->name('edit_user');
-Route::delete('/delete_user', [LaporanController::class, 'delete_user'])->name('delete_user');
+Route::post('/delete_user', [LaporanController::class, 'delete_user'])->name('delete_user');
 
 Route::get('/front', function () {
 	return view('front');

@@ -672,10 +672,24 @@ class LaporanController extends Controller
 
     public function delete_user(Request $request){
 
-           // $pelanggaran = User::findOrFail($_GET['user_id']->id);
-           //  $pelanggaran->delete();
+            // print_r($request->all());
 
-            echo $request->id;
+            
+
+             try{
+                echo $request->id_user;
+                $deleted = DB::table('users')->where('id', '=', $request->id_user)->delete();
+
+                return redirect("/user_management")->with('successhapus', 'berhasil');
+             }
+             catch(\Exception $e){
+
+                return redirect("/user_management")->with('error', $e->getMessage());
+
+             }
+
+            // echo "tes";
+            
 
     }
 
