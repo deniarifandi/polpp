@@ -87,6 +87,7 @@
                             <table class="table table-bordered" id="list_pelanggaran">
                             <thead>
                               <tr>
+                                <th>ID Laporan</th>
                                 <th scope="col">Regu <i class="fa fa-sort"></i></th>
                                 <th scope="col">Kegiatan</th>
                                 {{-- <th scope="col">Pemilik / Vendor</th> --}}
@@ -107,6 +108,7 @@
                                 </form>
 
                                 <tr>
+                                  <td>{{ $pelanggaran->id }}</td>
                                   <td>{{ $pelanggaran->nama_regu}}</td>
                                   <td>{{ $pelanggaran->nama_kegiatan}}</td>
                                   {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
