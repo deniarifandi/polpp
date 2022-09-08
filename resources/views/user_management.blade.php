@@ -106,7 +106,7 @@
                                 <form id="deleteForm[{{ $user->id }}]" style="max-width: 19px; margin: 0px" method="POST" action="{{ route('delete_user') }}">
                                 {{ csrf_field() }}
                                 {{ method_field('POST') }}
-                                <input type="text" name="id_user" value="{{$user->id}}">
+                                <input type="text" name="id_user" value="{{$user->id}}" style="display:none">
                                 </form>
 
                                 <tr>
