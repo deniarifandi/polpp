@@ -39,6 +39,10 @@
                 
                 <tbody>
                   <tr>
+                    <th>ID Laporan</th>
+                    <th>{{ $pelanggaran->id }}</th>
+                  </tr>
+                  <tr>
                     <th>Jenis Laporan</th>
                     <td>
                       @if($pelanggaran->id_jenis_laporan == 1)
