@@ -40,11 +40,11 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Laporan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" >
-                  <option selected value="">- Pilih Jenis Laporan -</option>
-                  <option value="1">Laporan Hasil Kegiatan (LHK)</option>
-                  <option value="2">Laporan Kegiatan Harian(LKH)</option>
-                  <option value="3">Cek Hasil Laporan</option>
+                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" readonly style="pointer-events: none;" disabled>
+                  {{-- <option selected value="">- Pilih Jenis Laporan -</option> --}}
+                  <option value="1" selected>Laporan Hasil Kegiatan (LHK)</option>
+                  {{-- <option value="2">Laporan Kegiatan Harian(LKH)</option>
+                  <option value="3">Cek Hasil Laporan</option> --}}
                 </select>
               </div>
             </div>
@@ -65,7 +65,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tanggal</label>
               <div class="col-sm-8">
-                <input type="date" name="tgl_peristiwa" class="form-control" >
+                <input type="date" name="tgl_peristiwa" class="form-control" value="@php echo date('Y-m-d') @endphp" readonly>
               </div>
             </div>
             <div class="row mb-3">

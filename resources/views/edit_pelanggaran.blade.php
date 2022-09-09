@@ -41,12 +41,12 @@
             <h5 class="card-title" >Detail Laporan</h5>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Laporan</label>
-              <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" id="id_jenis_laporan">
-                  <option selected value="">- Pilih Jenis Laporan -</option>
-                  <option value="1">Laporan Hasil Kegiatan (LHK)</option>
-                  <option value="2">Laporan Kegiatan Harian(LKH)</option>
-                  <option value="3">Cek Hasil Laporan</option>
+             <div class="col-sm-8">
+                <select class="form-select" aria-label="Default select example" name="id_jenis_laporan" readonly style="pointer-events: none;" disabled>
+                  {{-- <option selected value="">- Pilih Jenis Laporan -</option> --}}
+                  <option value="1" selected>Laporan Hasil Kegiatan (LHK)</option>
+                  {{-- <option value="2">Laporan Kegiatan Harian(LKH)</option>
+                  <option value="3">Cek Hasil Laporan</option> --}}
                 </select>
               </div>
             </div>
@@ -67,7 +67,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tanggal</label>
               <div class="col-sm-8">
-                <input type="date" name="tgl_peristiwa" class="form-control" value="{{$pelanggaran->tgl_peristiwa}}">
+                <input type="date" name="tgl_peristiwa" class="form-control" value="{{$pelanggaran->tgl_peristiwa}}" readonly>
               </div>
             </div>
             <div class="row mb-3" style="display: none;">
@@ -605,11 +605,11 @@
          //edit
         
 
-        document.getElementById("id_jenis_laporan").value = "{{ $pelanggaran->id_jenis_laporan }}";
+        // document.getElementById("id_jenis_laporan").value = "{{ $pelanggaran->id_jenis_laporan }}";
 
         document.getElementById("dropdown_regu").value =  "{{ $pelanggaran->id_regu }}";
         
-         document.getElementById("dropdown_pemilik").value =  "{{ $pelanggaran->id_pemilik }}";
+        document.getElementById("dropdown_pemilik").value =  "{{ $pelanggaran->id_pemilik }}";
         
         document.getElementById("dropdown_jenis_reklame").value =  "{{ $pelanggaran->id_jenis_reklame }}";
         

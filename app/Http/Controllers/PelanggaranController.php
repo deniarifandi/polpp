@@ -128,7 +128,7 @@ class PelanggaranController extends Controller
             
 
             //detail laporan
-            $pelanggaran->id_jenis_laporan  = $request->id_jenis_laporan;
+            $pelanggaran->id_jenis_laporan  = 1;
             
             $pelanggaran->tgl_peristiwa     = date_format(date_create($request->tgl_peristiwa),"Y-m-d");
             $pelanggaran->id_kegiatan       = $request->id_kegiatan;
