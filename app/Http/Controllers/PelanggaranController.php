@@ -49,6 +49,7 @@ class PelanggaranController extends Controller
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
                                 'pelanggarans.id',
+                                'pelanggarans.created_at',
                                 'regus.nama as nama_regu',
                                 'kegiatans.nama as nama_kegiatan',
                                 'jenis_pelanggarans.nama as nama_pelanggaran',

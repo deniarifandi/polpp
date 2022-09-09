@@ -114,7 +114,7 @@
                                   {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
                                   <td>{{ $pelanggaran->nama_pelanggaran}}</td>
                                   <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
-                                  <td>{{ date_format(date_create($pelanggaran->tgl_peristiwa), "d-M-Y") }}</td>
+                                  <td>{{ date( "d-M-Y H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
                                   <td>
                                   
                                     <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>

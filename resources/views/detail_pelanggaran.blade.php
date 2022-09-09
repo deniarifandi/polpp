@@ -60,7 +60,7 @@
                   </tr>
                   <tr>
                     <th>Tanggal</th>
-                    <td>{{ date( "Y-M-d H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
+                    <td>{{ date( "d-M-Y H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
                   </tr>
                   <tr>
                     <th>Kegiatan</th>
