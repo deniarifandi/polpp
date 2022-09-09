@@ -632,16 +632,16 @@
         });
 
 
-        map.on('click', (e) => {
-          // console.log(e);
-          // console.log(e.lngLat.lng);
+        // map.on('click', (e) => {
+        //   // console.log(e);
+        //   // console.log(e.lngLat.lng);
 
-          marker1.setLngLat(e.lngLat);
-          document.getElementById("lat").value = e.lngLat.lat;
-          document.getElementById("lon").value = e.lngLat.lng; 
+        //   marker1.setLngLat(e.lngLat);
+        //   document.getElementById("lat").value = e.lngLat.lat;
+        //   document.getElementById("lon").value = e.lngLat.lng; 
 
      
-          });
+        //   });
         
     </script>
 

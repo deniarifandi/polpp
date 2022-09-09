@@ -548,16 +548,15 @@
 
       function success(position) {
         console.log(position);
-        document.getElementById("lat").value = position.coords.latitude;
-        document.getElementById("lon").value = position.coords.longitude; 
+        document.getElementById("lat").value = {{ $pelanggaran->lat }};
+        document.getElementById("lon").value = {{ $pelanggaran->lon }}; 
+
+
           marker1 = new mapboxgl.Marker()
-          .setLngLat([position.coords.longitude, position.coords.latitude])
+          .setLngLat([{{ $pelanggaran->lon }}, {{ $pelanggaran->lat }}])
           .addTo(map);
 
-          console.log('watermark');
-          console.log(position.coords.longitude, position.coords.latitude);
-
-          map.flyTo({center:[position.coords.longitude, position.coords.latitude]});
+          map.flyTo({center:[{{ $pelanggaran->lon }}, {{ $pelanggaran->lat }}]});
 
       }
 
@@ -665,16 +664,16 @@
         });
 
 
-        map.on('click', (e) => {
-          // console.log(e);
-          // console.log(e.lngLat.lng);
+        // map.on('click', (e) => {
+        //   // console.log(e);
+        //   // console.log(e.lngLat.lng);
 
-          marker1.setLngLat(e.lngLat);
-          document.getElementById("lat").value = e.lngLat.lat;
-          document.getElementById("lon").value = e.lngLat.lng; 
+        //   marker1.setLngLat(e.lngLat);
+        //   document.getElementById("lat").value = e.lngLat.lat;
+        //   document.getElementById("lon").value = e.lngLat.lng; 
 
      
-          });
+        //   });
         
     </script>
 
