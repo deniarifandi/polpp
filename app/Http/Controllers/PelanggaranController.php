@@ -372,7 +372,8 @@ class PelanggaranController extends Controller
                             'jenis_penertiban_prokes.nama as prokes',
                             'pelanggarans.id_jenis_pelaku_usaha',
                             'pelanggarans.prokes_nama',
-                            'pelanggarans.prokes_no_identitas'
+                            'pelanggarans.prokes_no_identitas',
+                            'pelanggarans.created_at'
 
                         )
                         ->join('regus','regus.id','=','pelanggarans.id_regu','left')
