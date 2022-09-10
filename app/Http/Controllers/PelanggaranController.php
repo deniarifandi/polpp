@@ -16,11 +16,14 @@ use App\Models\Jenis_pkl;
 use App\Models\Jenis_anjal_gepeng;
 use App\Models\Jenis_penertiban_prokes;
 use DB;
+use Image;
 
 use App\Http\Requests\StorePelanggaranRequest;
 use App\Http\Requests\UpdatePelanggaranRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Filesystem\Filesystem;
+use File;
 
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Contracts\Support\Jsonable;
@@ -263,7 +266,92 @@ class PelanggaranController extends Controller
 
             try{
                 if (isset($request->foto_lokasi)) {
-                    Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);                    
+
+                   // Storage::disk('public')->put("foto_lokasi/".$pelanggaran->id, $request->foto_lokasi);    
+
+                      $image = $request->foto_lokasi;
+                      $nameImage = $request->foto_lokasi->getClientOriginalName();
+                      
+                      $size = Image::make($image->getRealPath())->filesize();
+                      //echo $size;
+                      echo "try remove 0";
+                      if ($size > 1000000 && $size < 5000000 ) {
+
+                          $height = Image::make($image->getRealPath())->height();
+                          $width  = Image::make($image->getRealPath())->width();
+                          $thumbImage = Image::make($image->getRealPath())->resize($width/2, $height/2);
+
+                            try{
+                                echo "try remove 2";
+                                echo "path = ".public_path('storage') .'/foto_lokasi/'.$pelanggaran->id;
+
+                                File::deleteDirectory(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id);
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }catch(Exception $e){
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }
+
+                          $thumbPath  = public_path('storage') .'/foto_lokasi/'.$pelanggaran->id.'/'. $nameImage; 
+                          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+                      }else if ($size >= 5000000 && $size < 10000000) {
+
+                          $height = Image::make($image->getRealPath())->height();
+                          $width  = Image::make($image->getRealPath())->width();
+                          $thumbImage = Image::make($image->getRealPath())->resize($width/4, $height/4);
+                          
+                            try{
+                                echo "try remove 2";
+                                echo "path = ".public_path('storage') .'/foto_lokasi/'.$pelanggaran->id;
+
+                                File::deleteDirectory(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id);
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }catch(Exception $e){
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }
+
+                          $thumbPath  = public_path('storage') .'/foto_lokasi/'.$pelanggaran->id.'/'. $nameImage; 
+                          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+                      }else if ($size >= 10000000) {
+
+                          $height = Image::make($image->getRealPath())->height();
+                          $width  = Image::make($image->getRealPath())->width();
+                          $thumbImage = Image::make($image->getRealPath())->resize($width/6, $height/6);
+                         
+                            try{
+                                echo "try remove 2";
+                                echo "path = ".public_path('storage') .'/foto_lokasi/'.$pelanggaran->id;
+
+                                File::deleteDirectory(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id);
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }catch(Exception $e){
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }
+
+                          $thumbPath  = public_path('storage') .'/foto_lokasi/'.$pelanggaran->id.'/'. $nameImage; 
+                          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+
+                      }else{
+                          $thumbImage = Image::make($image->getRealPath());
+                          
+
+                            try{
+                                echo "try remove 2";
+                                echo "path = ".public_path('storage') .'/foto_lokasi/'.$pelanggaran->id;
+
+                                File::deleteDirectory(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id);
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }catch(Exception $e){
+                                mkdir(public_path('storage') .'/foto_lokasi/'.$pelanggaran->id, 0777, true);
+                            }
+
+
+                          $thumbPath  = public_path('storage') . '/foto_lokasi/'.$pelanggaran->id.'/'.$nameImage; 
+                          $thumbImage = Image::make($thumbImage)->save($thumbPath);
+                         
+                      }  
+
                 }
             
             }catch(\Exception $e){
