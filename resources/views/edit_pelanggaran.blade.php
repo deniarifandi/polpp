@@ -213,12 +213,14 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis AnJal / GePeng</label>
               <div class="col-sm-8">
-                 <select class="form-select" aria-label="Default select example" id="dropdown_jenis_anjal_gepeng" name="id_jenis_anjal_gepeng" >
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_anjal_gepeng" id="dropdown_jenis_anjal_gepeng" onchange="checkSelected(8)">
                   <option selected value="">- Pilih Jenis AnJal / GePeng -</option>
+                  <option value="tambahvalue">+ Tambah Jenis Anjal/Gepeng Baru +</option>
                   @foreach($jenis_anjal_gepengs as $jenis_anjal_gepeng)
                   <option value="{{$jenis_anjal_gepeng->id}}">{{$jenis_anjal_gepeng->nama}}</option>
                   @endforeach
                 </select>
+                <input type="text" id="input_tambah_jenis_anjal" class="form-control" name="input_tambah_jenis_anjal" style="display: none" placeholder="Jenis Anjal/Gepeng Baru">
               </div>
             </div>
            
@@ -747,6 +749,14 @@
             document.getElementById("input_tambah_tindak_lanjut").style.display = "block";
           }else{
             document.getElementById("input_tambah_tindak_lanjut").style.display = "none";
+          }
+        }else if(id == 8){
+            var e = document.getElementById("dropdown_jenis_anjal_gepeng");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_anjal").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_anjal").style.display = "none";
           }
         }
         

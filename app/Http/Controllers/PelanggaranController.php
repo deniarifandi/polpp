@@ -151,7 +151,7 @@ class PelanggaranController extends Controller
             $pelanggaran->pkl_alamat        = $request->pkl_alamat;
 
             //detail anjalgepeng
-            $pelanggaran->id_jenis_anjal_gepeng      = $request->id_jenis_anjal_gepeng;
+            //$pelanggaran->id_jenis_anjal_gepeng      = $request->id_jenis_anjal_gepeng;
             $pelanggaran->anjal_gepeng_nama          = $request->anjal_gepeng_nama;
             $pelanggaran->anjal_gepeng_no_identitas  = $request->anjal_gepeng_no_identitas;
 
@@ -256,6 +256,14 @@ class PelanggaranController extends Controller
                 $pelanggaran->id_tindak_lanjut = $tindakLanjut->id;
             }else{
                 $pelanggaran->id_tindak_lanjut      = $request->id_tindak_lanjut;
+            }
+
+            if($request->id_jenis_anjal_gepeng == "tambahvalue"){
+                $jenisAnjalGepeng = new Jenis_anjal_gepeng;
+                $jenisAnjalGepeng->nama = $request->input_tambah_jenis_anjal;
+                $jenisAnjalGepeng->save();
+                $pelanggaran->id_jenis_anjal_gepeng = $jenisAnjalGepeng->id;
+
             }
 
 
