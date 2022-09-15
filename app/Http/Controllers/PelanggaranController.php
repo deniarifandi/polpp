@@ -160,9 +160,18 @@ class PelanggaranController extends Controller
             $pelanggaran->psk_no_identitas  = $request->psk_no_identitas;            
             $pelanggaran->psk_kelamin       = $request->psk_kelamin;
 
-            //detail minol
-            $pelanggaran->minol_nama          = $request->minol_nama;
-            $pelanggaran->minol_no_identitas  = $request->minol_no_identitas;            
+            if ($request->psk_nama == null) {
+                //detail minol
+                $pelanggaran->minol_nama          = $request->minol_nama;
+                $pelanggaran->minol_no_identitas  = $request->minol_no_identitas;            
+            }else{
+                $pelanggaran->minol_nama        = $request->psk_barang_bukti;
+                $pelanggaran->minol_no_identitas= $request->psk_jml_barang_bukti;    
+            }
+
+            
+
+            
 
             //detail pemondokan
             $pelanggaran->pemondokan_nama          = $request->pemondokan_nama;
