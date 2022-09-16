@@ -308,6 +308,30 @@
                 <input type="text" class="form-control" name="minol_no_identitas">
               </div>
             </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Barang Bukti</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="minol_barang_bukti">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jumlah Barang Bukti</label>
+              <div class="col-sm-8">
+                <input type="number" class="form-control" name="minol_jml_barang_bukti">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Golongan</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="minol_golongan">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">No. Ijin Operasional</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="minol_no_ijin">
+              </div>
+            </div>
 
           </div>
         </div>

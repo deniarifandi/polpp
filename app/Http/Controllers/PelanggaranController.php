@@ -156,26 +156,33 @@ class PelanggaranController extends Controller
             $pelanggaran->anjal_gepeng_no_identitas  = $request->anjal_gepeng_no_identitas;
 
             //detail PSK
-            $pelanggaran->psk_nama          = $request->psk_nama;
-            $pelanggaran->psk_no_identitas  = $request->psk_no_identitas;            
-            $pelanggaran->psk_kelamin       = $request->psk_kelamin;
+          
 
-            if ($request->psk_nama == null) {
+            if ($request->id_kegiatan == 5) {
                 //detail minol
                 $pelanggaran->minol_nama          = $request->minol_nama;
-                $pelanggaran->minol_no_identitas  = $request->minol_no_identitas;            
-            }else{
+                $pelanggaran->minol_no_identitas  = $request->minol_no_identitas;
+                $pelanggaran->psk_nama          = $request->minol_barang_bukti;
+                $pelanggaran->psk_no_identitas  = $request->minol_jml_barang_bukti;            
+                $pelanggaran->psk_kelamin       = $request->minol_golongan;
+                $pelanggaran->pemondokan_no_identitas = $request->minol_no_ijin;
+            }else if($request->id_kegiatan == 4){
+                $pelanggaran->psk_nama          = $request->psk_nama;
+                $pelanggaran->psk_no_identitas  = $request->psk_no_identitas;            
+                $pelanggaran->psk_kelamin       = $request->psk_kelamin;
                 $pelanggaran->minol_nama        = $request->psk_barang_bukti;
                 $pelanggaran->minol_no_identitas= $request->psk_jml_barang_bukti;    
+            }else if ($request->id_kegiatan == 6){
+                //detail pemondokan
+                $pelanggaran->pemondokan_nama          = $request->pemondokan_nama;
+                $pelanggaran->pemondokan_no_identitas  = $request->pemondokan_no_identitas;            
             }
 
             
 
             
 
-            //detail pemondokan
-            $pelanggaran->pemondokan_nama          = $request->pemondokan_nama;
-            $pelanggaran->pemondokan_no_identitas  = $request->pemondokan_no_identitas;            
+            
 
             //detail parkir
             $pelanggaran->parkir_nama          = $request->parkir_nama;
