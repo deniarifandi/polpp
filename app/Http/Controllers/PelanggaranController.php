@@ -156,6 +156,15 @@ class PelanggaranController extends Controller
             $pelanggaran->anjal_gepeng_no_identitas  = $request->anjal_gepeng_no_identitas;
 
             //detail PSK
+
+             //detail parkir
+            $pelanggaran->parkir_nama          = $request->parkir_nama;
+            $pelanggaran->parkir_no_identitas  = $request->parkir_no_identitas;  
+
+            //prokes
+           
+            $pelanggaran->id_jenis_pelaku_usaha = $request->id_jenis_pelaku_usaha;
+           
           
 
             if ($request->id_kegiatan == 5) {
@@ -176,23 +185,16 @@ class PelanggaranController extends Controller
                 //detail pemondokan
                 $pelanggaran->pemondokan_nama          = $request->pemondokan_nama;
                 $pelanggaran->pemondokan_no_identitas  = $request->pemondokan_no_identitas;            
+            }else if($request->id_kegiatan == 8){
+                $pelanggaran->prokes_nama           = $request->prokes_nama;
+                $pelanggaran->prokes_no_identitas   = $request->prokes_no_identitas;
+                $pelanggaran->parkir_nama           = $request->nomor_surat;
+                $pelanggaran->parkir_no_identitas   = $request->pelaku_usaha_nama;
+
             }
 
             
 
-            
-
-            
-
-            //detail parkir
-            $pelanggaran->parkir_nama          = $request->parkir_nama;
-            $pelanggaran->parkir_no_identitas  = $request->parkir_no_identitas;  
-
-            //prokes
-            $pelanggaran->id_jenis_penertiban_prokes    =    $request->id_jenis_penertiban_prokes;
-            $pelanggaran->id_jenis_pelaku_usaha = $request->id_jenis_pelaku_usaha;
-            $pelanggaran->prokes_nama           = $request->prokes_nama;
-            $pelanggaran->prokes_no_identitas   =   $request->prokes_no_identitas;
 
             //pelanggaran & tindak lanjut
            // $pelanggaran->id_jenis_pelanggaran  = $request->id_jenis_pelanggaran;
@@ -280,6 +282,17 @@ class PelanggaranController extends Controller
                 $jenisAnjalGepeng->save();
                 $pelanggaran->id_jenis_anjal_gepeng = $jenisAnjalGepeng->id;
 
+            }else{
+                $pelanggaran->id_jenis_anjal_gepeng = $request->id_jenis_anjal_gepeng;                
+            }
+
+            if ($request->id_jenis_penertiban_prokes == "tambahvalue") {
+                $jenisPenertibanProkes = new Jenis_penertiban_prokes;
+                $jenisPenertibanProkes->nama = $request->input_tambah_jenis_penertiban_prokes;
+                $jenisPenertibanProkes->save();
+                $pelanggaran->id_jenis_penertiban_prokes = $jenisPenertibanProkes->id;
+            }else{
+                 $pelanggaran->id_jenis_penertiban_prokes    =    $request->id_jenis_penertiban_prokes;
             }
 
 

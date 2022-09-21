@@ -401,12 +401,14 @@
              <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Penertiban Prokes</label>
               <div class="col-sm-8">
-                 <select class="form-select" aria-label="Default select example" name="id_jenis_penertiban_prokes" >
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_penertiban_prokes" id="id_jenis_penertiban_prokes" onchange="checkSelected(9)">
                   <option selected value="">- Pilih Jenis Penertiban Prokes -</option>
+                    <option value="tambahvalue">+ Tambah Penertiban Baru +</option>
                   @foreach($jenis_penertiban_prokess as $jenis_penertiban_prokes)
                   <option value="{{$jenis_penertiban_prokes->id}}">{{$jenis_penertiban_prokes->nama}}</option>
                   @endforeach
                 </select>
+                 <input type="text" id="input_tambah_jenis_penertiban_prokes" class="form-control" name="input_tambah_jenis_penertiban_prokes" style="display: none" placeholder="Jenis penertiban prokes Baru">
               </div>
             </div>
 
@@ -421,19 +423,30 @@
               </div>
             </div>
 
-            <div class="row mb-3">
+          <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Nama Usaha</label>
               <div class="col-sm-8">
-               <input type="text" class="form-control" name="prokes_nama">
+               <input type="text" class="form-control" name="prokes_nama" >
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nomor Surat</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="nomor_surat" >
+              </div>
+            </div>
+                 <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku Usaha</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pelaku_usaha_nama">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="prokes_no_identitas">
+                <input type="text" class="form-control" name="prokes_no_identitas" >
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -761,6 +774,14 @@
             document.getElementById("input_tambah_jenis_anjal").style.display = "block";
           }else{
             document.getElementById("input_tambah_jenis_anjal").style.display = "none";
+          }
+        }else if(id == 9){
+            var e = document.getElementById("id_jenis_penertiban_prokes");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "none";
           }
         }
         

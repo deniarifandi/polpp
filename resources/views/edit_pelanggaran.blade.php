@@ -405,6 +405,7 @@
               <div class="col-sm-8">
                  <select class="form-select" aria-label="Default select example" name="id_jenis_penertiban_prokes" id="dropdown_jenis_penertiban_prokes">
                   <option selected value="">- Pilih Jenis Penertiban Prokes -</option>
+                  
                   @foreach($jenis_penertiban_prokess as $jenis_penertiban_prokes)
                   <option value="{{$jenis_penertiban_prokes->id}}">{{$jenis_penertiban_prokes->nama}}</option>
                   @endforeach
@@ -430,11 +431,24 @@
               </div>
             </div>
             <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nomor Surat</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="nomor_surat" value="{{ $pelanggaran->parkir_nama }}">
+              </div>
+            </div>
+                 <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku Usaha</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pelaku_usaha_nama" value="{{ $pelanggaran->parkir_no_identitas }}">
+              </div>
+            </div>
+            <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">No. Identitas</label>
               <div class="col-sm-8">
                 <input type="text" class="form-control" name="prokes_no_identitas" value="{{ $pelanggaran->prokes_no_identitas }}">
               </div>
             </div>
+           
 
           </div>
         </div>
