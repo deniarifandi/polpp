@@ -26,6 +26,9 @@
                 <div class="card-body">
                   <h5 class="card-title">Kelola Administrasi Website</h5>
 
+                     <form action="{{ route('update_config') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+
                       <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -36,28 +39,35 @@
                             <tbody>
                               <tr>
                                 <th>Judul Website</th>
-                                <th><input type="text" name="judul_web"></th>
+                                <th><input class="form-control" type="text" name="judul" value="{{ $admin[0]->value }}"></th>
                               </tr>
-                              <tr>
+                              {{-- <tr>
                                 <th>Sub Judul Website</th>
-                                <th><input type="text" name="judul_web"></th>
-                              </tr>
+                                <th><input class="form-control"  type="text" name="judul_web"></th>
+                              </tr> --}}
                              
                               <tr>
                                 <th>Alamat</th>
-                                <th><input type="text" name="judul_web"></th>
+                                <th><input class="form-control"  type="text" name="alamat" value="{{ $admin[1]->value }}"></th>
                               </tr>
                               <tr>
                                 <th>E-mail</th>
-                                <th><input type="text" name="judul_web"></th>
+                                <th><input class="form-control"  type="text" name="email" value="{{ $admin[2]->value }}"></th>
                               </tr>
                               <tr>
                                 <th>Telepon</th>
-                                <th><input type="text" name="judul_web"></th>
+                                <th><input class="form-control"  type="text" name="telepon" value="{{ $admin[3]->value }}"></th>
+                              </tr>
+                              <tr>
+                                <th>Kelola Grup</th>
+                                <th><a href="" class="btn btn-sm btn-primary">Kelola</a></th>
                               </tr>
                             
                             </tbody>
                           </table>
+
+                           <button type="submit" class="btn btn-success">Simpan & Lanjutkan</button>  
+                      </form><!-- End Gene
 
                   </div>
               </div>

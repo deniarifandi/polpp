@@ -15,6 +15,7 @@ use App\Models\Kelurahan;
 use App\Models\Jenis_pkl;
 use App\Models\Jenis_anjal_gepeng;
 use App\Models\Jenis_penertiban_prokes;
+use App\Models\Administration;
 use DB;
 use Image;
 

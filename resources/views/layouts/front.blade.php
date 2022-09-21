@@ -59,7 +59,7 @@
 
     <div class="hero-container">
       <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
-      <h1 data-aos="zoom-in">Web Aplikasi Pencegahan dan Penanganan Gangguan Trantibum</h1>
+      <h1 data-aos="zoom-in">{{ $admin[0]->value }}</h1>
       <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
 
       <a data-aos="fade-up" data-aos-delay="200" href="#contact" class="btn-get-started scrollto">Get Started</a>
@@ -281,19 +281,19 @@
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>Jl. Simpang Majapahit No.1 Malang</p>
+                <p>{{ $admin[1]->value }}</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>{{ $admin[2]->value }}</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>0341 – 353939</p>
+                <p>{{ $admin[3]->value }}</p>
               </div>
 
             </div>

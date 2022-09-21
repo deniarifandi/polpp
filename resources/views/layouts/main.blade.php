@@ -259,12 +259,12 @@
       </li><!-- End Profile Page Nav -->
 
 
-     {{--   <li class="nav-item">
+       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ URL::to('/administration/index') }}">
           <i class="bi bi-gear"></i>
           <span>Administration</span>
         </a>
-      </li><!-- End Profile Page Nav --> --}}
+      </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ URL::to('/user_management') }}">

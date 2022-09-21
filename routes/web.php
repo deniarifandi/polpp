@@ -5,6 +5,7 @@ use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AdministrationController;
+use App\Models\Administration;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,10 @@ Route::get('/edit_user', [LaporanController::class, 'edit_user'])->name('edit_us
 Route::post('/delete_user', [LaporanController::class, 'delete_user'])->name('delete_user');
 
 Route::get('/front', function () {
-	return view('front');
+	$Administration = Administration::select("*")->get();
+        return view('front',['admin' => $Administration]);
+
+	// return view('front');
 });
 
 Route::get('user_management', [LaporanController::class, 'user_management'])->name('user_management')->middleware(['auth']);
@@ -106,7 +110,7 @@ Route::get('laporan/api_jenis_tindak_lanjut_prokes/{tahun}',[LaporanController::
 ////ADMINISTRATION
 Route::get('administration/index',[AdministrationController::class, 'index'])->name('dashboard_admin')->middleware(['auth']);
 
-
+Route::post('administration/update_config',[AdministrationController::class, 'update_config'])->name('update_config');
 
 
 ////////////TESTING
