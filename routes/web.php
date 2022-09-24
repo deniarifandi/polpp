@@ -22,9 +22,13 @@ Route::get('/', function () {
     return redirect('/front');
 })->name("base");
 
+
+
+
 Route::get('/registerUser', function () {
     return view('/auth/register_user');
 })->middleware(['auth']);
+
 
 
 
@@ -111,7 +115,10 @@ Route::get('laporan/api_jenis_tindak_lanjut_prokes/{tahun}',[LaporanController::
 Route::get('administration/index',[AdministrationController::class, 'index'])->name('dashboard_admin')->middleware(['auth']);
 
 Route::post('administration/update_config',[AdministrationController::class, 'update_config'])->name('update_config');
-
+Route::get('administration/list_grup', [AdministrationController::class, 'list_grup'])->name("list_grup");
+Route::get('administration/aktifkan_grup/{id}', [AdministrationController::class, 'aktifkan_grup'])->name("aktifkan_grup");
+Route::get('administration/nonaktifkan_grup/{id}', [AdministrationController::class, 'nonaktifkan_grup'])->name("nonaktifkan_grup");
+Route::post('administration/tambah_grup', [AdministrationController::class, 'tambah_grup'])->name("tambah_grup");
 
 ////////////TESTING
 Route::get('getfile', [PelanggaranController::class, 'getfile']);

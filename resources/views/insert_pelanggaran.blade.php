@@ -53,13 +53,13 @@
               <div class="col-sm-8">
                 <select class="form-select" aria-label="Default select example" name="id_regu" id="dropdown_regu"  onchange="checkSelected(1)">
                   <option selected value="">- Pilih Regu -</option>
-                  <option value="tambahvalue">+ Tambah Regu +</option>
+                  {{-- <option value="tambahvalue">+ Tambah Regu +</option> --}}
                   @foreach($regus as $regu)
                   <option value="{{$regu->id}}">{{$regu->nama}}</option>
                   @endforeach
                 </select>
 
-                <input type="text" id="input_tambah_regu" class="form-control" name="input_tambah_regu" style="display: none" placeholder="Nama Regu Baru">
+                {{-- <input type="text" id="input_tambah_regu" class="form-control" name="input_tambah_regu" style="display: none" placeholder="Nama Regu Baru"> --}}
               </div>
             </div>
             <div class="row mb-3">

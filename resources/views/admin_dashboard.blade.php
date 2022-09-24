@@ -60,7 +60,7 @@
                               </tr>
                               <tr>
                                 <th>Kelola Grup</th>
-                                <th><a href="" class="btn btn-sm btn-primary">Kelola</a></th>
+                                <th><a href="{{ route('list_grup') }}" class="btn btn-sm btn-primary">Kelola</a></th>
                               </tr>
                             
                             </tbody>
@@ -73,9 +73,7 @@
               </div>
 
           </div>
-        </div><!-- End Left side columns -->
-
-        <!-- Right side columns -->
+        </div>
        
       </div>
     </section>

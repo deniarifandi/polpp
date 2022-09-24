@@ -83,7 +83,7 @@ class PelanggaranController extends Controller
     public function create()
     {
 
-        $regus              = Regu::select('*')->get();
+        $regus              = Regu::select('*')->where('keterangan','=','1')->get();
         $kegiatans          = Kegiatan::select('*')->get();
         $vendors            = Vendor::select('*')->orderBy('nama')->get();
         $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
@@ -214,6 +214,7 @@ class PelanggaranController extends Controller
             if ($request->id_regu == "tambahvalue") {
                 $regu = new Regu;
                 $regu->nama = $request->input_tambah_regu;
+                $regu->keterangan = 1;
                 $regu->save();
                 $pelanggaran->id_regu = $regu->id;
             }else{
