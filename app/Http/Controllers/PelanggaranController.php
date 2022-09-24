@@ -534,7 +534,7 @@ class PelanggaranController extends Controller
     {
         
 
-        $regus              = Regu::select('*')->get();
+        $regus              = Regu::select('*')->where('keterangan','=','1')->get();
         $kegiatans          = Kegiatan::select('*')->get();
         $vendors            = Vendor::select('*')->orderBy('nama')->get();
         $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
