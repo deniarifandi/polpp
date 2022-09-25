@@ -40,7 +40,18 @@
         <div class="col-lg-12">
              <div class="card" style="min-width: 800px">
               <div class="card-body" >
-            
+                
+                {{-- <br> --}}
+                {{-- <h4>Filter</h4> --}}
+                
+               {{--  <div class="row">
+                  <div class="col-lg-3">
+                    <select class="form-select" aria-label="Default select example" name="id_jenis_laporan">
+                      <option value="1" selected>Laporan Hasil Kegiatan (LHK)</option>
+                    </select>   
+                  </div>
+                </div>
+                  --}}
               
                 <div>
                     <div class="table-responsive">
@@ -88,12 +99,78 @@
                             <thead>
                               <tr>
                                 <th>ID Laporan</th>
-                                <th scope="col">Regu <i class="fa fa-sort"></i></th>
-                                <th scope="col">Kegiatan</th>
-                                {{-- <th scope="col">Pemilik / Vendor</th> --}}
-                                <th scope="col">Jenis Pelanggaran</th>
-                                <th scope="col">Tindak Lanjut</th>
+                                
                                 <th scope="col">Tanggal</th>
+                                
+                                {{-- REKLAME --}}
+                                @if($_GET['id_kegiatan']==1)
+                                <th>Tema Reklame</th>
+                                <th>Pemilik Reklame</th>
+                                <th>Jenis Reklame</th>
+                                @endif
+                                {{-- ENDREKLAME --}}
+
+                                
+                                {{-- PKL --}}
+                                @if($_GET['id_kegiatan']==2)
+                                <th>Media PKL</th>
+                                <th>Nama Pemilik</th>
+                                <th>No.Identitas(NIK/No.SIM .dll)</th>
+                                <th>Lokasi Pelanggaran</th>
+                                {{-- END PKL --}}
+                                @endif
+
+                                {{-- Anjal Gepeng --}}
+                                @if($_GET['id_kegiatan']==3)
+                                <th>Jenis Anjal/Gepeng</th>
+                                <th>Nama</th>
+                                <th>No.ID</th>
+
+                                @endif
+                                {{-- Anjal Gepeng --}}
+
+                                {{-- PSK --}}
+                                @if($_GET['id_kegiatan']==4)
+                                <th>Nama PSK</th>
+                                <th>No. Identitas</th>
+                                @endif
+                                {{-- PSK --}}
+
+                                {{-- MINOL --}}
+                                @if($_GET['id_kegiatan']==5)
+                                <th>Nama</th>
+                                <th>No. Identitas</th>
+                                <th>Golongan</th>
+                                <th>No.Ijin Operasional</th>
+                                @endif
+                                {{-- MINOL --}}
+
+                                 {{-- PEMONDOKAN --}}
+                                @if($_GET['id_kegiatan']==6)
+                                <th>Nama Pemondokan</th>
+                                <th>No.Identitas</th>
+                                @endif
+                                {{-- PEMONDOKAN --}}
+
+                                {{-- PARKIR LIAR --}}
+                                @if($_GET['id_kegiatan']==7)
+                                <th>Nama Parkir Liar</th>
+                                <th>No. Identitas</th>
+                                @endif
+                                {{-- PARKIR LIAR --}}
+
+                                {{-- PROKES --}}
+                                @if($_GET['id_kegiatan']==8)
+                                <th>Jenis Prokes</th>
+                                <th>Nama Usaha</th>
+                                <th>Nomor Surat</th>
+                                <th>Nama Pelaku</th>
+                                <th>No.Identitas</th>
+                                @endif
+                                {{-- PROKES --}}
+
+                                <th scope="col">Jenis Pelanggaran</th>
+                                <th>Tindak Lanjut</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
@@ -109,23 +186,81 @@
 
                                 <tr>
                                   <td>{{ $pelanggaran->id }}</td>
-                                  <td>{{ $pelanggaran->nama_regu}}</td>
-                                  <td>{{ $pelanggaran->nama_kegiatan}}</td>
-                                  {{-- <td>{{ $pelanggaran->nama_pemilik}}</td> --}}
-                                  <td>{{ $pelanggaran->nama_pelanggaran}}</td>
-                                  <td>{{ $pelanggaran->nama_tindak_lanjut}}</td>
-                                  <td>{{ date( "d-M-Y H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
-                                  <td>
                                   
+                                  <td>{{ date( "d-M-Y H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
+
+                                  {{-- REKLAME --}}
+                                  @if($_GET['id_kegiatan']==1)
+                                  <td>{{ $pelanggaran->tema_reklame}}</td>
+                                  <td>{{ $pelanggaran->nama_vendor }}</td>
+                                  <td>{{ $pelanggaran->jenis_reklame }}</td>
+                                  @endif
+                                  {{-- ENDREKLAME --}}
+
+                                  {{-- PKL --}}
+                                  @if($_GET['id_kegiatan']==2)
+                                  <td>{{ $pelanggaran->jenis_pkl }}</td>
+                                  <td>{{ $pelanggaran->pkl_nama }}</td>
+                                  <td>{{ $pelanggaran->pkl_no_identitas }}</td>
+                                  <td>{{ $pelanggaran->alamat }}</td>
+                                  {{-- end PKL --}}
+                                  @endif
+
+                                  {{-- Anjal Gepeng --}}
+                                  @if($_GET['id_kegiatan']==3)
+                                  <td>{{$pelanggaran->jenis_anjal}}</td>
+                                  <td>{{$pelanggaran->anjal_gepeng_nama}}</td>
+                                  <td>{{$pelanggaran->anjal_gepeng_no_identitas}}</td>
+                                  @endif
+                                  {{-- Anjal Gepeng --}}
+
+                                  {{-- PSK --}}
+                                  @if($_GET['id_kegiatan']==4)
+                                  <td>{{$pelanggaran->psk_nama}}</td>
+                                  <td>{{$pelanggaran->psk_no_identitas}}</td>
+                                  @endif
+                                  {{-- PSK --}}
+
+                                  {{-- MINOL --}}
+                                  @if($_GET['id_kegiatan']==5)
+                                  <td>{{ $pelanggaran->minol_nama }}</td>
+                                  <td>{{ $pelanggaran->minol_no_identitas }}</td>
+                                  <td>{{ $pelanggaran->psk_kelamin }}</td>
+                                  <td>{{ $pelanggaran->pemondokan_no_identitas }}</td>
+                                  @endif
+                                  {{-- MINOL --}}
+
+                                   {{-- PEMONDOKAN --}}
+                                  @if($_GET['id_kegiatan']==6)
+                                  <td>{{ $pelanggaran->pemondokan_nama }}</td>
+                                  <td>{{ $pelanggaran->pemondokan_no_identitas }}</td>
+                                  @endif
+                                  {{-- PEMONDOKAN --}}
+
+                                  {{-- PARKIR LIAR --}}
+                                  @if($_GET['id_kegiatan']==7)
+                                  <td>{{ $pelanggaran->parkir_nama }}</td>
+                                  <td>{{ $pelanggaran->parkir_no_identitas }}</td>
+                                  @endif
+                                  {{-- PARKIR LIAR --}}
+
+                                  {{-- PROKES --}}
+                                  @if($_GET['id_kegiatan']==8)
+                                  <th></th>
+                                  <th>{{ $pelanggaran->parkir_no_identitas }}</th>
+                                  <th>{{ $pelanggaran->parkir_nama }}</th>
+                                  <th>{{ $pelanggaran->prokes_nama }}</th>
+                                  <th>{{ $pelanggaran->prokes_no_identitas }}</th>
+                                  @endif
+                                  {{-- PROKES --}}
+
+
+                                  <td>{{ $pelanggaran->nama_pelanggaran}}</td>
+                                  <td>{{ $pelanggaran->nama_tindak_lanjut }}</td>
+                                  <td>
                                     <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
-
-                                    
                                     <a href="{{ url('pelanggaran')}}/edit/{{ $pelanggaran->id }}" type="submit" class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
-                                    
-                                    
-                                    
                                     <a href="#" class="delete" title="Delete" data-toggle="tooltip"onclick="myFunction({{ $pelanggaran->id }})"><i class="material-icons">&#xE872;</i></a>
-
                                   </td>
                                 </tr>
 

@@ -54,16 +54,44 @@ class PelanggaranController extends Controller
                         ->select(
                                 'pelanggarans.id',
                                 'pelanggarans.created_at',
+                                'pelanggarans.pkl_nama',
+                                'pelanggarans.pkl_no_identitas',
+                                'pelanggarans.alamat',
+                                'pelanggarans.tema_reklame',
+                                'vendors.nama as nama_vendor',
                                 'regus.nama as nama_regu',
                                 'kegiatans.nama as nama_kegiatan',
                                 'jenis_pelanggarans.nama as nama_pelanggaran',
                                 'tindak_lanjuts.nama as nama_tindak_lanjut',
-                                'tgl_peristiwa'
-                        )
-                        ->join('regus','regus.id', '=','pelanggarans.id_regu', 'left')
-                        ->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan','left')
-                        ->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran','left')
-                        ->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut','left');
+                                'tgl_peristiwa',
+                                'jenis_pkls.nama as jenis_pkl',
+                                'jenis_reklames.nama as jenis_reklame',
+                                'jenis_anjal_gepengs.nama as jenis_anjal',
+                                'pelanggarans.anjal_gepeng_nama',
+                                'pelanggarans.anjal_gepeng_no_identitas',
+                                'pelanggarans.psk_nama',
+                                'pelanggarans.psk_no_identitas',
+                                'pelanggarans.minol_nama',
+                                'pelanggarans.minol_no_identitas',
+                                'pelanggarans.psk_kelamin',
+                                'pelanggarans.pemondokan_no_identitas',
+                                'pelanggarans.pemondokan_nama',
+                                'pelanggarans.parkir_nama',
+                                'pelanggarans.parkir_no_identitas',
+                                'pelanggarans.prokes_nama',
+                                'pelanggarans.prokes_no_identitas'
+                                
+                        );
+                        $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu', 'left');
+                        $pelanggarans = $pelanggarans->join('jenis_pkls','pelanggarans.id_jenis_pkl','=','jenis_pkls.id','left');
+                        $pelanggarans = $pelanggarans->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan','left');
+                        $pelanggarans = $pelanggarans->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran','left');
+                        $pelanggarans = $pelanggarans->join('jenis_reklames','pelanggarans.id_jenis_reklame','=','jenis_reklames.id','left');
+                        $pelanggarans = $pelanggarans->join('vendors','pelanggarans.id_pemilik','=','vendors.id','left');
+                        $pelanggarans = $pelanggarans->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut','left');
+                        $pelanggarans = $pelanggarans->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id', '=','pelanggarans.id_jenis_anjal_gepeng','left');
+
+                        $pelanggarans = $pelanggarans->orderBy('id','desc');
 
 
         if (isset($_GET['id_kegiatan'])) {
@@ -91,7 +119,6 @@ class PelanggaranController extends Controller
         $kegiatans          = Kegiatan::select('*')->get();
         $vendors            = Vendor::select('*')->orderBy('nama')->get();
         $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
-        
         $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
         $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
         $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
