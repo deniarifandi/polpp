@@ -59,7 +59,6 @@
                   @endforeach
                 </select>
 
-                {{-- <input type="text" id="input_tambah_regu" class="form-control" name="input_tambah_regu" style="display: none" placeholder="Nama Regu Baru"> --}}
               </div>
             </div>
             <div class="row mb-3">
@@ -465,13 +464,32 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelanggaran</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" onchange="checkSelected(6)">
+{{--                 <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" onchange="checkSelected(6)">
                   <option selected value="">- Pilih Jenis Pelanggaran -</option>
                   <option value="tambahvalue">+ Tambah Jenis Pelanggaran +</option>
                   @foreach($jenis_pelanggarans as $jenis_pelanggaran)
                   <option value="{{$jenis_pelanggaran->id}}" class="pelanggaran_kategori_{{ $jenis_pelanggaran->kategori }}" style="display: none;">{{$jenis_pelanggaran->nama}}</option>
                   @endforeach
                 </select>
+ --}}
+
+                  @php
+                    $id = 0;
+                  @endphp
+
+              @foreach($jenis_pelanggarans as $jenis_pelanggaran)
+                  
+                    <input type="checkbox" id="{{$jenis_pelanggaran->nama}}" name="jenis_pelanggaran[{{$id}}]" style="transform: scale(1.5); margin-right: 7px; margin-bottom:7px" value="{{ $jenis_pelanggaran->id }}">
+                  <label for="{{$jenis_pelanggaran->nama}}">{{$jenis_pelanggaran->nama}}</label><br>
+
+                    @php
+                    $id++;
+                  @endphp
+              @endforeach
+              
+              
+
+
                  <input type="text" id="input_tambah_jenis_pelanggaran" class="form-control" name="input_tambah_jenis_pelanggaran" style="display: none" placeholder="Jenis Pelanggaran Baru">
               </div>
             </div>

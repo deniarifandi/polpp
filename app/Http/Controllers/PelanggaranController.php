@@ -83,11 +83,15 @@ class PelanggaranController extends Controller
     public function create()
     {
 
+        if (isset($_GET['id_kegiatan'])) {
+               $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->where('kategori','=',$_GET['id_kegiatan'])->orderBy('nama')->get();
+        }
+
         $regus              = Regu::select('*')->where('keterangan','=','1')->get();
         $kegiatans          = Kegiatan::select('*')->get();
         $vendors            = Vendor::select('*')->orderBy('nama')->get();
         $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
-        $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
+        
         $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
         $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
         $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
@@ -266,7 +270,14 @@ class PelanggaranController extends Controller
                 $jenisPelanggaran->save();
                 $pelanggaran->id_jenis_pelanggaran = $jenisPelanggaran->id;
             }else{
-                $pelanggaran->id_jenis_pelanggaran =$request->id_jenis_pelanggaran;
+
+                if (isset($request->jenis_pelanggaran)) {
+                    $pelanggaran->id_jenis_pelanggaran = implode("-", $request->jenis_pelanggaran);
+                }else{
+                    $pelanggaran->id_jenis_pelanggaran = null;
+                }
+                
+                
             }
             
             if ($request->id_tindak_lanjut == "tambahvalue") {
@@ -477,7 +488,8 @@ class PelanggaranController extends Controller
                             'vendors.nama as pemilik',
                             'jenis_reklames.nama as jenis_reklame',
                             'pelanggarans.jumlah_reklame',
-                            'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            // 'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            'pelanggarans.id_jenis_pelanggaran',
                             'tindak_lanjuts.nama as tindak_lanjut',
                             'pelanggarans.alamat',
                             'pelanggarans.lat',
@@ -508,7 +520,7 @@ class PelanggaranController extends Controller
                         ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
                         ->join('vendors','vendors.id','=','pelanggarans.id_pemilik','left')
                         ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame','left')
-                        ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
+                        // ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
                         ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut','left')
                         ->join('jenis_pkls','jenis_pkls.id','=','pelanggarans.id_jenis_pkl','left')
                         ->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id','=','pelanggarans.id_jenis_anjal_gepeng','left')
@@ -516,12 +528,14 @@ class PelanggaranController extends Controller
                         ->where('pelanggarans.id','=',$id)
                         ->get();
 
-        
-        // echo $pelanggarans[0];
+        $id_pelanggarans = explode("-",$pelanggarans[0]->id_jenis_pelanggaran);
 
-        // echo $pelanggarans;
+        $jenisPelanggarans = DB::table('jenis_pelanggarans')
+                                ->select('nama')
+                                ->wherein('id', $id_pelanggarans)
+                                ->get();
 
-        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi]);
+        return view('detail_pelanggaran', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi, 'jenisPelanggarans' => $jenisPelanggarans]);
     }
 
     /**
@@ -534,11 +548,12 @@ class PelanggaranController extends Controller
     {
         
 
+
         $regus              = Regu::select('*')->where('keterangan','=','1')->get();
         $kegiatans          = Kegiatan::select('*')->get();
         $vendors            = Vendor::select('*')->orderBy('nama')->get();
         $jenis_reklames     = Jenis_reklame::select('*')->orderBy('nama')->get();
-        $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
+        // $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->orderBy('nama')->get();
         $tindak_lanjuts     = Tindak_lanjut::select('*')->orderBy('nama')->get();
         $ukuran_reklames    = Ukuran_reklame::select('*')->orderBy('nama')->get();
         $kecamatans         = Kecamatan::select('*')->orderBy('nama')->get();
@@ -548,8 +563,9 @@ class PelanggaranController extends Controller
         $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
         $pelanggaran =   pelanggaran::select('*')->where('id','=',$id)->get();
 
-        // echo $pelanggaran[0];
-
+       
+        $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->where('kategori','=',$pelanggaran[0]->id_kegiatan)->orderBy('nama')->get();
+       
         return view('edit_pelanggaran',[
             'regus'             => $regus, 
             'kegiatans'         => $kegiatans, 
@@ -639,7 +655,8 @@ class PelanggaranController extends Controller
                             'vendors.nama as pemilik',
                             'jenis_reklames.nama as jenis_reklame',
                             'pelanggarans.jumlah_reklame',
-                            'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            // 'jenis_pelanggarans.nama as jenis_pelanggaran',
+                            'pelanggarans.id_jenis_pelanggaran',
                             'tindak_lanjuts.nama as tindak_lanjut',
                             'pelanggarans.alamat',
                             'pelanggarans.lat',
@@ -669,7 +686,7 @@ class PelanggaranController extends Controller
                         ->join('kegiatans','kegiatans.id','=','pelanggarans.id_kegiatan','left')
                         ->join('vendors','vendors.id','=','pelanggarans.id_pemilik','left')
                         ->join('jenis_reklames','jenis_reklames.id','=','pelanggarans.id_jenis_reklame','left')
-                        ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
+                        // ->join('jenis_pelanggarans','jenis_pelanggarans.id','=','pelanggarans.id_jenis_pelanggaran','left')
                         ->join('tindak_lanjuts','tindak_lanjuts.id','=','pelanggarans.id_tindak_lanjut','left')
                         ->join('jenis_pkls','jenis_pkls.id','=','pelanggarans.id_jenis_pkl','left')
                         ->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id','=','pelanggarans.id_jenis_anjal_gepeng','left')
@@ -677,7 +694,15 @@ class PelanggaranController extends Controller
                         ->where('pelanggarans.id','=',$id)
                         ->get();
 
-        return view('detail_pelanggaran_print', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi]);
+
+        $id_pelanggarans = explode("-",$pelanggarans[0]->id_jenis_pelanggaran);
+
+        $jenisPelanggarans = DB::table('jenis_pelanggarans')
+                                ->select('nama')
+                                ->wherein('id', $id_pelanggarans)
+                                ->get();
+
+        return view('detail_pelanggaran_print', ['pelanggaran' => $pelanggarans[0], 'foto_sebelum' => $filesSebelum, 'foto_proses' => $filesProses, 'foto_setelah' => $filesSetelah, 'foto_lokasi' => $fileLokasi,'jenisPelanggarans' => $jenisPelanggarans]);
     }
 
 

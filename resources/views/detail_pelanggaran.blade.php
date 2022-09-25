@@ -205,7 +205,11 @@
 
                   <tr>
                     <th>Jenis Pelanggaran : </th>
-                    <td>{{ $pelanggaran->jenis_pelanggaran }}</td>
+                    <td>
+                      @foreach($jenisPelanggarans as $jenisPelanggaran)
+                        {{ $jenisPelanggaran->nama }}<br>
+                      @endforeach
+                    </td>
                   </tr>
                   <tr>
                     <th>Tindak Lanjut : </th>
