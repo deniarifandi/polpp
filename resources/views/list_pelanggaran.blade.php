@@ -84,10 +84,10 @@
 
                                     </div>
                                     <div class="col-sm-2 offset-sm-2">
-                                      <div class="input-group mb-3" style="display: none;">
-                                      <input type="text" class="form-control" placeholder="Cari Data" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled="">
+                                      <div class="input-group mb-3">
+                                      <input type="text" class="form-control" id="inputCari" placeholder="Cari Data" aria-label="Recipient's username" aria-describedby="basic-addon2" >
                                       <div class="input-group-append">
-                                        <button class="btn btn-secondary" type="button" disabled=""><i class="bi bi-search"></i>
+                                        <button class="btn btn-warning" type="button" id="tombolCari" onclick="search()"  ><i class="bi bi-search"></i>
                                         </button>
                                       </div>
                                     </div>
@@ -99,9 +99,12 @@
                             <thead>
                               <tr>
                                 <th>ID Laporan</th>
+
                                 
                                 <th scope="col">Tanggal</th>
                                 
+                                @if(isset($_GET['id_kegiatan']))
+
                                 {{-- REKLAME --}}
                                 @if($_GET['id_kegiatan']==1)
                                 <th>Tema Reklame</th>
@@ -169,6 +172,8 @@
                                 @endif
                                 {{-- PROKES --}}
 
+                                @endif
+
                                 <th scope="col">Jenis Pelanggaran</th>
                                 <th>Tindak Lanjut</th>
                                 <th scope="col">Action</th>
@@ -188,6 +193,8 @@
                                   <td>{{ $pelanggaran->id }}</td>
                                   
                                   <td>{{ date( "d-M-Y H:i:s", strtotime( $pelanggaran->created_at ) + 7 * 3600 ); }}</td>
+
+                                  @if(isset($_GET['id_kegiatan']))
 
                                   {{-- REKLAME --}}
                                   @if($_GET['id_kegiatan']==1)
@@ -254,6 +261,7 @@
                                   @endif
                                   {{-- PROKES --}}
 
+                                  @endif
 
                                   <td>{{ $pelanggaran->nama_pelanggaran}}</td>
                                   <td>{{ $pelanggaran->nama_tindak_lanjut }}</td>
@@ -389,6 +397,26 @@
         }
         
       }
+
+      function search(value){
+        var cari = document.getElementById('inputCari').value;
+
+        if (cari.length > 2) {
+          @if(isset($_GET['id_kegiatan']))
+          var id_kegiatan = @php echo $_GET['id_kegiatan'] @endphp;
+          @endif
+          window.location.replace("{{ URL('/pelanggaran') }}?id_kegiatan="+id_kegiatan+'&cari='+cari);
+          console.log("{{ URL('/pelanggaran') }}?id_kegiatan="+id_kegiatan);  
+        }else{
+          alert('field cari harus diisi lebih dari 2 karakter');
+        }
+
+        
+
+
+      }
+
+
 
     </script>
 

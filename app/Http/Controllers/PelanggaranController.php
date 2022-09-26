@@ -49,6 +49,10 @@ class PelanggaranController extends Controller
     public function index()
     {
 
+        if (isset($_GET['cari'])) {
+            $cari = $_GET['cari'];
+        }
+
         $id_kegiatan = "0";
         $pelanggarans = DB::table('pelanggarans')
                         ->select(
@@ -90,6 +94,24 @@ class PelanggaranController extends Controller
                         $pelanggarans = $pelanggarans->join('vendors','pelanggarans.id_pemilik','=','vendors.id','left');
                         $pelanggarans = $pelanggarans->join('tindak_lanjuts','tindak_lanjuts.id', '=','pelanggarans.id_tindak_lanjut','left');
                         $pelanggarans = $pelanggarans->join('jenis_anjal_gepengs','jenis_anjal_gepengs.id', '=','pelanggarans.id_jenis_anjal_gepeng','left');
+
+                        if (@isset($cari)) {
+                            $pelanggarans = $pelanggarans->where('tema_reklame','LIKE','%'.$cari.'%');
+                            $pelanggarans = $pelanggarans->orwhere('pkl_nama','LIKE','%'.$cari.'%');
+                            $pelanggarans = $pelanggarans->orwhere('anjal_gepeng_nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.pkl_nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.pkl_no_identitas','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.alamat','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.tema_reklame','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('vendors.nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('regus.nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('kegiatans.nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('jenis_pelanggarans.nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('tindak_lanjuts.nama','LIKE','%'.$cari.'%');
+                       
+                                $pelanggarans = $pelanggarans->orwhere('jenis_pkls.nama','LIKE','%'.$cari.'%');
+                              
+                        }
 
                         $pelanggarans = $pelanggarans->orderBy('id','desc');
 
