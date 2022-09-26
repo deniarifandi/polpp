@@ -108,8 +108,22 @@ class PelanggaranController extends Controller
                                 $pelanggarans = $pelanggarans->orwhere('kegiatans.nama','LIKE','%'.$cari.'%');
                                 $pelanggarans = $pelanggarans->orwhere('jenis_pelanggarans.nama','LIKE','%'.$cari.'%');
                                 $pelanggarans = $pelanggarans->orwhere('tindak_lanjuts.nama','LIKE','%'.$cari.'%');
-                       
                                 $pelanggarans = $pelanggarans->orwhere('jenis_pkls.nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('jenis_reklames.nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('jenis_anjal_gepengs.nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.anjal_gepeng_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.anjal_gepeng_no_identitas','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.psk_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.psk_no_identitas','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.minol_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.minol_no_identitas','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.psk_kelamin','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.pemondokan_no_identitas','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.pemondokan_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.parkir_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.parkir_no_identitas','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.prokes_nama','LIKE','%'.$cari.'%');
+                                 $pelanggarans = $pelanggarans->orwhere('pelanggarans.prokes_no_identitas','LIKE','%'.$cari.'%');
                               
                         }
 
