@@ -76,7 +76,7 @@
 
  
 
-  <main id="main" class="main" style="margin-left: 20%; margin-right: 20%">
+  <main id="main" class="main">
 
     @yield('content')
 
