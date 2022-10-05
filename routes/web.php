@@ -130,3 +130,22 @@ require __DIR__.'/auth.php';
 
 
 
+
+///cccccccccannnnnnn
+
+
+Route::get('/skck_sktm', function () {
+        return view('skck_sktm');
+})->name('skck_sktm');
+
+Route::get('/tambah_skck', function () {
+        return view('insert_skck');
+})->name('tambah_skck');
+
+Route::get('/tambah_sktm', function () {
+        return view('insert_sktm');
+})->name('tambah_sktm');
+
+Route::get('/verifikasi_berkas', function () {
+        return view('verifikasi_berkas');
+})->name('verifikasi_berkas');
