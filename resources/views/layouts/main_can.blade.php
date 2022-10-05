@@ -76,7 +76,7 @@
 
  
 
-  <main id="main" class="main">
+  <main id="main" class="main" style="margin-left: 0px;">
 
     @yield('content')
 
