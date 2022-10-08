@@ -455,6 +455,46 @@
       </div>
       {{-- end prokes --}}
 
+      {{-- start PAM --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 9) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail PAM</h5>
+            
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Judul PAM</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pam_judul" value="{{ $pelanggaran->pam_judul }}">
+              </div>
+            </div>
+
+             <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis PAM</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_pam" id="id_jenis_pam" onchange="checkSelected(10)">
+                  <option selected value="">- Pilih Jenis PAM -</option>
+                    <option value="tambahvalue">+ Tambah PAM Baru +</option>
+                    @foreach($jenis_pams as $jenis_pam)
+                    <option value="{{$jenis_pam->id}}">{{$jenis_pam->nama}}</option>
+                    @endforeach
+                </select>
+                 <input type="text" id="input_tambah_jenis_pam" class="form-control" name="input_tambah_jenis_pam" style="display: none" placeholder="Jenis PAM Baru">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Keterangan</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pam_keterangan" value="{{ $pelanggaran->pam_keterangan }}">
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      {{-- end PAM --}}
 
 
       {{-- middle row right --}}
@@ -686,6 +726,8 @@
         document.getElementById("dropdown_jenis_penertiban_prokes").value =  "{{ $pelanggaran->id_jenis_penertiban_prokes }}";
         
         document.getElementById("dropdown_jenis_pelaku_usaha").value =  "{{ $pelanggaran->id_jenis_pelaku_usaha }}";
+
+        document.getElementById("id_jenis_pam").value = "{{ $pelanggaran->pam_jenis}}";
         
 
         @php
@@ -836,6 +878,22 @@
             document.getElementById("input_tambah_jenis_anjal").style.display = "block";
           }else{
             document.getElementById("input_tambah_jenis_anjal").style.display = "none";
+          }
+        }else if(id == 9){
+            var e = document.getElementById("id_jenis_penertiban_prokes");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "none";
+          }
+        }else if(id == 10){
+            var e = document.getElementById("id_jenis_pam");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_pam").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_pam").style.display = "none";
           }
         }
         

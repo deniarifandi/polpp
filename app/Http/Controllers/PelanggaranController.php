@@ -16,6 +16,7 @@ use App\Models\Jenis_pkl;
 use App\Models\Jenis_anjal_gepeng;
 use App\Models\Jenis_penertiban_prokes;
 use App\Models\Administration;
+use App\Models\Jenis_pam;
 use DB;
 use Image;
 
@@ -170,6 +171,7 @@ class PelanggaranController extends Controller
         $jenis_pkls         = Jenis_pkl::select('*')->orderBy('nama')->get();
         $jenis_anjal_gepeng = Jenis_anjal_gepeng::select('*')->orderBy('nama')->get();
         $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
+        $jenis_pams         = Jenis_pam::select('*')->orderBy('nama')->get();
 
 
         return view('insert_pelanggaran',[
@@ -185,6 +187,7 @@ class PelanggaranController extends Controller
             'jenis_pkls'        => $jenis_pkls,
             'jenis_anjal_gepengs'=> $jenis_anjal_gepeng,
             'jenis_penertiban_prokess'   => $jenis_penertiban_prokes,
+            'jenis_pams'        => $jenis_pams,
         ]);
     }
 
@@ -241,7 +244,9 @@ class PelanggaranController extends Controller
            
             $pelanggaran->id_jenis_pelaku_usaha = $request->id_jenis_pelaku_usaha;
            
-          
+            $pelanggaran->pam_judul = $request->pam_judul;
+            
+            $pelanggaran->pam_keterangan = $request->pam_keterangan;
 
             if ($request->id_kegiatan == 5) {
                 //detail minol
@@ -377,6 +382,15 @@ class PelanggaranController extends Controller
                 $pelanggaran->id_jenis_penertiban_prokes = $jenisPenertibanProkes->id;
             }else{
                  $pelanggaran->id_jenis_penertiban_prokes    =    $request->id_jenis_penertiban_prokes;
+            }
+
+            if($request->id_jenis_pam == "tambahvalue"){
+                $jenisPam = new Jenis_pam;
+                $jenisPam->nama = $request->input_tambah_jenis_pam;
+                $jenisPam->save();
+                $pelanggaran->pam_jenis = $jenisPam->id;
+            }else{
+                $pelanggaran->pam_jenis = $request->id_jenis_pam;
             }
 
 
@@ -641,7 +655,7 @@ class PelanggaranController extends Controller
         $jenis_anjal_gepeng = Jenis_anjal_gepeng::select('*')->orderBy('nama')->get();
         $jenis_penertiban_prokes    =   Jenis_penertiban_prokes::select('*')->orderBy('nama')->get();
         $pelanggaran =   pelanggaran::select('*')->where('id','=',$id)->get();
-
+          $jenis_pams         = Jenis_pam::select('*')->orderBy('nama')->get();
        
         $Jenis_pelanggarans = Jenis_pelanggaran::select('*')->where('kategori','=',$pelanggaran[0]->id_kegiatan)->orderBy('nama')->get();
        
@@ -659,7 +673,8 @@ class PelanggaranController extends Controller
             'jenis_anjal_gepengs'=> $jenis_anjal_gepeng,
             'jenis_penertiban_prokess'   => $jenis_penertiban_prokes,
             'id_kegiatan' => $pelanggaran[0]->id_kegiatan,
-            'pelanggaran' => $pelanggaran[0]
+            'pelanggaran' => $pelanggaran[0],
+            'jenis_pams'    => $jenis_pams,
         ]);
     }
 

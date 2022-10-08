@@ -451,6 +451,47 @@
       </div>
       {{-- end prokes --}}
 
+      {{-- start PAM --}}
+      <div class="col-lg-6" id="form-reklame" @if(isset($_GET['id_kegiatan'])) @if($_GET['id_kegiatan'] != 9) style="display: none" @endif @endif>
+
+        <div class="card">
+          <div class="card-body">
+
+            <h5 class="card-title" >Detail PAM</h5>
+            
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Judul PAM</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pam_judul" >
+              </div>
+            </div>
+
+             <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Jenis PAM</label>
+              <div class="col-sm-8">
+                 <select class="form-select" aria-label="Default select example" name="id_jenis_pam" id="id_jenis_pam" onchange="checkSelected(10)">
+                  <option selected value="">- Pilih Jenis PAM -</option>
+                    <option value="tambahvalue">+ Tambah PAM Baru +</option>
+                    @foreach($jenis_pams as $jenis_pam)
+                    <option value="{{$jenis_pam->id}}">{{$jenis_pam->nama}}</option>
+                    @endforeach
+                </select>
+                 <input type="text" id="input_tambah_jenis_pam" class="form-control" name="input_tambah_jenis_pam" style="display: none" placeholder="Jenis PAM Baru">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="inputText" class="col-sm-4 col-form-label">Keterangan</label>
+              <div class="col-sm-8">
+               <input type="text" class="form-control" name="pam_keterangan" >
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      {{-- end PAM --}}
+
 
 
       {{-- middle row right --}}
@@ -461,17 +502,11 @@
 
             <h5 class="card-title" >Lokasi & tindak lanjut</h5>
 
+@if(isset($_GET['id_kegiatan']))
+  @if($_GET['id_kegiatan'] != 9)
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jenis Pelanggaran</label>
               <div class="col-sm-8">
-{{--                 <select class="form-select" aria-label="Default select example" id="select_jenis_pelanggaran" name="id_jenis_pelanggaran" onchange="checkSelected(6)">
-                  <option selected value="">- Pilih Jenis Pelanggaran -</option>
-                  <option value="tambahvalue">+ Tambah Jenis Pelanggaran +</option>
-                  @foreach($jenis_pelanggarans as $jenis_pelanggaran)
-                  <option value="{{$jenis_pelanggaran->id}}" class="pelanggaran_kategori_{{ $jenis_pelanggaran->kategori }}" style="display: none;">{{$jenis_pelanggaran->nama}}</option>
-                  @endforeach
-                </select>
- --}}
 
                   @php
                     $id = 0;
@@ -486,9 +521,6 @@
                     $id++;
                   @endphp
               @endforeach
-              
-              
-
 
                  <input type="text" id="input_tambah_jenis_pelanggaran" class="form-control" name="input_tambah_jenis_pelanggaran" style="display: none" placeholder="Jenis Pelanggaran Baru">
               </div>
@@ -508,6 +540,8 @@
                   <input type="text" id="input_tambah_tindak_lanjut" class="form-control" name="input_tambah_tindak_lanjut" style="display: none" placeholder="Jenis Tindak Lanjut Baru">
               </div>
             </div>
+            @endif
+@endif
 
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Kecamatan</label>
@@ -800,6 +834,14 @@
             document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "block";
           }else{
             document.getElementById("input_tambah_jenis_penertiban_prokes").style.display = "none";
+          }
+        }else if(id == 10){
+            var e = document.getElementById("id_jenis_pam");
+          
+          if (e.options[e.selectedIndex].value == "tambahvalue") {
+            document.getElementById("input_tambah_jenis_pam").style.display = "block";
+          }else{
+            document.getElementById("input_tambah_jenis_pam").style.display = "none";
           }
         }
         

@@ -30,7 +30,7 @@
                 <a href="{{ url('pelanggaran') }}?id_kegiatan=1">
                    
                   <div class="card-body">
-                  <h5 class="card-title">Reklame <span>| Bulan Ini</span></h5>
+                  <h5 class="card-title">Reklame <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center" style="background: #fef9e9">
@@ -54,7 +54,7 @@
 
               <a href="{{ url('pelanggaran') }}?id_kegiatan=2">
                 <div class="card-body">
-                  <h5 class="card-title">PKL <span>| This Month</span></h5>
+                  <h5 class="card-title">PKL <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -79,7 +79,7 @@
                   <a href="{{ url('pelanggaran') }}?id_kegiatan=3">
 
                   <div class="card-body">
-                    <h5 class="card-title">AnJal-GePeng <span>| This Month</span></h5>
+                    <h5 class="card-title">AnJal-GePeng <span>| Record</span></h5>
 
                     <div class="d-flex align-items-center">
                       <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -103,7 +103,7 @@
                   <a href="{{ url('pelanggaran') }}?id_kegiatan=4">
 
                 <div class="card-body">
-                  <h5 class="card-title">PSK <span>| This Month</span></h5>
+                  <h5 class="card-title">PSK <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -129,7 +129,7 @@
                 <a href="{{ url('pelanggaran') }}?id_kegiatan=5">
 
                 <div class="card-body">
-                  <h5 class="card-title"> Minol <span>| This Month</span></h5>
+                  <h5 class="card-title"> Minol <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -153,7 +153,7 @@
                <a href="{{ url('pelanggaran') }}?id_kegiatan=6">
 
                 <div class="card-body">
-                  <h5 class="card-title">Pemondokan <span>| This Month</span></h5>
+                  <h5 class="card-title">Pemondokan <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -177,7 +177,7 @@
                 <a href="{{ url('pelanggaran') }}?id_kegiatan=7">
 
                 <div class="card-body">
-                  <h5 class="card-title">Parkir Liar <span>| This Month</span></h5>
+                  <h5 class="card-title">Parkir Liar <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -201,7 +201,7 @@
                <a href="{{ url('pelanggaran') }}?id_kegiatan=8">
 
                 <div class="card-body">
-                  <h5 class="card-title">Prokes <span>| This Month</span></h5>
+                  <h5 class="card-title">Prokes <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -222,10 +222,10 @@
             <div class="col-xxl-4 col-md-4">
               <div class="card info-card revenue-card">
 
-                <a href="#" onclick="underConstruction()">
+                <a href="{{ url('pelanggaran') }}?id_kegiatan=9">
 
                 <div class="card-body">
-                  <h5 class="card-title">Pengaduan <span>| This Month</span></h5>
+                  <h5 class="card-title">PAM <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
