@@ -522,7 +522,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Kelurahan</label>
               <div class="col-sm-8">
-                <select class="form-select" aria-label="Default select example" id="select_kelurahan" name="id_kelurahan" disabled="disabled">
+                <select class="form-select" aria-label="Default select example" id="select_kelurahan" name="id_kelurahan" >
                   <option selected value="">- Pilih Kelurahan -</option>
 
 
