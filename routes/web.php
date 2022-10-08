@@ -120,11 +120,15 @@ Route::get('administration/aktifkan_grup/{id}', [AdministrationController::class
 Route::get('administration/nonaktifkan_grup/{id}', [AdministrationController::class, 'nonaktifkan_grup'])->name("nonaktifkan_grup");
 Route::post('administration/tambah_grup', [AdministrationController::class, 'tambah_grup'])->name("tambah_grup");
 
+Route::get('administration/export_data',[AdministrationController::class, 'export_data'])->name('export_data');
+
 ////////////TESTING
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 Route::get('/greeting', function () {
     return 'Hello World';
 });
+
+
 
 require __DIR__.'/auth.php';
 

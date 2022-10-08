@@ -275,13 +275,13 @@
               <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Barang Bukti</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="psk_barang_bukti" value="{{ $pelanggaran->minol_nama }}">
+                <input type="text" class="form-control" name="psk_barang_bukti" value="{{ $pelanggaran->psk_bb }}">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jumlah Barang Bukti</label>
               <div class="col-sm-8">
-                <input type="number" class="form-control" name="psk_jml_barang_bukti" value="{{ $pelanggaran->minol_no_identitas }}">
+                <input type="number" class="form-control" name="psk_jml_barang_bukti" value="{{ $pelanggaran->psk_jml_bb }}">
               </div>
             </div>
 
@@ -313,25 +313,25 @@
               <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Barang Bukti</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="minol_barang_bukti" value="{{ $pelanggaran->psk_nama }}">
+                <input type="text" class="form-control" name="minol_barang_bukti" value="{{ $pelanggaran->minol_bb }}">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Jumlah Barang Bukti</label>
               <div class="col-sm-8">
-                <input type="number" class="form-control" name="minol_jml_barang_bukti" value="{{ $pelanggaran->psk_no_identitas }}">
+                <input type="number" class="form-control" name="minol_jml_barang_bukti" value="{{ $pelanggaran->minol_jml_bb }}">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Golongan</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="minol_golongan" value="{{ $pelanggaran->psk_kelamin }}">
+                <input type="text" class="form-control" name="minol_golongan" value="{{ $pelanggaran->minol_golongan }}">
               </div>
             </div>
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">No. Ijin Operasional</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="minol_no_ijin" value="{{ $pelanggaran->pemondokan_no_identitas }}">
+                <input type="text" class="form-control" name="minol_no_ijin" value="{{ $pelanggaran->minol_no_ijin_operasional }}">
               </div>
             </div>
 
@@ -433,13 +433,13 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Nomor Surat</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="nomor_surat" value="{{ $pelanggaran->parkir_nama }}">
+                <input type="text" class="form-control" name="nomor_surat" value="{{ $pelanggaran->prokes_nomor_surat }}">
               </div>
             </div>
                  <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku Usaha</label>
               <div class="col-sm-8">
-               <input type="text" class="form-control" name="pelaku_usaha_nama" value="{{ $pelanggaran->parkir_no_identitas }}">
+               <input type="text" class="form-control" name="pelaku_usaha_nama" value="{{ $pelanggaran->prokes_nama_pelaku }}">
               </div>
             </div>
             <div class="row mb-3">

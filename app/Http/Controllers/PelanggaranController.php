@@ -77,13 +77,21 @@ class PelanggaranController extends Controller
                                 'pelanggarans.psk_no_identitas',
                                 'pelanggarans.minol_nama',
                                 'pelanggarans.minol_no_identitas',
+                                'pelanggarans.minol_golongan',
+                                'pelanggarans.minol_no_ijin_operasional',
+                                'pelanggarans.minol_bb',
+                                'pelanggarans.minol_jml_bb',
                                 'pelanggarans.psk_kelamin',
                                 'pelanggarans.pemondokan_no_identitas',
                                 'pelanggarans.pemondokan_nama',
                                 'pelanggarans.parkir_nama',
                                 'pelanggarans.parkir_no_identitas',
                                 'pelanggarans.prokes_nama',
-                                'pelanggarans.prokes_no_identitas'
+                                'pelanggarans.prokes_nomor_surat',
+                                'pelanggarans.prokes_nama_pelaku',
+                                'pelanggarans.prokes_no_identitas',
+                                'pelanggarans.psk_bb',
+                                'pelanggarans.psk_jml_bb'
                                 
                         );
                         $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu', 'left');
@@ -237,18 +245,18 @@ class PelanggaranController extends Controller
 
             if ($request->id_kegiatan == 5) {
                 //detail minol
-                $pelanggaran->minol_nama          = $request->minol_nama;
-                $pelanggaran->minol_no_identitas  = $request->minol_no_identitas;
-                $pelanggaran->psk_nama          = $request->minol_barang_bukti;
-                $pelanggaran->psk_no_identitas  = $request->minol_jml_barang_bukti;            
-                $pelanggaran->psk_kelamin       = $request->minol_golongan;
-                $pelanggaran->pemondokan_no_identitas = $request->minol_no_ijin;
+                $pelanggaran->minol_nama                = $request->minol_nama;
+                $pelanggaran->minol_no_identitas        = $request->minol_no_identitas;
+                $pelanggaran->minol_bb                  = $request->minol_barang_bukti;
+                $pelanggaran->minol_jml_bb              = $request->minol_jml_barang_bukti;            
+                $pelanggaran->minol_golongan            = $request->minol_golongan;
+                $pelanggaran->minol_no_ijin_operasional = $request->minol_no_ijin;
             }else if($request->id_kegiatan == 4){
                 $pelanggaran->psk_nama          = $request->psk_nama;
                 $pelanggaran->psk_no_identitas  = $request->psk_no_identitas;            
                 $pelanggaran->psk_kelamin       = $request->psk_kelamin;
-                $pelanggaran->minol_nama        = $request->psk_barang_bukti;
-                $pelanggaran->minol_no_identitas= $request->psk_jml_barang_bukti;    
+                $pelanggaran->psk_bb            = $request->psk_barang_bukti;
+                $pelanggaran->psk_jml_bb= $request->psk_jml_barang_bukti;    
             }else if ($request->id_kegiatan == 6){
                 //detail pemondokan
                 $pelanggaran->pemondokan_nama          = $request->pemondokan_nama;
@@ -256,8 +264,8 @@ class PelanggaranController extends Controller
             }else if($request->id_kegiatan == 8){
                 $pelanggaran->prokes_nama           = $request->prokes_nama;
                 $pelanggaran->prokes_no_identitas   = $request->prokes_no_identitas;
-                $pelanggaran->parkir_nama           = $request->nomor_surat;
-                $pelanggaran->parkir_no_identitas   = $request->pelaku_usaha_nama;
+                $pelanggaran->prokes_nomor_surat       = $request->nomor_surat;
+                $pelanggaran->prokes_nama_pelaku    = $request->pelaku_usaha_nama;
 
             }
 
@@ -576,7 +584,15 @@ class PelanggaranController extends Controller
                             'pelanggarans.id_jenis_pelaku_usaha',
                             'pelanggarans.prokes_nama',
                             'pelanggarans.prokes_no_identitas',
-                            'pelanggarans.created_at'
+                            'pelanggarans.created_at',
+                            'pelanggarans.minol_golongan',
+                            'pelanggarans.minol_no_ijin_operasional',
+                            'pelanggarans.minol_bb',
+                            'pelanggarans.minol_jml_bb',
+                            'pelanggarans.prokes_nomor_surat',
+                            'pelanggarans.prokes_nama_pelaku',
+                            'pelanggarans.psk_bb',
+                            'pelanggarans.psk_jml_bb'
 
                         )
                         ->join('regus','regus.id','=','pelanggarans.id_regu','left')
@@ -742,7 +758,15 @@ class PelanggaranController extends Controller
                             'jenis_penertiban_prokes.nama as prokes',
                             'pelanggarans.id_jenis_pelaku_usaha',
                             'pelanggarans.prokes_nama',
-                            'pelanggarans.prokes_no_identitas'
+                            'pelanggarans.prokes_no_identitas',
+                            'pelanggarans.minol_golongan',
+                            'pelanggarans.minol_no_ijin_operasional',
+                            'pelanggarans.minol_bb',
+                            'pelanggarans.minol_jml_bb',
+                            'pelanggarans.prokes_nomor_surat',
+                            'pelanggarans.prokes_nama_pelaku',
+                            'pelanggarans.psk_bb',
+                            'pelanggarans.psk_jml_bb'
 
                         )
                         ->join('regus','regus.id','=','pelanggarans.id_regu','left')

@@ -58,7 +58,7 @@
                         <div class="table-wrapper">     
                             <div class="table-title">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4" style="visibility: hidden;">
                                         <div class="show-entries">
                                             <span>Show</span>
                                             <select>
@@ -136,6 +136,8 @@
                                 @if($_GET['id_kegiatan']==4)
                                 <th>Nama PSK</th>
                                 <th>No. Identitas</th>
+                                <th>Barang Bukti (BB)</th>
+                                <th>Jumlah BB</th>
                                 @endif
                                 {{-- PSK --}}
 
@@ -145,6 +147,8 @@
                                 <th>No. Identitas</th>
                                 <th>Golongan</th>
                                 <th>No.Ijin Operasional</th>
+                                <th>Barang Bukti (BB)</th>
+                                <th>Jml BB</th>
                                 @endif
                                 {{-- MINOL --}}
 
@@ -225,6 +229,8 @@
                                   @if($_GET['id_kegiatan']==4)
                                   <td>{{$pelanggaran->psk_nama}}</td>
                                   <td>{{$pelanggaran->psk_no_identitas}}</td>
+                                  <td>{{ $pelanggaran->psk_bb}}</td>
+                                  <td>{{ $pelanggaran->psk_jml_bb}}</td>
                                   @endif
                                   {{-- PSK --}}
 
@@ -232,8 +238,10 @@
                                   @if($_GET['id_kegiatan']==5)
                                   <td>{{ $pelanggaran->minol_nama }}</td>
                                   <td>{{ $pelanggaran->minol_no_identitas }}</td>
-                                  <td>{{ $pelanggaran->psk_kelamin }}</td>
-                                  <td>{{ $pelanggaran->pemondokan_no_identitas }}</td>
+                                  <td>{{ $pelanggaran->minol_golongan }}</td>
+                                  <td>{{ $pelanggaran->minol_no_ijin_operasional }}</td>
+                                  <td>{{ $pelanggaran->minol_bb}}</td>
+                                  <td>{{ $pelanggaran->minol_jml_bb}}</td>
                                   @endif
                                   {{-- MINOL --}}
 
@@ -254,9 +262,9 @@
                                   {{-- PROKES --}}
                                   @if($_GET['id_kegiatan']==8)
                                   <th></th>
-                                  <th>{{ $pelanggaran->parkir_no_identitas }}</th>
-                                  <th>{{ $pelanggaran->parkir_nama }}</th>
                                   <th>{{ $pelanggaran->prokes_nama }}</th>
+                                  <th>{{ $pelanggaran->prokes_nomor_surat }}</th>
+                                  <th>{{ $pelanggaran->prokes_nama_pelaku }}</th>
                                   <th>{{ $pelanggaran->prokes_no_identitas }}</th>
                                   @endif
                                   {{-- PROKES --}}
@@ -293,7 +301,7 @@
                     </div>
                 </div>
 
-
+                <a href="{{ route('export_data') }}" class="btn btn-primary" style="">Export Data</a>
     
 
            {{--     <div class="row">
