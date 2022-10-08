@@ -92,7 +92,8 @@ class PelanggaranController extends Controller
                                 'pelanggarans.prokes_nama_pelaku',
                                 'pelanggarans.prokes_no_identitas',
                                 'pelanggarans.psk_bb',
-                                'pelanggarans.psk_jml_bb'
+                                'pelanggarans.psk_jml_bb',
+                                'pelanggarans.pam_judul'
                                 
                         );
                         $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu', 'left');

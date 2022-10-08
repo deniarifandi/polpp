@@ -176,10 +176,18 @@
                                 @endif
                                 {{-- PROKES --}}
 
-                                @endif
-
+                                {{-- PAM --}}
+                                @if($_GET['id_kegiatan']==9)
+                                <th>judul kegiatan</th>
+                                @else
                                 <th scope="col">Jenis Pelanggaran</th>
                                 <th>Tindak Lanjut</th>
+                                @endif
+                                {{-- end PAM --}}
+
+                                @endif
+
+                                
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
@@ -262,17 +270,27 @@
                                   {{-- PROKES --}}
                                   @if($_GET['id_kegiatan']==8)
                                   <th></th>
-                                  <th>{{ $pelanggaran->prokes_nama }}</th>
-                                  <th>{{ $pelanggaran->prokes_nomor_surat }}</th>
-                                  <th>{{ $pelanggaran->prokes_nama_pelaku }}</th>
-                                  <th>{{ $pelanggaran->prokes_no_identitas }}</th>
+                                  <td>{{ $pelanggaran->prokes_nama }}</td>
+                                  <td>{{ $pelanggaran->prokes_nomor_surat }}</td>
+                                  <td>{{ $pelanggaran->prokes_nama_pelaku }}</td>
+                                  <td>{{ $pelanggaran->prokes_no_identitas }}</td>
                                   @endif
                                   {{-- PROKES --}}
+                                  
+
+                                    {{-- PAM --}}
+
+                                    @if($_GET['id_kegiatan']==9)
+                                      <td>{{ $pelanggaran->pam_judul }}</td>
+                                    @else
+                                   
+                                    <td>{{ $pelanggaran->nama_pelanggaran}}</td>
+                                    <td>{{ $pelanggaran->nama_tindak_lanjut }}</td>
+                                    @endif
+                                    {{-- end PAM --}}
 
                                   @endif
 
-                                  <td>{{ $pelanggaran->nama_pelanggaran}}</td>
-                                  <td>{{ $pelanggaran->nama_tindak_lanjut }}</td>
                                   <td>
                                     <a class="view" title="View" data-toggle="tooltip"  href="{{ url('pelanggaran') }}/{{ $pelanggaran->id }}"><i class="material-icons">&#xE417;</i></a>
                                     <a href="{{ url('pelanggaran')}}/edit/{{ $pelanggaran->id }}" type="submit" class="edit" title="Edit"><i class="material-icons">&#xE254;</i></a>
