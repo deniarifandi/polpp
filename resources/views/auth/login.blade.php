@@ -5,6 +5,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  max-height: 50%;
 }
 
 </style>
