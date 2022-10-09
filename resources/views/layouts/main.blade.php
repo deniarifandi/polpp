@@ -63,7 +63,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{URL::to('/')}}" class="logo d-flex align-items-center">
-        <img src="{{URL::to('/')}}/assets/img/logo.png" alt="">
+        <img src="{{URL::to('/')}}/assets2/img/logopolpp.png" alt="">
         <span class="d-none d-lg-block">{{ config('app.name') }}</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -169,7 +169,7 @@
               <hr class="dropdown-divider">
             </li>
 
-            <li>
+            {{-- <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
                 <span>My Profile</span>
@@ -197,7 +197,7 @@
             </li>
             <li>
               <hr class="dropdown-divider">
-            </li>
+            </li> --}}
 
             <li>
 
@@ -251,12 +251,12 @@
      <br>
       <li class="nav-heading">Administration</li>
       <br>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="underConstruction()">
           <i class="bi bi-person"></i>
           <span>Profil</span>
         </a>
-      </li><!-- End Profile Page Nav -->
+      </li><!-- End Profile Page Nav --> --}}
 
 
        <li class="nav-item">

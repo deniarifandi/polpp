@@ -58,7 +58,7 @@
   <section id="hero">
 
     <div class="hero-container">
-      <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpp.png" alt="" style="max-width: 300px"></a>
+      <a href="front" class="hero-logo" data-aos="zoom-in"><img src="assets2/img/logopolpplarge.png" alt="" style="max-width: 300px"></a>
       <h1 data-aos="zoom-in">{{ $admin[0]->value }}</h1>
       <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
 

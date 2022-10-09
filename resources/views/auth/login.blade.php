@@ -1,8 +1,22 @@
-<x-guest-layout>
-    <x-auth-card>
+<style type="text/css">
+    
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+</style>
+
+<x-guest-layout >
+    
+    <x-auth-card >
         <x-slot name="logo">
-            <a href="front">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+            {{-- Login --}}
+            <a href="front" >
+                {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                {{-- <img src="{{URL::to('/')}}/assets2/img/logopolpp.png" alt="" > --}}
             </a>
         </x-slot>
 
@@ -11,12 +25,20 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
+        
+        
+        <br>
+        <img src="{{URL::to('/')}}/assets2/img/logopolpplarge.png" alt=""  class="center">
+        <br>
+        <h1 style="font-size:30px; text-align: center;">Login</h1>
+        <br>
+        <form method="POST" action="{{ route('login') }}" >
             @csrf
 
+           
+
             <!-- Email Address -->
-            <div>
+            <div >
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
@@ -52,5 +74,7 @@
                 </x-button>
             </div>
         </form>
+    
     </x-auth-card>
+
 </x-guest-layout>
