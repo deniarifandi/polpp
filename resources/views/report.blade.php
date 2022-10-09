@@ -244,18 +244,7 @@
 
       <div class="row">
 
-        <div class="col-lg-6">
-          <div class="card">
-            
-            <div class="card-body">
-              <h5 class="card-title">
-                Lokasi Pelanggaran Anjal-Gepeng
-              </h5>
-              @include('graph.lokasi_pelanggaran_anjal')
-            </div>
-            
-          </div>
-        </div>
+
 
           <div class="col-lg-6">
           <div class="card">
@@ -265,6 +254,19 @@
                Jenis Anjal-Gepeng
               </h5>
               @include('graph.jenis_pelanggaran_anjal')
+            </div>
+            
+          </div>
+        </div>
+
+                <div class="col-lg-6">
+          <div class="card">
+            
+            <div class="card-body">
+              <h5 class="card-title">
+                Lokasi Pelanggaran Anjal-Gepeng
+              </h5>
+              @include('graph.lokasi_pelanggaran_anjal')
             </div>
             
           </div>
