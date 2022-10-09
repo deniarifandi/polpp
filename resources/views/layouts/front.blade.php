@@ -62,7 +62,7 @@
       <h1 data-aos="zoom-in">{{ $admin[0]->value }}</h1>
       <h2 data-aos="fade-up" style="font-size: 25px">Satpol PP Kota Malang</h2>
 
-      <a data-aos="fade-up" data-aos-delay="200" href="#contact" class="btn-get-started scrollto">Get Started</a>
+      <a data-aos="fade-up" data-aos-delay="200" href="#contact" class="btn-get-started scrollto">Pelaporan Gangguan</a>
     </div>
   </section><!-- End Hero -->
 
