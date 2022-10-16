@@ -224,16 +224,27 @@
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-    <br>
+    {{-- <br> --}}
     <ul class="sidebar-nav" id="sidebar-nav">
-
+      <li class="nav-heading">Dashboard </li>
       <li class="nav-item">
         <a class="nav-link " href="{{ URL::to('/dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard Pelanggaran</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <br>
+      <li class="nav-heading">Integrasi </li>
 
+       <li class="nav-item">
+        <a class="nav-link " href="{{ URL::to('/administration/get_reklame') }}">
+          <i class="bi bi-cloud-download-fill"></i>
+          <span>IZOL-Data Reklame</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <br>
+      <li class="nav-heading">Report & Pengaduan </li>
       <li class="nav-item">
         <a class="nav-link " href="{{ URL::to('/report') }}" >
           <i class="bi bi-pie-chart-fill"></i>
@@ -250,7 +261,7 @@
 
      <br>
       <li class="nav-heading">Administration</li>
-      <br>
+      
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" onclick="underConstruction()">
           <i class="bi bi-person"></i>

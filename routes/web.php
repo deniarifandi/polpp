@@ -122,11 +122,24 @@ Route::post('administration/tambah_grup', [AdministrationController::class, 'tam
 
 Route::get('administration/export_data',[AdministrationController::class, 'export_data'])->name('export_data');
 
+///////INTEGRASI
+Route::get('administration/get_reklame',[AdministrationController::class, 'get_reklame'])->name('get_reklame')->middleware(['auth']);
+
 ////////////TESTING
 Route::get('getfile', [PelanggaranController::class, 'getfile']);
 Route::get('/greeting', function () {
     return 'Hello World';
 });
+
+Route::get('testapi', function(){
+
+	$response = Http::withBasicAuth('inaPopP', 'SATPOL-Izol2022' )->get('https://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal=2022-09-09&tgl_akhir=2022-09-09');
+	echo $response;
+
+});
+
+
+
 
 
 

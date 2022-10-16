@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Administration;
 use App\Models\Regu;
 use DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Collection;
 
 class AdministrationController extends Controller
 {
@@ -164,5 +166,36 @@ class AdministrationController extends Controller
         // return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10), 'id_kegiatan' => $id_kegiatan]);
 
         return view('export_data', ['pelanggarans' => $pelanggarans->get(), 'id_kegiatan' => $id_kegiatan]);
+    }
+
+
+    public function get_reklame(){
+
+        $jenis_reklame = "PERMANEN";
+        $tgl_awal = date("YYYY-MM-DD");
+        $tgl_akhir = date("YYYY-MM-DD");
+
+        // $tgl_awal = "2022-09-01";
+
+        if (isset($_GET['tgl_awal'])) {
+            $tgl_awal = $_GET['tgl_awal'];
+        }
+        if (isset($_GET['tgl_akhir'])) {
+            $tgl_akhir = $_GET['tgl_akhir'];
+        }
+        if (isset($_GET['jenis_reklame'])) {
+            $jenis_reklame = $_GET['jenis_reklame'];
+        }
+
+        $response = Http::withBasicAuth('inaPopP', 'SATPOL-Izol2022' )->get('https://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis='.$jenis_reklame.'&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir);
+
+        $collection = collect($response["Status"]["Data"]);
+
+        $sorted = $collection->sortBy('berlaku_akhir');
+        
+
+        $final = $sorted->values()->all();
+
+        return view('integrasi_izol',['responses' => $final]);
     }
 }
