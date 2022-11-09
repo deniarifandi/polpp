@@ -6,6 +6,7 @@ use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AdministrationController;
 use App\Models\Administration;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,8 +134,19 @@ Route::get('/greeting', function () {
 
 Route::get('testapi', function(){
 
-	$response = Http::withBasicAuth('inaPopP', 'SATPOL-Izol2022' )->get('https://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal=2022-09-09&tgl_akhir=2022-09-09');
-	echo $response;
+	// $response = Http::withBasicAuth('inaPopP', 'SATPOL-Izol2022' )->get('http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal=2022-09-09&tgl_akhir=2022-09-09');
+
+	// $response = Http::get('http://example.com');
+	// echo $response;
+
+	$client = new GuzzleHttp\Client();
+	$res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal=2022-09-09&tgl_akhir=2022-09-09', [
+		'verify' => false,
+	    'auth' => ['inaPopP', 'SATPOL-Izol2022']
+	]);
+
+	// echo $res->getStatusCode();
+	echo $res->getBody();
 
 });
 

@@ -109,6 +109,7 @@
                                 </tbody>
                               </table>
                               </div>
+
                                
                   </div>
                 </div>
@@ -144,15 +145,12 @@
 
         console.log("ready");
 
-        @php
+        var url = new URL(window.location.href);
+        var tgl_awal = url.searchParams.get("tgl_awal");
+        var tgl_akhir = url.searchParams.get("tgl_akhir");
 
-          if (isset($_GET['tgl_awal'])) {
-            @endphp
-              // document.getElementById("tgl_awal").value = {{ $_GET['tgl_awal'] }};
-            @php
-          }
-
-        @endphp
+        document.getElementById("tgl_awal").value = tgl_awal;
+        document.getElementById("tgl_akhir").value = tgl_akhir;
 
       });
 

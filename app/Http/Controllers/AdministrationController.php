@@ -8,8 +8,11 @@ use App\Models\Regu;
 use DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Collection;
-
+// use GuzzleHttp\Client;
+use GuzzleHttp\Client;
+// use App\Http\Controllers\GuzzleHttp\Client;
 class AdministrationController extends Controller
+
 {
     public function index(){
 
@@ -179,17 +182,32 @@ class AdministrationController extends Controller
 
         if (isset($_GET['tgl_awal'])) {
             $tgl_awal = $_GET['tgl_awal'];
+            // $tgl_awal = date_create($tgl_awal);
+            // $tgl_awal = date_format($tgl_awal,"YYYY-MM-DD");
         }
         if (isset($_GET['tgl_akhir'])) {
-            $tgl_akhir = $_GET['tgl_akhir'];
+          $tgl_akhir = $_GET['tgl_akhir'];
+            // $tgl_akhir = date_create($tgl_akhir);
+            // $tgl_akhir = date_format($tgl_akhir,"YYYY-MM-DD");
         }
         if (isset($_GET['jenis_reklame'])) {
             $jenis_reklame = $_GET['jenis_reklame'];
         }
 
-        $response = Http::withBasicAuth('inaPopP', 'SATPOL-Izol2022' )->get('https://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis='.$jenis_reklame.'&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir);
+        echo 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir;
 
-        $collection = collect($response["Status"]["Data"]);
+        $client = new client();
+        $res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir, [
+            'verify' => false,
+            'auth' => ['inaPopP', 'SATPOL-Izol2022']
+        ]);
+
+        
+        $result = json_decode($res->getBody(),true);
+
+        // print_r($result);
+
+        $collection = collect($result["Status"]["Data"]);
 
         $sorted = $collection->sortBy('berlaku_akhir');
         
