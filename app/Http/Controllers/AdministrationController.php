@@ -197,7 +197,7 @@ class AdministrationController extends Controller
         echo 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir;
 
         $client = new client();
-        $res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir, [
+        $res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis='.$jenis_reklame.'&tgl_awal='.$tgl_awal.'&tgl_akhir='.$tgl_akhir, [
             'verify' => false,
             'auth' => ['inaPopP', 'SATPOL-Izol2022']
         ]);

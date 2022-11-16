@@ -140,7 +140,7 @@ Route::get('testapi', function(){
 	// echo $response;
 
 	$client = new GuzzleHttp\Client();
-	$res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=PERMANEN&tgl_awal=2022-09-09&tgl_akhir=2022-09-09', [
+	$res = $client->request('GET', 'http://izol.malangkota.go.id/backend/index.php/api/getTerbitReklame?jenis=INSIDENTIL&tgl_awal=2022-01-01&tgl_akhir=2022-01-30', [
 		'verify' => false,
 	    'auth' => ['inaPopP', 'SATPOL-Izol2022']
 	]);
