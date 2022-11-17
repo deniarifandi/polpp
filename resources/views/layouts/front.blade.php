@@ -312,7 +312,7 @@
                   <input type="text" name="nik" class="form-control" id="nik" placeholder="NIK" required>
                 </div>
                 <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="">
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email/HP">
                 </div>
               </div>
               <div class="form-group mt-3">
