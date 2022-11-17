@@ -245,10 +245,10 @@
         <div class="card">
           <div class="card-body">
 
-            <h5 class="card-title" >Detail Pelanggaran PSK</h5>
+            <h5 class="card-title" >Detail Pelanggaran ASUSILA</h5>
            
             <div class="row mb-3">
-              <label for="inputText" class="col-sm-4 col-form-label">Nama PSK</label>
+              <label for="inputText" class="col-sm-4 col-form-label">Nama Pelaku</label>
               <div class="col-sm-8">
                <input type="text" class="form-control" name="psk_nama">
               </div>
