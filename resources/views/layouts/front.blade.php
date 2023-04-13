@@ -354,7 +354,7 @@
                 <div class="col-lg-5 offset-lg-4">
                   <div class="g-recaptcha" style="display: inline-block;" data-sitekey="6LfhYA4hAAAAAIQy4omSwNkx5aqKtXOCwt7LEHfg" data-callback="correctCaptcha">
                     </div>
-                     <button type="submit" class="btn btn-primary" id="laporButton">Send Message</button>  
+                     <button type="submit" class="btn btn-primary" id="laporButton" disabled="true">Send Message</button>  
                 </div>
                  
               </div>
@@ -397,17 +397,10 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Knight</span></strong>. All Rights Reserved
+       
 
       </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/knight-free-bootstrap-theme/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-         <a href="#contact" class="btn btn-primary" style="border-radius: 100%; position: fixed; right: 15px; bottom: 75px; width: 75px; height: 75px; z-index: 10000; font-size: 38px"><i class="bi bi-telephone-fill"> </i></a>
-      </div>
+    
     </div>
 
   </footer><!-- End Footer -->
