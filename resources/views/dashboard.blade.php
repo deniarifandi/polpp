@@ -103,7 +103,7 @@
                   <a href="{{ url('pelanggaran') }}?id_kegiatan=4">
 
                 <div class="card-body">
-                  <h5 class="card-title">PSK <span>| Record</span></h5>
+                  <h5 class="card-title">ASUSILA <span>| Record</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
