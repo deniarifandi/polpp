@@ -7,6 +7,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\AdministrationController;
 use App\Models\Administration;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,11 @@ Route::get('/report', function(){
 	$kecamatans = KegiatanController::get_kecamatan_chart();
 	
 	return view('report',['data' => $data, 'kecamatans' => $kecamatans]);
+})->middleware(['auth']);
+
+Route::get('/report2', function(){
+	
+	return view('report2');
 })->middleware(['auth']);
 
 
@@ -178,3 +184,114 @@ Route::get('/tambah_sktm', function () {
 Route::get('/verifikasi_berkas', function () {
         return view('verifikasi_berkas');
 })->name('verifikasi_berkas');
+
+
+
+Route::get('/json_heatmap', function () {
+
+try{
+
+	if( $_GET['id_kegiatan'] != 0 || $_GET['id_kecamatan'] != 0){
+		if($_GET['id_kegiatan'] == 0){
+			$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+			->where("lat","!=",null)
+			->where('id_kecamatan','=',$_GET['id_kecamatan'])
+			->orderBy('id_kegiatan','asc')
+			->get(); 	
+		}else if($_GET['id_kecamatan'] == 0){
+			$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+			->where("lat","!=",null)
+			->where('id_kegiatan','=',$_GET['id_kegiatan'])
+			->orderBy('id_kegiatan','asc')
+			->get(); 	
+		}else{
+			$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+			->where("lat","!=",null)
+			->where('id_kegiatan','=',$_GET['id_kegiatan'])
+			->where('id_kecamatan','=',$_GET['id_kecamatan'])
+			->orderBy('id_kegiatan','asc')
+			->get(); 	
+		}
+	}else{
+
+		$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+		->where("lat","!=",null)
+		->orderBy('id_kegiatan','asc')
+		->get(); 		
+	}
+
+}catch(\Exception $e){
+	$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+	->where("lat","!=",null)
+	
+	->orderBy('id_kegiatan','asc')
+	->get(); 	
+}
+
+
+
+	
+	echo '{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [';
+
+
+for ($i=0; $i < count($pelanggarans); $i++) { 
+	echo '{  "properties": {  "mag": '.$pelanggarans[$i]->id_kegiatan.' }, "geometry": { "type": "Point", "coordinates": [ '.$pelanggarans[$i]->lon.','.$pelanggarans[$i]->lat.', 0.0 ] } },';
+}
+
+echo '{  "properties": {  "mag": 1.8}, "geometry": { "type": "Point", "coordinates": [  0.0,0.0, 0 ] } }';
+// ';
+
+
+
+echo ']
+}
+';
+
+      
+
+
+})->name('json_heatmap');
+
+
+Route::get('/json_heatmap2', function () {
+
+	$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
+	->where("lat","!=",null)
+	->where('id_kecamatan','=',3)
+	->get(); 	
+	
+	echo '{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [';
+
+
+for ($i=0; $i < count($pelanggarans); $i++) { 
+	echo '{  "properties": {  "mag": '.$pelanggarans[$i]->id_kegiatan.' }, "geometry": { "type": "Point", "coordinates": [ '.$pelanggarans[$i]->lon.','.$pelanggarans[$i]->lat.', 0.0 ] } },';
+}
+
+// echo '
+// {  "properties": {  "mag": 1 }, "geometry": { "type": "Point", "coordinates": [  112.63773,-7.965132827557862, 0.0 ] } },
+// echo '{  "properties": {  "mag": 0.1}, "geometry": { "type": "Point", "coordinates": [  112.61388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.2}, "geometry": { "type": "Point", "coordinates": [  112.62388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.3}, "geometry": { "type": "Point", "coordinates": [  112.63388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.4}, "geometry": { "type": "Point", "coordinates": [  112.64388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.5}, "geometry": { "type": "Point", "coordinates": [  112.65388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.6}, "geometry": { "type": "Point", "coordinates": [  112.66388,-7.965132827557862, 0 ] } },';
+// echo '{  "properties": {  "mag": 0.7}, "geometry": { "type": "Point", "coordinates": [  112.67388,-7.965132827557862, 0 ] } },';
+echo '{  "properties": {  "mag": 1.8}, "geometry": { "type": "Point", "coordinates": [  0.0,0.0, 0 ] } }';
+// ';
+
+
+
+echo ']
+}
+';
+
+      
+
+
+})->name('json_heatmap');

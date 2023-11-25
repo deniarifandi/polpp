@@ -36,6 +36,8 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
+   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
   <!-- =======================================================
   * Template Name: NiceAdmin - v2.2.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -249,6 +251,13 @@
         <a class="nav-link " href="{{ URL::to('/report') }}" >
           <i class="bi bi-pie-chart-fill"></i>
           <span>Report</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+       <li class="nav-item">
+        <a class="nav-link " href="{{ URL::to('/report2?id_kegiatan=0&id_kecamatan=0') }}" >
+          <i class="bi bi-globe-americas"></i>
+          <span>Heatmap</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
