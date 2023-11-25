@@ -67,6 +67,12 @@ Route::get('/dashboard', function () {
     return view('dashboard',[ 'data' => $data ]);
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/dashboard/rawan', function () {
+    $data = PelanggaranController::getJumlahRawanPelanggaran();
+    return view('rawan',[ 'data' => $data ]);
+})->middleware(['auth'])->name('dashboard_rawan');
+
+Route::get('pelanggaran/list_rawan',[ PelanggaranController::class, 'indexRawan'])->middleware(['auth'])->name('list_rawan_pelanggaran');
 
 
 ///PELANGGARAN

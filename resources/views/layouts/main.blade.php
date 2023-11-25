@@ -229,12 +229,24 @@
     {{-- <br> --}}
     <ul class="sidebar-nav" id="sidebar-nav">
       <li class="nav-heading">Dashboard </li>
+      
+
       <li class="nav-item">
         <a class="nav-link " href="{{ URL::to('/dashboard') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard Pelanggaran</span>
         </a>
       </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="{{ URL::to('/dashboard/rawan') }}">
+          <i class="bi bi-list"></i>
+          <span>Peta Rawan Pelanggaran</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
+
       <br>
       <li class="nav-heading">Integrasi </li>
 

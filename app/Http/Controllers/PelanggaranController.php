@@ -149,6 +149,67 @@ class PelanggaranController extends Controller
         return view('list_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10), 'id_kegiatan' => $id_kegiatan]);
     }
 
+
+     public function indexRawan()
+    {
+
+        if (isset($_GET['cari'])) {
+            $cari = $_GET['cari'];
+        }
+
+        $id_kegiatan = "0";
+        $pelanggarans = DB::table('pelanggarans')
+                        ->select(
+                                'pelanggarans.id',
+                                'pelanggarans.created_at',
+                                'pelanggarans.pkl_nama',
+                                'pelanggarans.id_kegiatan',
+                                'pelanggarans.pkl_no_identitas',
+                                'pelanggarans.id_kecamatan',
+                                'pelanggarans.alamat',
+                                'kecamatans.nama as nama_kecamatan',
+                                'pelanggarans.tema_reklame',
+                                'kegiatans.nama as nama_kegiatan',
+                                'jenis_pelanggarans.nama as nama_pelanggaran',
+                                'tgl_peristiwa'
+                              
+                                
+                        );
+                        $pelanggarans = $pelanggarans->join('regus','regus.id', '=','pelanggarans.id_regu', 'left');
+                        $pelanggarans = $pelanggarans->join('jenis_pkls','pelanggarans.id_jenis_pkl','=','jenis_pkls.id','left');
+                        $pelanggarans = $pelanggarans->join('kegiatans','kegiatans.id', '=','pelanggarans.id_kegiatan','left');
+                        $pelanggarans = $pelanggarans->join('jenis_pelanggarans','jenis_pelanggarans.id', '=','pelanggarans.id_jenis_pelanggaran','left');
+                        $pelanggarans = $pelanggarans->join('kecamatans', 'pelanggarans.id_kecamatan','=', 'kecamatans.id');
+
+                        if (@isset($cari)) {
+                            $pelanggarans = $pelanggarans->where('tema_reklame','LIKE','%'.$cari.'%');
+                            $pelanggarans = $pelanggarans->orwhere('pkl_nama','LIKE','%'.$cari.'%');
+                            $pelanggarans = $pelanggarans->orwhere('anjal_gepeng_nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.pkl_nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.pkl_no_identitas','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.alamat','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('pelanggarans.tema_reklame','LIKE','%'.$cari.'%');
+                                
+                                $pelanggarans = $pelanggarans->orwhere('kegiatans.nama','LIKE','%'.$cari.'%');
+                                $pelanggarans = $pelanggarans->orwhere('jenis_pelanggarans.nama','LIKE','%'.$cari.'%');
+                               
+                              
+                        }
+
+                        $pelanggarans = $pelanggarans->orderBy('id','desc');
+
+
+        if (isset($_GET['id_kecamatan'])) {
+
+             $pelanggarans = $pelanggarans->where('id_kecamatan',$_GET['id_kecamatan']);
+             $id_kecamatan = $_GET['id_kecamatan'];
+        }
+        
+        // print_r($pelanggarans);
+
+        return view('list_rawan_pelanggaran', ['pelanggarans' => $pelanggarans->paginate(10), 'id_kecamatan' => $id_kecamatan]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -717,11 +778,22 @@ class PelanggaranController extends Controller
 
     public static function getJumlahPelanggaran(){
 
-        
 
         for ($i=0; $i < 9; $i++) { 
             $data[$i]   = Pelanggaran::where('id_kegiatan',$i+1)
                             ->orderBy('tgl_peristiwa')
+                            ->take(100)
+                            ->count();
+        }
+
+        return $data;
+    }
+
+       public static function getJumlahRawanPelanggaran(){
+
+        for ($i=0; $i < 5; $i++) { 
+            $data[$i]   = Pelanggaran::where('id_kecamatan',$i+1)
+                            // ->orderBy('tgl_peristiwa')
                             ->take(100)
                             ->count();
         }
