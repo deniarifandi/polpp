@@ -241,7 +241,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{ URL::to('/dashboard/rawan') }}">
           <i class="bi bi-list"></i>
-          <span>Peta Rawan Pelanggaran</span>
+          <span>Dashboard Kecamatan</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -266,20 +266,24 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link "  href="{{ URL::to('/laporan/index') }}" >
+          <i class="bi bi-megaphone-fill"></i>
+          <span>Laporan / Titik Rawan</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+
        <li class="nav-item">
         <a class="nav-link " href="{{ URL::to('/report2?id_kegiatan=0&id_kecamatan=0') }}" >
-          <i class="bi bi-globe-americas"></i>
+          <i class="bi bi-map"></i>
           <span>Heatmap</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link "  href="{{ URL::to('/laporan/index') }}" >
-          <i class="bi bi-megaphone-fill"></i>
-          <span>Laporan/Pengaduan</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+   
 
+      
      <br>
       <li class="nav-heading">Administration</li>
       

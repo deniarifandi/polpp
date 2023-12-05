@@ -60,7 +60,10 @@ Route::get('/report2', function(){
 	return view('report2');
 })->middleware(['auth']);
 
-
+Route::get('/report_map_rawan', function(){
+	
+	return view('report_map_rawan');
+})->middleware(['auth']);
 
 Route::get('/dashboard', function () {
     $data = PelanggaranController::getJumlahPelanggaran();
@@ -262,12 +265,41 @@ echo ']
 })->name('json_heatmap');
 
 
-Route::get('/json_heatmap2', function () {
 
-	$pelanggarans = DB::table('pelanggarans')->select("lat","lon","id_kegiatan")
-	->where("lat","!=",null)
-	->where('id_kecamatan','=',3)
+
+
+Route::get('/json_heatmap_rawan', function () {
+
+	$id_kecamatan = $_GET['id_kecamatan'];
+
+try{
+		
+		if ($id_kecamatan != 0) {
+			$pelanggarans = DB::table('laporans')->select("*")
+			->where("latitude","!=",null)
+			->where("id_kecamatan","=",$id_kecamatan)
+			->orderBy('created_at','asc')
+			->get(); 	
+		}else{
+			$pelanggarans = DB::table('laporans')->select("*")
+			->where("latitude","!=",null)
+			->orderBy('created_at','asc')
+			->get(); 	
+		}
+	
+		
+
+}catch(\Exception $e){
+	$pelanggarans = DB::table('laporanus')->select("*")
+	->where("latitude","!=",null)
+	
+	// ->orderBy('id_kegiatan','asc')
 	->get(); 	
+
+}
+
+
+
 	
 	echo '{
 "type": "FeatureCollection",
@@ -276,18 +308,15 @@ Route::get('/json_heatmap2', function () {
 
 
 for ($i=0; $i < count($pelanggarans); $i++) { 
-	echo '{  "properties": {  "mag": '.$pelanggarans[$i]->id_kegiatan.' }, "geometry": { "type": "Point", "coordinates": [ '.$pelanggarans[$i]->lon.','.$pelanggarans[$i]->lat.', 0.0 ] } },';
+
+	$kegiatans = "null";
+	
+		$kegiatans = $pelanggarans[$i]->status;
+	
+
+	echo '{  "properties": {  "mag": '.$kegiatans.' }, "geometry": { "type": "Point", "coordinates": [ '.$pelanggarans[$i]->longitude.','.$pelanggarans[$i]->latitude.', 0.0 ] } },';
 }
 
-// echo '
-// {  "properties": {  "mag": 1 }, "geometry": { "type": "Point", "coordinates": [  112.63773,-7.965132827557862, 0.0 ] } },
-// echo '{  "properties": {  "mag": 0.1}, "geometry": { "type": "Point", "coordinates": [  112.61388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.2}, "geometry": { "type": "Point", "coordinates": [  112.62388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.3}, "geometry": { "type": "Point", "coordinates": [  112.63388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.4}, "geometry": { "type": "Point", "coordinates": [  112.64388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.5}, "geometry": { "type": "Point", "coordinates": [  112.65388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.6}, "geometry": { "type": "Point", "coordinates": [  112.66388,-7.965132827557862, 0 ] } },';
-// echo '{  "properties": {  "mag": 0.7}, "geometry": { "type": "Point", "coordinates": [  112.67388,-7.965132827557862, 0 ] } },';
 echo '{  "properties": {  "mag": 1.8}, "geometry": { "type": "Point", "coordinates": [  0.0,0.0, 0 ] } }';
 // ';
 
@@ -300,4 +329,5 @@ echo ']
       
 
 
-})->name('json_heatmap');
+})->name('json_heatmap_rawan');
+

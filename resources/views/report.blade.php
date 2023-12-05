@@ -65,39 +65,7 @@
       </div>
 
 
-      <div class="row">
-
-        
-
-          <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body" style="height:500px">
-              <h5 class="card-title">Heatmap Malang</h5>
-
-              @include('graph.heatmap')
-
-            </div>
-          </div>
-        </div>
-
-         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body" style="height:500px">
-              <h5 class="card-title">Heatmap Kecamatan 
-                <select name="cars" id="cars">
-  <option value="volvo">Blimbing</option>
-  <option value="saab">Klojen</option>
-  <option value="mercedes">Kedungkandang</option>
-  
-</select></h5>
-
-              @include('graph.heatmapkecamatan')
-          
-
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
 
       <div class="row">
