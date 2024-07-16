@@ -64,7 +64,7 @@
             <div class="row mb-3">
               <label for="inputText" class="col-sm-4 col-form-label">Tanggal</label>
               <div class="col-sm-8">
-                <input type="date" name="tgl_peristiwa" class="form-control" value="@php echo date('Y-m-d') @endphp" readonly>
+                <input type="date" name="tgl_peristiwa" class="form-control" value="@php echo date('Y-m-d') @endphp">
               </div>
             </div>
             <div class="row mb-3">
