@@ -35,8 +35,8 @@
                     <br>
                     
                         <select name="tahun" id="tahun" class="btn btn-primary" onchange="gantiTahun()" style="width:100%">
-                          @for($i = 2021; $i <= 2024; $i++)
-                            <option value="{{$i}}">{{$i}}</option>
+                         @for($i = 2021; $i <= date('Y'); $i++)
+                              <option value="{{ $i }}">{{ $i }}</option>
                           @endfor
                         </select>      
                       
